@@ -22,7 +22,7 @@
     <?php
 
         //データベース接続情報ファイル（ログイン用）※ログインフォルダから動かさないでください。
-        require_once __DIR__ .'/config.php';
+        require_once('../config.php');
         
         //セッション開始
         session_start();

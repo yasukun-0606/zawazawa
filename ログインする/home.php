@@ -33,7 +33,7 @@
     <div class="menu">
     <?php
     //データベース接続情報ファイル（ログイン用）※ログインフォルダから動かさないでください。
-    require_once __DIR__ .'/config.php';
+    require_once('../config.php');
 
     //セッションスタート
     session_start();
@@ -42,7 +42,7 @@
         echo '<p>ようこそ' .  h($_SESSION['user_name']) . "さん</p><br>";
         echo "<a href='logout.php' class='log'>ログアウト</a>";
         echo "<br><br>";
-        echo "<br><a href='test.html' class='button'>栄養管理</a>";
+        echo "<br><a href='../nutorition/eiyouhome.php' class='button'>栄養管理</a>";
         echo "<br><br><br><br>";
         echo "<a href='#' class='sub_button'>体調管理</a>";
         echo "<br><br>";
