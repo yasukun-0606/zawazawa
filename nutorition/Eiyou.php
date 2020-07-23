@@ -12,8 +12,8 @@
     $stmt2=$pdo->prepare($datasql);
     $result = $stmt2->fetch(PDO::FETCH_ASSOC);
 
-    $name=$result['user_id'];
-    $id=$result['user_name'];
+    $id=$result['user_id'];
+    $name=$result['user_name'];
 
     //入力内容の保持    
     $age = $_POST['age'];  //年齢
@@ -27,5 +27,5 @@
     $stmt = $pdo->prepare($sql); //SQL文をセットしてデータベースに接続
     $stmt->execute([$id, $name, $age, $height, $weight, $moment, $eight]); 
     
-    //header('calendar.php');
+    header('Location:calendar.php');
 ?>
