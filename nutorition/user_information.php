@@ -27,7 +27,7 @@
         <p class="user_title">現在のユーザー情報</p>        <!--タイトル-->
         <p>
         <?php
-        require_once __DIR__ .'/config.php';
+        require_once('../config.php');
         session_start();
 
         $name=$_SESSION['user_name'];
