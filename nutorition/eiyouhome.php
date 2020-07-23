@@ -25,7 +25,7 @@
     //ユーザーIDの空白チェック
     if(empty($result['id'])){ 
         //登録画面に移動
-        echo header('Location:EiyouLogin.html');
+        echo header('Location:login.html');
     } else {
         //カレンダー画面に移動
         echo header('Location:calendar.php');
