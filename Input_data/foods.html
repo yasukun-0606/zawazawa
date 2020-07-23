@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>摂取カロリー登録</title>
+</head>
+
+<style>
+    body{
+        background:linear-gradient(110deg,skyblue,yellow);
+    }
+    
+</style>
+
+<body>
+    <center>
+        <br/>
+        <h1> その他の食べ物のカロリー登録 </h2><br/>
+
+            <marquee height="205" width="180" behavior="alternate" direction="up" scrollamount="8" truespeed>
+                <img src="img/food_cup_yakisoba_boy.png" alt="湯切り成功">
+            </marquee>
+                
+
+            <marquee scrolldelay="15" scrollamount="20"><img src="img/taiyaki.png" alt="湯切り成功"></marquee><br />
+
+        <form action="foods.php" method="post">
+            <table border="2" bgcolor="#FFFF99">
+                
+                <tr>
+                    <td>名称</td>
+                    <td><input type="text" name="foods"></td>
+                    
+                </tr>
+                <tr>
+                    <td>kcal</td>
+                    <td><input type="text" name="calories"></td>
+                    
+                </tr>
+            </table>
+
+            <br/><br/>
+            <td colspan="2" align="center"><input type="submit" value="登録"></td>
+
+        </form>
+        <br/><br/>
+        <a href="sesshu.html">戻る</a>
+        <br/><br/>
+        <div align="left"><a href="shouhi.html">消費カロリー </a></div>
+        <br/>
+        <div align="right"><a href="index.html"><small>トップページ</small></a></div>
+    </center>
+</body>
+</html>
+

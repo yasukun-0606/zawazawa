@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>摂取カロリー登録</title>
+</head>
+
+<style>
+    body{
+        background:linear-gradient(110deg,skyblue,yellow);
+        background-size: contain;
+        background-image:url("dishes.png") ;
+    }
+    
+</style>
+
+<body>
+    <center>
+        <br/><br/>
+        <h1 style="color:#0127ff"> 料理のカロリー登録 </h1><br/>
+            
+        <img src="cooking_frypan_teflon.png" alt="料理">
+
+        <form action="dishes.php" method="post">
+            <table border="2" bgcolor="#FFFF99">
+                
+                <tr>
+                    <td>料理名</td>
+                    <td><input type="text" name="dishes"></td>
+                    
+                </tr>
+                <tr>
+                    <td>kcal</td>
+                    <td><input type="text" name="calories"></td>
+                    
+                </tr>
+            </table>
+
+            <br/><br/>
+            <td colspan="2" align="center"><input type="submit" value="登録"></td>
+
+        </form>
+        <br/><br/>
+        <a href="sesshu.html">戻る</a>
+        <br/><br/>
+        <div align="left"><a href="shouhi.html">消費カロリー </a></div>
+        <br/>
+        <div align="right"><a href="index.html"><small>トップページ</small></a></div>
+    </center>
+</body>
+</html>
+
