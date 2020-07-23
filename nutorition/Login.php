@@ -70,7 +70,7 @@
 
 <body background ="back.png">               <!--背景設定-->
     <br>
-    <form method="POST" action="calendar.php" name="user" onsubmit="return check()">        <!--ユーザー情報入力-->
+    <form method="POST" action="Eiyou.php" name="user" onsubmit="return check()">        <!--ユーザー情報入力-->
     <table border="0">　<!--表のふちを消す-->  
         <tr>
             <tb><b class="left">年齢</b></tb>                           <!--年齢入力-->
