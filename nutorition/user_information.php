@@ -25,33 +25,54 @@
     <br>
     <div class="user_t1">           <!--ユーザー情報の表示くくり-->
         <p class="user_title">現在のユーザー情報</p>        <!--タイトル-->
-        <p>名前：
+        <p>
+        <?php
+        require_once __DIR__ .'/config.php';
+        session_start();
 
-        </p>
-        <p>年齢：
+        $name=$_SESSION['user_name'];
 
-        </p>
-        <p>身長：
+        $sql="select * from user_table where name = ?";
+        $stmt = $pdo->prepare($sql);                            //SQL文のセットとデータベースへ接続
+        $stmt->execute([$name]);   //フォーム情報をSQL文にセットし実行
+        //$result = $stmt->fetch();
+        
+        foreach($stmt as $row){
+            $name2=$row['name'];
+            $age=$row['age'];
+            $height=$row['height'];
+            $weight=$row['weight'];
+            $gender=$row['gender'];
+            $movement=$row['movement'];
+            $target=$row['target'];
+        }
+         
+        //h($name2);
+        echo"名前：$name2<br><br>"; 
 
-        </p>
-        <p>体重：
+        echo "年齢：$age<br><br>";
 
-        </p>
-        <p>性別：
+        echo "身長：$height<br><br>";
+        
+        echo "体重：$weight<br><br>";
 
-        </p>
-        <p>普段の運動強度：
+        echo "性別：$gender<br><br>";
+        
+        echo "普段の運動強度：$movement<br><br>";
 
-        </p>
-        <p>目標：
+        echo "目標：$target<br><br>";
+        ?>
+
         </p>
     </div>
 
 
     <!--今日の日付(PHP)-->
     <?php
-    session_start();
     
+    
+    
+
     $_month=$_SESSION['Month'];
     $_day=$_SESSION['Day'];
 
