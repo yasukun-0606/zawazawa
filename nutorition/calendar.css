@@ -1,0 +1,68 @@
+body{
+    width:100%; /*ページ全体の幅は100%と指定する*/	
+    text-align:center; /*ページ全体を中央揃えにする*/
+}
+
+*{
+    margin:0;
+    padding:0;
+}
+
+.head{
+    text-align:center; 		/*文字を中央にする*/
+    background-color:black;	/*背景を黒色にする*/
+    color:white;		/*文字色を白にする*/
+}
+
+/*カレンダーCSS*/
+table {
+    width: 100%;            /*横幅100px*/
+}
+
+table th {
+    background: #EEEEEE; /*表の背景色決定*/
+}
+
+table td {
+    border: 1px solid #CCCCCC;  /*表の背景色決定*/
+    text-align: center;             /*テクストを*/
+    padding: 5px;                   /*幅指定*/
+}
+
+.date_C{
+    width: 400px;               /*横幅400px*/
+    margin: 0 auto;             /*中央に*/
+    background-color: #3fe268;      /*背景色を指定*/
+    border: medium solid #f14646;   /*表の枠の色を指定*/
+    font-size: 20px;                   /*文字サイズを20px*/
+}
+
+.input_C{
+    font-size: 20px;            /*文字サイズ20px*/
+    width: 60px;                /*横幅60px*/
+    height: 25px;               /*縦幅25px*/
+}
+
+.send_C{
+    font-size: 20px;            /*文字サイズ20px*/
+    width: 400px;               /*横幅400px*/
+    height: 50px;               /*縦幅50px*/
+    text-align: center;         /*テキストを中央寄せ*/
+    margin-top: 40px;           /*上の幅を40pxあける*/
+}
+
+.font_C{
+    font-style:#FF0000;     /*文字の色指定*/
+}
+
+.text{
+    font-size: 20px;        /*文字サイズ20px*/
+}
+
+.margin1{
+    text-align:center; 		/*文字を中央にする*/
+    font-size: 20px;            /*文字サイズ20px*/
+    width: 170px;               /*横幅170px*/
+    height: 40px;               /*縦幅40px*/
+    margin-left: 10px;          /*左からの幅を設定*/
+}

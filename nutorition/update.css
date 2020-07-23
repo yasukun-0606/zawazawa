@@ -1,0 +1,77 @@
+body{
+    width:100%; /*ページ全体の幅は100%と指定する*/	
+    text-align:center; /*ページ全体を中央揃えにする*/
+  }
+
+*{
+    margin:0;
+    padding:0;
+}
+
+.head{
+    text-align:center; 		/*文字を中央にする*/
+    background-color:black;	/*背景を黒色にする*/
+    color:white;		/*文字色を白にする*/
+}
+
+
+
+
+/*目標更新画面CSS*/
+.title{
+    font-size: 30px;        /*文字サイズ変更*/
+    text-align: center;     /*テキストを中央*/
+}
+
+.left{
+    margin-left: 25px;      /*左からの25px*/
+}
+
+.input_form{
+    font-size: 20px;        /*文字のサイズ変更*/
+    width: 80px;            /*横の幅80px*/
+}
+
+.table10{
+    font-size: 20px;        /*文字サイズ変更*/
+    width: 400px;           /*横幅400px*/
+    height: 100px;          /*縦幅400px*/
+    margin-left: 20px;      /*左からのマージン20px*/
+}
+
+.Login_t1{
+    text-align: left;       /*テキストを左寄せ*/
+    margin: 0 auto;         /*真ん中*/
+    width: 500px;           /*横幅500px*/
+    background-color: #3fe268;      /*背景色*/
+    border: medium solid #f14646;   /*枠組み色*/
+    line-height:35px;                   /*枠の太さ*/
+}
+
+.text{
+    font-weight: 700;           /*文字の太さ変更*/
+    font-size: 23px;            /*文字サイズ変更*/
+    margin-left: 25px;          /*左からのインデント獲得*/
+}
+
+.send{
+    font-size: 30px;            /*文字サイズ変更*/
+    width: 100px;               /*横幅100px*/
+    height: 50px;               /*縦幅50px*/
+    margin-left: 50px;          /*左からのインデント*/
+    text-align: center;         /*中央で自動的にそろえる*/
+    margin-top: 40px;           /*縦のマージン*/
+}
+
+.text1{
+    font-weight: 100;           /*文字の太さ変更*/
+}
+
+
+.text2{
+    font-size: 20px;            /*文字にサイズ変更*/
+    margin-left: 25px;          /*左からの25px*/
+    width: 400px;               /*横幅400px*/
+    background-color: #eede83;  /*背景色*/
+    margin: 0 auto;                 /*自動中央揃え*/
+}

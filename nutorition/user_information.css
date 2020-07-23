@@ -1,0 +1,44 @@
+body{
+    width:100%; /*ページ全体の幅は100%と指定する*/	
+    text-align:center; /*ページ全体を中央揃えにする*/
+  }
+
+*{
+    margin:0;
+    padding:0;
+}
+
+.head{
+    text-align:center; 		/*文字を中央にする*/
+    background-color:black;	/*背景を黒色にする*/
+    color:white;		/*文字色を白にする*/
+}
+
+/*本文*/
+.title{
+    margin: 0 auto;         /*画面中央へ*/
+}
+
+.text{
+    font-size: 23px;        /*文字サイズ23px*/
+    margin-left: 25px;      /*左からのインデント*/
+    width: 300px;           /*横幅300px*/
+    background-color: #eede83;      /*背景の色を設定*/
+    margin: 0 auto;                 /*画面中央に自動*/
+}
+
+.user_t1{
+    width: 600px;                     /*横幅600px*/
+    background-color: #72e92d;      /*背景の色を設定*/
+    margin: 0 auto;                    /*画面中央へ自動設定*/
+    border: medium solid #f14646;   /*枠の色を設定*/
+    line-height:35px;                   /*枠の太さを設定*/
+}
+
+.margin1{
+    text-align:center; 		/*文字を中央にする*/
+    font-size: 20px;            /*文字サイズ20px*/
+    width: 170px;               /*横幅170px*/
+    height: 40px;               /*縦幅40px*/
+    margin-left: 10px;          /*左からの幅を設定*/
+}
