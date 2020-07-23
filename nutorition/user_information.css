@@ -42,3 +42,12 @@ body{
     height: 40px;               /*縦幅40px*/
     margin-left: 10px;          /*左からの幅を設定*/
 }
+
+.information{
+    text-align: left;       /*文字を左に寄せる*/
+    margin: 0 auto;         /*配置を自動的に中央寄せ*/
+    width: 500px;           /*横幅500px*/
+    background-color: #ff84e0;      /*背景の色を指定*/
+    border: medium solid #4e50db;   /*枠ぶちの色を指定*/
+    line-height:35px; 
+}
