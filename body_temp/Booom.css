@@ -1,0 +1,132 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body {
+  background-image: ("sky002.jpg");
+  background-size: cover;
+}
+
+.title{
+    text-align:center; 		/*文字を中央にする*/
+    background-color:black;	/*背景を黒色にする*/
+    color:white;		/*文字色を白にする*/
+}
+
+.title_1{
+  text-align:center; 		/*文字を中央にする*/
+  background-color:rgb(255, 167, 251);	/*背景を黒色にする*/
+  color:black;		/*文字色を白にする*/
+}
+.title_2{
+  text-align:center; 		/*文字を中央にする*/
+  background-color:rgb(182, 232, 255);	/*背景を黒色にする*/
+  color:black;		/*文字色を白にする*/
+}
+.title_3{
+  text-align:center; 		/*文字を中央にする*/
+  background-color:rgb(205, 255, 164);	/*背景を黒色にする*/
+  color:black;		/*文字色を白にする*/
+}
+
+/*段組　左*/
+.block_a{
+  float:left;
+  width:45%;  
+}
+/*段組　右*/
+.block_b{
+  float:right;
+  width:45%;
+}
+/*総摂取*/
+.title-box2-a{
+  margin: 1em 0;
+  padding: 1.5em 1em 1em;
+  position: relative;
+  border: 1px solid #f5b3ef;
+  background-color: #f6dcf4;
+  
+}
+
+.title-box2-title-a{
+  position: absolute;
+  top: -0.8em;
+  left: 20px;
+  font-weight: bold;
+  font-size: 1.1em;
+  background-color: #f5b3ef;
+  color: #000;
+  padding: 0 0.5em;
+  
+}
+
+.title-box2-a p{
+  margin: 0;
+  padding: 0;
+  
+}
+/*総消費*/
+.title-box2-b{
+  margin: 1em 0;
+  padding: 1.5em 1em 1em;
+  position: relative;
+  border: 1px solid #81d4fa;
+  background-color: #e1f5fe;
+}
+
+.title-box2-title-b{
+  position: absolute;
+  top: -0.8em;
+  left: 20px;
+  font-weight: bold;
+  font-size: 1.1em;
+  background-color: #81d4fa;
+  color: #000;
+  padding: 0 0.5em;
+}
+
+.title-box2-b p{
+  margin: 0;
+  padding: 0;
+}
+/*差分*/
+.title-box2-c{
+  margin: 1em 0;
+  padding: 1.5em 1em 1em;
+  position: relative;
+  border: 1px solid #81faa9;
+  background-color: #c0fbd4;
+}
+
+.title-box2-title-c{
+  position: absolute;
+  top: -0.8em;
+  left: 20px;
+  font-weight: bold;
+  font-size: 1.1em;
+  background-color: #81fa8b;
+  color: #000;
+  padding: 0 0.5em;
+}
+
+.title-box2-c p{
+  margin: 0;
+  padding: 0;
+}
+
+.flame01 {
+  border: 1px solid #000;
+  margin: 2em auto;
+  padding: 1em;
+  width: 50%;
+  background-color: #fff;
+  }
+
+  .textarea{
+    resize: none;
+    width: 80%;
+    height: 80%;
+    background: yellow;
+}
