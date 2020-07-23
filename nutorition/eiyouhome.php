@@ -25,10 +25,10 @@
     //ユーザーIDの空白チェック
     if(empty($result['id'])){ 
         //登録画面に移動
-        echo header('Location:login.html');
+        header('Location:EiyouLogin.html');
     } else {
         //カレンダー画面に移動
-        echo header('Location:calendar.php');
+        header('Location:calendar.php');
         //echo "<a href='index.php'>ホームページ<br></a>";
     }
 ?>
