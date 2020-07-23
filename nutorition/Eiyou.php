@@ -1,7 +1,7 @@
 
 <?php
     //データベース接続情報ファイル（ログイン用）※ログインフォルダから動かさないでください。
-    require_once __DIR__ .'/config.php';
+    require_once('../config.php');
 
     //セッションの引継ぎ    
     session_start();
