@@ -1,0 +1,76 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+#main{
+    /*text-align:center;*/
+    margin:auto;
+}
+
+/*フォームを中央ぞろえにする*/
+.centerForm{
+    margin:auto;
+}
+
+/*リングを中央ぞろえにする*/
+.p_center{
+    text-align:center;
+    font-size:30px;
+}
+
+.ansForm{
+    text-align:center;
+}
+
+.title{
+    text-align:center; 
+    background-color:black;
+    color:white;
+}
+
+.size{
+    font-size:20px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.log{
+    color:black;
+    border-bottom: solid blue;
+    transition    : .3s;         /* なめらか変化 */
+}
+
+.log:hover{
+    background-color:skyblue;
+    color:blue;
+}
+
+.p_mini{
+    font-size:20px;
+    text-align:center;
+}
+
+.button {
+    display       : inline-block;
+    border-radius : 5%;          /* 角丸       */
+    font-size     : 20pt;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 12px 12px;   /* 余白       */
+    background    : #bbff00;     /* 背景色     */
+    color         : #000000;     /* 文字色     */
+    line-height   : 1em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    box-shadow    : 4px 4px 3px #666666;  /* 影の設定 */
+    border        : 2px solid #4dffa6;    /* 枠の指定 */
+    font-weight:bold;
+  }
+  .button:hover {
+    box-shadow    : none;        /* カーソル時の影消去 */
+    color         : #47f702;     /* 文字色     */
+    background    : white;     /* 背景     */
+  }
+
