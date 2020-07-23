@@ -1,0 +1,84 @@
+body{
+    width:100%; /*ページ全体の幅は100%と指定する*/	
+    text-align:center; /*ページ全体を中央揃えにする*/
+  }
+
+/*body{     全部透過
+    background-image: url("aaaa.jpg");
+    opacity: 0.5;
+}*/
+
+/*ヘッダー用*/
+
+*{
+    margin:0;
+    padding:0;
+}
+
+.head{
+    text-align:center; 		/*文字を中央にする*/
+    background-color:black;	/*背景を黒色にする*/
+    color:white;		/*文字色を白にする*/
+}
+
+
+
+
+
+/*ログイン画面CSS*/
+.title{
+    font-size: 30px;        /*文字サイズ30*/
+    text-align: center;     /*文字の位置中央*/
+}
+
+.left{
+    margin-left: 25px;      /*左からの幅を25px*/
+}
+
+.input_form{
+    font-size: 20px;        /*文字サイズ25*/
+    width: 80px;            /*横幅80*/
+}
+
+.table10{
+    font-size: 20px;        /*文字サイズ20*/
+    width: 400px;           /*横幅400*/
+    height: 100px;          /*縦幅100*/
+    margin-left: 20px;      /*左からの幅20*/
+}
+
+.Login_t1{
+    text-align: left;       /*文字を左に寄せる*/
+    margin: 0 auto;         /*配置を自動的に中央寄せ*/
+    width: 500px;           /*横幅500px*/
+    background-color: #3fe268;      /*背景の色を指定*/
+    border: medium solid #f14646;   /*枠ぶちの色を指定*/
+    line-height:35px;                   /*行の高さを指定*/
+}
+
+.text{
+    font-weight: 700;               /*文字の太さを700px*/
+    font-size: 23px;                /*文字サイズ23px*/
+    margin-left: 25px;              /*左からのインデント25px*/
+}
+
+.send{
+    font-size: 30px;            /*文字サイズ30pxに変更*/
+    width: 100px;               /*横幅100pxに指定*/
+    height: 50px;               /*縦幅50pxに指定*/
+    margin-left: 50px;          /*左からのインデント50px*/
+    text-align: center;         /*文字を中央に指定*/
+    margin-top: 40px;           /*上のマージンを指定*/
+}
+
+.text1{
+    font-weight: 100;           /*文字の太さを指定*/
+}
+
+.margin1{
+    text-align:center; 		/*文字を中央にする*/
+    font-size: 20px;            /*文字サイズ20px*/
+    width: 170px;               /*横幅170px*/
+    height: 40px;               /*縦幅40px*/
+    margin-left: 10px;          /*左からの幅を設定*/
+}
