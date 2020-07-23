@@ -115,7 +115,7 @@
         <br>
         <br>
         <div>
-            <button class="margin1" type="submit" onclick="location.href='../Login/home.php,'" >ホームへ<!--ホーム画面へ遷移-->
+            <button class="margin1" type="submit" onclick="location.href='../login/home.php'" >ホームへ<!--ホーム画面へ遷移-->
         </div>
 
 
