@@ -1,3 +1,9 @@
+/*
+*How_To_Use.htmlのcss
+*更新:2020/07/23
+*更新者:T.S
+*/
+
 *{
     margin:0;
     padding:0;
@@ -6,8 +12,19 @@
 
 .title{
     text-align:center; 
-    background-color:black;
-    color:white
+    /*background-color:black;*/
+    color:rgb(93, 93, 93);
+    opacity    : 1;
+    background-color: rgba(202, 255, 122, 0.746);
+    /*background : linear-gradient(to bottom,
+                                 red,
+                                 orange,
+                                 yellow,
+                                 green,
+                                 aqua,
+                                 blue,
+                                 purple);
+    */
 }
 
 a{
@@ -21,27 +38,26 @@ a:hover{
     color:white;
 }
 
-ul, ol {
-    color: #1e366a;
-    border-top: solid #1e366a 1px;/*上のボーダー*/
-    border-bottom: solid #1e366a 1px;/*下のボーダー*/
-    padding: 0.5em 0 0.5em 1.5em;
-    list-style:none;
-    background-color: aliceblue;
-  }
-  
-  ul li, ol li {
-    line-height: 1.5;
-    padding: 0.5em 0;
-  }
-
-  .box3 {
+.box2 {
     padding: 0.5em 1em;
     margin: 2em 0;
     color: #2c2c2f;
-    background: #cde4ff;/*背景色*/
+    border: solid 2px #5b8bd0;/*点線*/
+    background: rgba(240, 248, 255, 0.746);/*背景色*/
+    border-radius : 18px 18px;               /* 角丸の指定          */
+}
+.box2 p {
+    margin: 0; 
+    padding: 0;
+}
+.box3 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #2c2c2f;
+    background: rgba(255, 168, 158, 0.746);/*背景色*/
     border: dashed 2px #5b8bd0;/*点線*/
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+    border-radius : 18px 18px;               /* 角丸の指定          */
 }
 .box3 p {
     margin: 0; 
@@ -52,9 +68,10 @@ ul, ol {
     padding: 0.5em 1em;
     margin: 2em 0;
     color: #2c2c2f;
-    background: #4dffa6;;/*背景色*/
+    background: #4dffa69b;;/*背景色*/
     border: dashed 2px #5b8bd0;/*点線*/
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+    border-radius : 18px 18px;               /* 角丸の指定          */
 }
 .box4 p {
     margin: 0; 
@@ -65,9 +82,10 @@ ul, ol {
     padding: 0.5em 1em;
     margin: 2em 0;
     color: #2c2c2f;
-    background: #a6ff4d;/*背景色*/
+    background: #a6ff4d8c;/*背景色*/
     border: dashed 2px #5b8bd0;/*点線*/
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+    border-radius : 18px 18px;               /* 角丸の指定          */
 }
 .box5 p {
     margin: 0; 
@@ -78,11 +96,125 @@ ul, ol {
     padding: 0.5em 1em;
     margin: 2em 0;
     color: #2c2c2f;
-    background: yellow;/*背景色*/
+    background: rgba(233, 250, 83, 0.746);/*背景色*/
     border: dashed 2px #5b8bd0;/*点線*/
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+    border-radius : 18px 18px;               /* 角丸の指定          */
 }
 .box6 p {
     margin: 0; 
     padding: 0;
 }
+
+.roll{
+    display  : inline-block;
+    animation: rollkAnime 5s linear infinite;
+    color    : rgb(255, 158, 11);
+    font-size: 180%
+}
+@keyframes rollkAnime{
+    0%{
+        transform: perspective(150px) rotateY(0deg);
+        }
+   50% {
+         color    : rgb(255, 47, 210);
+         transform: rotateY(180deg);
+       }
+  100% {
+         color    : rgb(255, 158, 11);
+         transform: perspective(150px) rotateY(360deg);
+       }
+}
+
+.topIcon {
+    display       : inline-block;
+    position      : fixed;       /* ボタン固定 */
+    bottom        : 0px;        /* 下から位置 */
+    right         : 10px;        /* 右から位置 */
+    padding       : 26px 27px 26px 27px;   /* 余白       */
+    background    : #ffff1a;     /* 背景色     */
+    /*background-image    : url(img/まちおさん4.jpg);*/     /*背景画像 発表用は削除！！*/
+    color         : red;     /* 文字色     */
+    opacity       : 0.5;         /* 透明度     */
+    border-radius : 20%;        /* 角丸       */
+    font-size     : 20pt;        /* 文字サイズ */
+    font-weight   : bold;        /* 太字       */
+    line-height   : 1.2em;       /* 行の高さ   */
+    letter-spacing: px;         /* 文字間隔   */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    z-index       : 999;         /* 重ね順位   */
+  }
+  
+  .topIcon:hover {
+    opacity       : 0.9;   /* カーソル時透明度 */
+  }
+
+ 
+  @keyframes scrollAnime{
+      0% {
+          margin-left: 100%;
+          transform  : translateX(-100%)
+         }
+    100% {
+          margin-left: 0;
+          transform  : translateX(0)
+         }
+  }
+
+  .scroll {
+    display: inline-block;
+    margin:auto;
+    width      : 150px;
+    font-size  : 100%;
+    text-align : center;
+    color      : #000000;
+    overflow   : hidden;
+  }
+  .scroll span{
+    display     : inline-block;
+    padding-left: 100%;
+    white-space : nowrap;
+    line-height : 1em;
+    animation   : scrollAnime 7s linear infinite;
+  }
+  @keyframes scrollAnime{
+      0% { transform: translateX(0)}
+    100% { transform: translateX(-100%)}
+  }
+  
+
+  .blink{
+      animation: blinkAnime 1.1s infinite alternate;
+  }
+  @keyframes blinkAnime{
+      0%{color:#000000}
+      100%{color:#7fd0ff}
+  }
+
+  .blink2{
+    animation: blinkAnime2 1.1s infinite alternate;
+}
+@keyframes blinkAnime2{
+    0%{color:#000000}
+    100%{color:#ff7f7f}
+}
+
+  .sample21{
+    display  : inline-block;
+    animation: sample21Anime 3s linear infinite; /* アニメーション指定 */
+    font-size: 160%;                   /* 文字サイズ */
+  }
+  @keyframes sample21Anime{
+   100%{ transform: rotate(360deg) }   /* 横回転 */
+  }
+  .sample22{
+    display  : inline-block;
+    animation: sample22Anime 3s linear infinite; /* アニメーション指定 */
+    font-size: 160%;                   /* 文字サイズ */
+  }
+  @keyframes sample22Anime{
+    50%{ transform: rotate(180deg) }  /* 横回転 */
+   100%{ transform: rotate(0deg)   }  /* 横回転（逆） */
+  }
+
