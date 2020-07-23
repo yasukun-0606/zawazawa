@@ -64,6 +64,13 @@
         ?>
 
         </p>
+        </p>
+        <div class="information">日常生活の運動強度についての説明<br>
+        &emsp;1.生活の大部分が座っている(例：デスクワークが多い人)<br>
+        &emsp;2.座位中心だが移動することが多い。あるいは軽いスポーツ等を<br>
+        &emsp;&emsp;している人(例：営業等で移動が多い人)<br>
+        &emsp;3.移動や肉体労働が多い人(例：工事現場で作業している人)<br>
+        </div>
     </div>
 
 
@@ -103,9 +110,14 @@
         <br>
         <br>
         <div>
-            
             <button class="margin1" type="submit" onclick="location.href='http://localhost/zawazawa/update.php'" >登録画面更新　<!--登録更新画面へ遷移-->
         </div>
+        <br>
+        <br>
+        <div>
+            <button class="margin1" type="submit" onclick="location.href='../Login/home.php,'" >ホームへ<!--ホーム画面へ遷移-->
+        </div>
+
 
 </body>
 </html>
