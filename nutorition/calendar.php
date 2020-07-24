@@ -27,10 +27,27 @@
         else if(document.today.day.value == ""){  //「日」の入力をチェック
             flag = 1;
         }
+        
+        if(document.today.month.value < 13　&& document.today.day.value < 32){          //ありえない数値をチェック
+            if((document.today.month.value == 4 || document.today.month.value == 6 || document.today.month.value == 9 || document.today.month.value ==11) && document.today.day.value == 31){
+                flag = 2;       //4,6,9,11月　チェック
+            }
+            else if(document.today.month.value == 2 && document.today.day.value > 29){  //2月チェック
+                flag = 2;
+            }
+
+        }
+        else {
+            flag = 2;       //月のチェック「
+        }
 
         // 設定終了
-        if(flag){
+        if(flag　== 1){
             window.alert('必須項目に未入力がありました'); // 入力漏れがあれば警告ダイアログを表示
+            return false; // 送信を中止
+        }
+        else if(flag == 2){
+            window.alert('入力した月日がありえません'); // 入力ミスがあれば警告ダイアログを表示
             return false; // 送信を中止
         }
         else{
@@ -80,8 +97,14 @@ for ($i = 1; $i < $last_day + 1; $i++) {
     }
  
     // 配列に日付をセット
-    $calendar[$j]['day'] = $i;
-    $j++;
+    if($i == $today){
+        $calendar[$j]['day'] ="@".$i."@";       //今日の日付は＠
+        $j++;
+    }
+    else{
+        $calendar[$j]['day'] = $i;
+        $j++;
+    }
     
  
     // 月末日の場合
