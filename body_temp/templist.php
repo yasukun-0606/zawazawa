@@ -13,8 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <header >
-   
-    <h1 style ="font-size:400%"  class="title" align = "center"　>体温カレンダー</h1>
+    <h1 style ="font-size:400%" align = "center"　>体温カレンダー</h1>
     </header>
 
     <link rel="stylesheet" href = "templist.css">
@@ -29,15 +28,13 @@
 
 <?php
 session_start();
-
-
-/*ユーザーネームの呼び出し
+//ユーザーネームの呼び出し
 $name = $_SESSION['user_name'];
 if(isset($name)){
-    echo $name;
+    echo $name . 'さん';
 } else {
-    echo 'no--------------------u';
-}*/
+    //echo 'no--------------------u';
+}
 // 現在の年月を取得
 $year = date('Y');
 $month = date('n');

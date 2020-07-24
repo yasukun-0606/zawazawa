@@ -21,10 +21,12 @@
 <input type="button" value="戻る" style="font:20pt MS ゴシック; width:8%; height:12%" onClick="location.href='./select.php'">
 
 <?php
+session_start();
 
 //データベース接続情報ファイル（ログイン用）※ログインフォルダから動かさないでください。
 require_once __DIR__ .'/config.php';
-
+    //$_SESSION['user_name'] = 'いんぐ';
+    $name = $_SESSION['user_name'];
     $date = $_POST['date_n'];     //日付
     $temp = $_POST['temp_n'];     //体温
 
@@ -47,9 +49,9 @@ require_once __DIR__ .'/config.php';
       }
     }
 
-    $sql = "insert into body_temp(date, temp) values(?, ?)";
+    $sql = "insert into body_temp(user_name, date, temp) values(?, ?, ?)";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$date, $temp]);                              //DBに登録
+    $stmt->execute([$name, $date, $temp]);                              //DBに登録
 
 ?>
   </span>
