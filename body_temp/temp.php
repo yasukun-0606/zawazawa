@@ -60,17 +60,23 @@
             $stmt->execute([$date]);                                //日付データの一致参照
             foreach ($stmt as $row) {                               
                                                                     // データベースのフィールド名で出力
-                $cal=$row['temp'];                                  //体温を抽出
+                $temp=$row['temp'];                                  //体温を抽出
             }
+            
+            if(empty($temp)){                                      //体温の空白チェック
+                $error_code = 200;
+            } else {
 
-           /****体温の表示****/
-            echo '<p style="font-size:20px;">';
-            echo "<h3 align='center'>";
-            echo "＿人人人人人人＿<br/>";
-            echo "＞　".$cal;                                       //指定日の体温表示
-            echo "℃　＜<br/>";
-            echo "￣^Y^Y^Y^Y^￣<br/></h3>";                         
-            echo '</p>';                                     
+               /****体温の表示****/
+                echo '<p style="font-size:20px;">';
+                echo "<h3 align='center'>";
+                echo "＿人人人人人人＿<br/>";
+                echo "＞　".$temp;                                       //指定日の体温表示
+                echo "℃　＜<br/>";
+                echo "￣^Y^Y^Y^Y^￣<br/></h3>";                         
+                echo '</p>';
+                
+            }
 
         }catch(Exception $e){
             $error_code = 900;                                      //データベースに接続できなかった場合
@@ -79,25 +85,29 @@
         if($error_code==900){
             echo "<h2>DBエラー</h2>";                               //エラーコード
           //  echo "<hr><br>";
-        }
-
-    
-        echo '<br/>';       //改行
-
-        //echo "<div aline = 'left'>判断結果</div>";
-
-        //echo '<br/>';
-
-        /****体温データの判断結果****/
-        if($cal>=37.5){
-            //37.5℃以上
-            echo "<div class='flame01'><p align='center'>規定体温を超えています！病院に行きましょう</p></div>";
-        }elseif($cal>=37){
-            //37℃以上
-            echo "<div class='flame01'><p align='center'>微熱気味です　状況報告を行い判断を仰ぎましょう</p></div>";
+        }elseif($error_code==200){
+            echo "<h2>DBにデータがありません</h2>";                  //データベースエラー
         }else{
-            //平熱
-            echo "<div class='flame01'><p align='center'>問題ありません　元気よく出勤をしましょう</p></div>";
+
+
+            echo '<br/>';       //改行
+
+            //echo "<div aline = 'left'>判断結果</div>";
+
+            //echo '<br/>';
+
+            /****体温データの判断結果****/
+            if($temp>=37.5){
+                //37.5℃以上
+                echo "<div class='flame01'><p align='center'>規定体温を超えています！病院に行きましょう</p></div>";
+            }elseif($temp>=37){
+                //37℃以上
+                echo "<div class='flame01'><p align='center'>微熱気味です　状況報告を行い判断を仰ぎましょう</p></div>";
+            }else{
+                //平熱
+                echo "<div class='flame01'><p align='center'>問題ありません　元気よく出勤をしましょう</p></div>";
+            }
+                
         }
 
         echo '<br/><br/>';      //改行
