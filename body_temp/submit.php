@@ -11,6 +11,9 @@
     <meta charset="UTF-8">
     <title>体調管理</title>
 </head>
+<header>
+  <h1 class="title" align="center">登録完了画面</h1>
+</header>
 <body bgcolor="skyblue">
 <div class="container">
 <span class="target" >
@@ -26,13 +29,15 @@ require_once __DIR__ .'/config.php';
     $temp = $_POST['temp_n'];     //体温
 
     //echo '<p style="position: absolute; right: 0px; top: 0px">' . '<font size="5">' .$date. '</font>' .'</p>';
-    $sqls = "select * from body_temp where date = $date";
-    $stmts = $pdo->prepare($sqls);
+    $sqls = "select * from body_temp where date = ?";           //SQL文を記載
+    $stmts = $pdo->prepare($sqls);                              //SQL文をセットしデータベースに接続
+    $stmts->execute([$date]);                                   //実行結果を格納する    
     $result = $stmts->fetch(PDO::FETCH_ASSOC);
-    if(empty($result['date'])){
+    if(empty($result['date'])){                                 //DBに指定した体温があるかチェック
+        echo 'kjdghaafebj';
+    } else {
       try {
-        //echo 'fkaifubaijhif';
-        $sqld = "DELETE FROM body_temp WHERE date = :date";
+        $sqld = "DELETE FROM body_temp WHERE date = :date";     //前のデータを削除
         $stmts = $pdo->prepare($sqld);
         $stmts->bindValue(':date', $date);
         $stmts->execute();
@@ -44,7 +49,7 @@ require_once __DIR__ .'/config.php';
 
     $sql = "insert into body_temp(date, temp) values(?, ?)";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$date, $temp]);         //DBに登録
+    $stmt->execute([$date, $temp]);                              //DBに登録
 
 ?>
   </span>

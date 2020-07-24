@@ -28,7 +28,16 @@
 <form action="temp.php" method="post" name="form1" id="form1">
 
 <?php
- 
+session_start();
+
+
+/*ユーザーネームの呼び出し
+$name = $_SESSION['user_name'];
+if(isset($name)){
+    echo $name;
+} else {
+    echo 'no--------------------u';
+}*/
 // 現在の年月を取得
 $year = date('Y');
 $month = date('n');
@@ -124,15 +133,9 @@ for ($i = 1; $i < $last_day + 1; $i++) {
             //print $day;
 
         $datedata = $year . "-" . $month . "-" . $day;
-        //echo $datedata;
-        //$dadada = date('Y-m-d',strtotime($datedata));
-        //print '<input type="hidden" name="date" value=' . $datedata . '>';
 
-
-        //print '<a style="color:coral"  href="JavaScript:document.form1.submit();">'.$value["day"].'</a>';
-        //print '<button type="submit" name="action" value='.$value["day"].'>' .$value["day"]. '</button>';
-        print '<input  name="day" style="color:coral" type="submit" value='.$value["day"].' style="border:none;background-color:transparent;">';
-        //print '<a  style="color:coral"  href="temp.php">'.$value['day'].'</a>';
+        print '<input  name="day" type="submit" value='.$value["day"].' 
+                style="border:none;background-color:transparent; color:coral; font-size:50px">';
         }
         ?>
         
