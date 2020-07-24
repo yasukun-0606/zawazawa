@@ -3,7 +3,7 @@
 *結果表示画面
 *Name: T.S
 *CreateDate: 2020/07/15
-*Version: 1.02
+*Version: 1.03
 *Update: 2020/07/24
 *******************************************
 -->
@@ -274,7 +274,7 @@
 
             ?>
             <!--/*****OKボタン******/-->
-            <br/><p align='center'><a href='https://www.dpt-inc.co.jp'><input type='button' value='OK' name='button' style='width:400px;height:100px'></p></a><br/>
+            <br/><p align='center'><a href='https://www.dpt-inc.co.jp'><input type='button' value='OK' name='button' style='width:400px;height:100px;font-size:50px;font-weight:bold'></p></a><br/>
         
         
         
