@@ -1,36 +1,142 @@
+<!--
+  /*******************************************************/
+      *************************************************
+        *結果表示画面
+        *Name: T.S
+        *CreateDate: 2020/07/15
+        *Version: 1.00
+        *Update: 2020/07/23
+      *************************************************
+  /*******************************************************/
+-->
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>このアプリの使い方</title>
-        <link rel="stylesheet" href="use.css">
+        <link rel="stylesheet" href="Help.css">
     </head>
 
     <header>
-        <h1 class="title">ようこそ！このアプリの使い方！</h1>
+        <h1 class="title" >ようこそ！このアプリの使い方！</h1>
     </header>
 
+    <style>
+        body{
+            background:url("img/sky001.jpg") ;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+    </style>
     <body>
-        <h2>もくじ</h2>
-    <ul>
-        <li><a href="#login">新規登録・ログイン</a></li>
-        <li><a href="#condition">体調管理</a></li>
-        <li><a href="#Nutrition">栄養管理</a></li>
-        <li><a href="#music">音楽</a></li>
-        <li><a href="home.php">トップページへ</a></li>
-    </ul>
+      
+      <span id="viewTime"></span>
+      <script type="text/javascript">
+        timer = setInterval('clock()',1000); //時刻の更新
+  
+        function clock() {
+          document.getElementById("viewTime").innerHTML = getNow();
+        }
+  
+        function getNow() {
+          var now = new Date();
+          var year = now.getFullYear();
+          var mon = now.getMonth()+1; //１を足すこと
+          var day = now.getDate();
+          var hour = now.getHours();
+          var min = now.getMinutes();
+          var sec = now.getSeconds();
+          var you = now.getDay(); //曜日
+  
+          //曜日の配列（日～土）
+          var youbi = new Array("日","月","火","水","木","金","土");
+          //出力用
+          var s = year + "年" + mon + "月" + day + "日 (" + youbi[you] + ")"+ hour + "時" + min + "分" + sec + "秒" ;
+          return s; 
+        }
+      </script>
+
+        <div id="topScroll" class="topIcon" onclick="goTop()">Top</div>
+
+        <script type="text/javascript">
+            var vGoTop = {};
+            function goTop(){
+             
+              vGoTop["coef"] = 20;  // <--滑らか係数（大きいほど滑らか）
+              vGoTop["cnt"]  = 0;
+             
+              // --- 現在のスクロール位置取得 -----
+              var startX = document.body.scrollLeft || document.documentElement.scrollLeft;
+              var startY = document.body.scrollTop  || document.documentElement.scrollTop;
+             
+              // --- スクロールの単位計算 ---------
+              var moveSplitCnt = 0;
+              for(var i = 1; i <= vGoTop["coef"]; i++) {
+                moveSplitCnt += i * i;
+              }
+              vGoTop["unitH"] = startY / ( moveSplitCnt * 2 );
+             
+              vGoTop["nextX"] = startX;
+              vGoTop["nextY"] = startY;
+             
+              // --- スクロール開始 ---------------
+              goTopLoop();
+            }
+            function goTopLoop(){
+             // ============================================================================
+             //  スクロール実行
+             // ============================================================================
+             
+              vGoTop["cnt"]++;
+             
+              // --- 次のスクロール位置計算 -------
+              var Coef = 0;
+              if(vGoTop["cnt"] <= vGoTop["coef"]){
+                Coef = vGoTop["cnt"];
+              }else{
+                Coef = ((vGoTop["coef"] * 2) + 1) - vGoTop["cnt"];
+              }
+              vGoTop["nextY"] = vGoTop["nextY"] - Math.round( vGoTop["unitH"] * ( Coef * Coef) );
+              if((vGoTop["cnt"] >= (vGoTop["coef"] * 2))||(vGoTop["nextY"] <= 0)){
+                vGoTop["nextY"] = 0;
+              }
+             
+              // --- スクロール実行 ---------------
+              window.scrollTo(vGoTop["nextX"], vGoTop["nextY"]);
+             
+              // --- 次のスクロールを設定 ---------
+              if(vGoTop["nextY"] <= 0){
+                clearTimeout(vGoTop["timer"]);                   // 終了：タイマクリア
+              }else{
+                vGoTop["timer"] = setTimeout("goTopLoop()",10);  // 次のループ
+              }
+            }
+        </script>
+        <div class="box2">
+        <h2 class="roll">もくじ</h2>
+        
+        
+        <h3>
+        <a href="#login">１.新規登録・ログイン</a><br/>
+        <a href="#condition">２.体調管理</a><br/>
+        <a href="#Nutrition">３.栄養管理</a><br/>
+        <a href="#music">４.音楽</a><br/>
+        <a href="home.php">トップページへ</a>
+        </h3></div>
+        </div>
 
     <!--新規登録・ログインの方法-->
 
     <section>
     <div class="box3">
-        <h2 id="login">新規登録・ログイン</h2>
+        <h2 id="login">🆕新規登録・ログイン🆕</h2>
 
-        <p class="pop">新規登録の方法</p>
+        <p class="blink">新規登録の方法</p>
             <p>①トップページからログインボタンを押し、「新規登録ユーザー登録」を選択</p>
             <p>②必要情報を全て入力し、登録完了！</p>
 
-        <p class="pop">ログインの方法</p>
+        <p class="blink">ログインの方法</p>
             <p>①トップページからログイン画面へいき必要事項を入力してログイン</p>
     </div>
     </section>
@@ -39,7 +145,10 @@
 
     <section>
     <div class="box4">
-        <h2 id="condition">体調管理</h2>
+        <h2 id="condition">😷体調管理🩺</h2>
+        <p>ご自身の日々の体温を記録することができます。</p>
+        <p>①日付を選択し、測定した体温を入力して登録してください</p>
+        <p>②カレンダーが表示されるので日付を選択すると確認ができます。<br/>過去の記録も確認ができます。</p>
     </div>
     </section>
 
@@ -47,7 +156,39 @@
 
     <section>
     <div class="box5">
-        <h2 id="Nutrition">栄養管理</h2>
+        <h2 id="Nutrition">🍖栄養管理🍅</h2>
+        <p>日々の摂取カロリーと消費カロリーを確認することができます。</p>
+        <p>☆栄養管理モードの使い方☆彡(途中)</p>
+
+          <p>※初回はユーザー情報登録画面に飛びます</p>
+          
+        <p class="blink2">ユーザー情報登録画面</p>
+        <p>この画面では年齢、性別、身長、体重、運動強度、目標をそれぞれ、記入選択します。
+        <p>それぞれ以下の入力規制を守りながら、それぞれ記入選択を必ずしてもらいます。<br/>
+        <div class='box2'>
+        <p>年齢： 0歳～130歳
+        <p>身長：50㎝～272㎝
+        <p>体重： 0kg～150kg
+        </div>
+        <p>目標に関しては必須項目ではありません。
+          記入するとそれぞれデータベースに保存されます
+          
+        <p class="blink2">日付選択画面
+        <p>①管理したい日付を入力
+          カレンダーの＠マークで囲まれた日は今日の日付
+          
+        <p class="blink2">ユーザー情報画面
+        <p>ここでは登録したユーザー情報が見れる
+          囲んである日付は選択した日付である。
+          
+        <p>それぞれのしたいことのボタンを押すとその画面に飛びます
+          
+        <p>もし体重変更や年齢を一つ重ねたなどの変更したいならば登録変更画面で変えたい情報を変える
+          
+        <p class="blink2"> ＿人人人人人人人人人人人人＿
+        <p class="blink2"> ＞　ゆっくりしていってね　＜
+        <p class="blink2"> ￣Y^Y^Y^Y^Y^Y^Y^Y^Y^Y￣
+          </p>
     </div>
     </section>
 
@@ -55,23 +196,33 @@
 
     <section>
     <div class="box6">
-        <h2 id="music">音楽</h2>
-        <p>トップページから選択できます。</p>
+        <h2 id="music">🎹音楽🎧</h2>
+        <p>トップページにて選択可能です。</p>
         <!--完成品では削除すること-->
         <p>開発段階では、トップページにいる間だけ流れます。</p>
         <p>※曲はあらかじめ用意されている中からの選択になります。<br>ご自身での追加はできません。</p>
 
-        <h3>選択できる曲のサンプル</h3>
-        <p>Burtning Heart</p>
-        <audio src="music/short_song_kei_burning_heart.mp3" controls></audio>
-        <p>月と狼</p>
-        <audio src="music/short_song_kei_tsukito_ookami.mp3" controls></audio>
-        <p>シャイニングスター</p>
-        <audio src="music/short_song_shiho_shining_star.mp3" controls></audio>
-        <p>Where you are</p>
-        <audio src="music/short_song_kei_where_you_are.mp3" controls></audio>
+        <h3 class="blink">選択できる曲のサンプル</h3>
+        <p class="scroll"><span>Burtning Heart</span></p><br/>
+        <audio src="music/short_song_kei_burning_heart.mp3" controls></audio><br/>
+        <p class="scroll"><span>月と狼</span></p><br/>
+        <audio src="music/short_song_kei_tsukito_ookami.mp3" controls></audio><br/>
+        <p class="scroll"><span>シャイニングスター</span></p><br/>
+        <audio src="music/short_song_shiho_shining_star.mp3" controls></audio><br/>
+        <p class="scroll"><span>Where you are</span></p><br/>
+        <audio src="music/short_song_kei_where_you_are.mp3" controls></audio><br/>
     </div>
     </section>
+
+    <p id="time"></p>
+    <script>
+    time();
+    function time(){
+        var now = new Date();
+        document.getElementById("time").innerHTML = now.toLocaleTimeString();
+    }
+    setInterval('time()',1000);
+    </script>
 
     </body>
 </html>
