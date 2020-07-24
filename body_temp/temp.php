@@ -3,8 +3,8 @@
 *カレンダーデータ表示
 *Name: T・M
 *CreateDate: 2020/07/21
-*Version: 0.01
-*Update: 2020/07/21
+*Version: 0.02
+*Update: 2020/07/24
 *******************************************
 -->
 
@@ -19,38 +19,38 @@
       <h1 class="title">体温結果表示</h1>
 </header>
 <body>
-
+    <!--中央揃え-->
     <center>
 
     <?php
-    $year = date('Y');
-    $month = date('m');                                                        
-    $day = $_POST["day"];         
+    $year = date('Y');                        //対象年       
+    $month = date('m');                       //対象月                                                        
+    $day = $_POST["day"];                     //対象日         
     if($day < 10){
         $day = '0' . $day;
     }
     $date = $year . "-" . $month . "-" . $day; //対象の日付
-    $id = "Miyaji";             //UserName
-    $error_code=0;              //error_code                                                 
+    $id = "Miyaji";                            //UserName
+    $error_code=0;                             //error_code                                                 
 
-    
-     echo "<br/>";
+    /****タイトル表示****/
+     echo "<br/>";                             
      echo "<h2>";
-     echo $id;
+     echo $id;                                 //UserName                      
      echo "さんの ";
-     echo substr($date,0,4);
+     echo substr($date,0,4);                   //文字列から年を取得
      echo "年";
-     echo substr($date,5,2);
+     echo substr($date,5,2);                   //文字列から月を取得
      echo "月";
-     echo substr($date,8,2);
+     echo substr($date,8,2);                   //文字列から日付を取得
      echo "日";
      echo " の体温</h2>";
 
      echo "<br/>";      //改行
-     echo "<br/>";
+     echo "<br/>";      //改行
 
         //データベース接続情報ファイル
-        require_once __DIR__ .'/config.php';
+        require_once __DIR__ .'../config.php';
     
         
         try{                                                  
@@ -63,9 +63,14 @@
                 $cal=$row['temp'];                                  //体温を抽出
             }
 
-            echo '<p style="font-size:20px;">'; 
-            echo $cal ."℃";
-            echo '</p>';                                        //体温の表示
+           /****体温の表示****/
+            echo '<p style="font-size:20px;">';
+            echo "<h3 align='center'>";
+            echo "＿人人人人人人＿<br/>";
+            echo "＞　".$cal;                                       //指定日の体温表示
+            echo "℃　＜<br/>";
+            echo "￣^Y^Y^Y^Y^￣<br/></h3>";                         
+            echo '</p>';                                     
 
         }catch(Exception $e){
             $error_code = 900;                                      //データベースに接続できなかった場合
@@ -77,22 +82,27 @@
         }
 
     
-        echo '<br/>';
+        echo '<br/>';       //改行
 
         //echo "<div aline = 'left'>判断結果</div>";
 
         //echo '<br/>';
 
+        /****体温データの判断結果****/
         if($cal>=37.5){
+            //37.5℃以上
             echo "<div class='flame01'><p align='center'>規定体温を超えています！病院に行きましょう</p></div>";
         }elseif($cal>=37){
+            //37℃以上
             echo "<div class='flame01'><p align='center'>微熱気味です　状況報告を行い判断を仰ぎましょう</p></div>";
         }else{
+            //平熱
             echo "<div class='flame01'><p align='center'>問題ありません　元気よく出勤をしましょう</p></div>";
         }
 
-        echo '<br/><br/>';
+        echo '<br/><br/>';      //改行
 
+        /****カレンダーに戻るリンク設定****/
         echo "<div aline = 'center'><a href='https://www.dpt-inc.co.jp/'>カレンダーに戻る</a></div>";
 
         
