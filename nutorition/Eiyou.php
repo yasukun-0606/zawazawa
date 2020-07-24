@@ -47,7 +47,7 @@
     //データの登録　id、名前、身長、体重、年齢、運動強度、性別、代謝、目標
     $sql = "insert into user_table(id,name,height,weight,age, movement, gender, metabolism, target) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";   //valuesで値を受け取る。カラムに値を格納できるようにする 
     $stmt = $pdo->prepare($sql); //SQL文をセットしてデータベースに接続
-    $stmt->execute([$userid, $username, $height, $weight, $age, $moment, $gender, $metabo, $eight]); 
+    $stmt->execute([$userid,$username,$height,$weight,$age,$moment,$gender,$metabo,$eight]); 
     //カレンダー画面への遷移
     header('Location:calendar.php');
 ?>
