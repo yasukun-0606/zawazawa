@@ -60,11 +60,12 @@
                     $error_code = 50;                                               //表示画面へ
                    
                 } else {
-                    echo "<br>" . $result['pass'] . "<br>";
+                   // echo "<br>" . $result['pass'] . "<br>";
                     //$test = password_hash($_POST['login_pass'], PASSWORD_DEFAULT);
                     //echo $test . "<br>";
-                    echo $_POST['login_pass'] . "<br>";
-                    echo 'エラー';
+                    //echo $_POST['login_pass'] . "<br>";
+                    //echo 'エラー';
+                    $error_code = 100;
                 }
 
                 
