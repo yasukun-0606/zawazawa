@@ -47,18 +47,21 @@
             $target=$row['target'];
         }
          
-        //h($name2);
-        echo"名前：$name2<br><br>"; 
+        echo"名前：$name2<br>"; 
 
-        echo "年齢：$age<br><br>";
+        echo "年齢：$age 才<br>";
 
-        echo "身長：$height<br><br>";
+        echo "身長：$height cm<br>";
         
-        echo "体重：$weight<br><br>";
+        echo "体重：$weight kg<br>";
 
-        echo "性別：$gender<br><br>";
-        
-        echo "普段の運動強度：$movement<br><br>";
+        if($gender==1){
+        echo "性別：男<br>";
+        }else{
+        echo "性別：女<br>";
+        }
+            
+        echo "普段の運動強度：$movement<br>";
 
         echo "目標：$target<br><br>";
         ?>
