@@ -6,20 +6,17 @@
     //セッションの引継ぎ    
     session_start();
     $name =$_SESSION['user_name'];
-    //ログイン情報の保持
+
+    //ログイン情報の取得
     $chosesql="select * from user where user_name = ?";
-    //$databasesql="select * table user_name";
     $stmt=$pdo->prepare($chosesql);
     $stmt->execute([$name]);
-    //$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
     foreach($stmt as $row){
         $username =$row['user_name'];
         $userid=$row['user_id'];
-        $_SESSION['user_id']=$userid;
+        $_SESSION['user_id']=$userid;　//セッションの保持(ID)
     }
-    //echo $name;
-    //echo $username;
-    //echo $userid;
 
     //入力内容の保持    
     $age = $_POST['age'];  //年齢
@@ -39,6 +36,7 @@
         $weightvalue=9.6;
         $agevalue=7;
     }
+
     //代謝計算
     $metabo=66.5+($weight*$weightvalue)+($height*$heightvalue)+($age*$agevalue);
     
@@ -47,6 +45,7 @@
     //データの登録　id、名前、身長、体重、年齢、運動強度、性別、代謝、目標
     $sql = "insert into user_table(id,name,height,weight,age, movement, gender, metabolism, target) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";   //valuesで値を受け取る。カラムに値を格納できるようにする 
     $stmt = $pdo->prepare($sql); //SQL文をセットしてデータベースに接続
+    //登録の実行
     $stmt->execute([$userid, $username, $age, $height, $weight, $gender, $moment, $metabo, $eight]); 
     //カレンダー画面への遷移
     header('Location:calendar.php');
