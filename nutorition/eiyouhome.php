@@ -5,8 +5,8 @@
     //セッションスタート
     session_start();
     //セッションの保持
-    $name=$_SESSION['user_id'];
-    $id=$_SESSION['user_name'];
+    //$id=$_SESSION['user_id'];
+    $name=$_SESSION['user_name'];
     //ログイン済みの場合
     if (isset($_SESSION['user_name'])) {
         echo 'ようこそ' .  h($_SESSION['user_name']) . "さん<br>";
