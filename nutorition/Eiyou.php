@@ -15,6 +15,7 @@
     foreach($stmt as $row){
         $username =$row['user_name'];
         $userid=$row['user_id'];
+        $_SESSION['user_id']=$userid;
     }
     //echo $name;
     //echo $username;
