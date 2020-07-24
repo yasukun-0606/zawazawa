@@ -1,38 +1,57 @@
 <?php
     //データベース接続情報ファイル（ログイン用）※ログインフォルダから動かさないでください。
-    require_once('config.php');
+    require_once('../config.php');
 
     //セッションの引継ぎ    
     session_start();
     $name =$_SESSION['user_name'];
     //ログイン情報の保持
     $chosesql="select * from user where user_name = ?";
-    //$databasesql="select * table user_name";
     $stmt=$pdo->prepare($chosesql);
     $stmt->execute([$name]);
-    //$result = $stmt->fetch(PDO::FETCH_ASSOC);
+    //元のデータ保持
     foreach($stmt as $row){
-        $username =$row['user_name'];
-        $userid=$row['user_id'];
+        $age2=$row['age'];
+        $height2=$row['height'];
+        $weight2=$row['weight'];
+        $gender2=$row['gender'];
     }
-    //echo $name;
-    //echo $username;
-    //echo $userid;
 
     //入力内容の保持    
-    $age = $_POST['age'];  //年齢
-
-    if(isset($post['gender'])){
-        $gender = $_POST['gender']; //性別
-    }else{
-        $gender = "";
+    
+    //年齢
+    if($_POST['age']==0){
+        $age=$age2;
+        $sql = "UPDATE user_table SET age = ? where = ?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$age,$name]);
     }
 
-    $height = $_POST['height']; //身長
-    $weight = $_POST['weight']; //体重
+    if(isset($_POST['gender'])){
+        $gender = $_POST['gender']; //性別
+    }else{
+        $gender = $gender2;
+    }
 
-    if(isset($post['gender'])){
-        $moment = $_POST['moment']; //運動強度
+    //身長
+    if($_POST['height']==0){
+        $height=$height2;
+        $sql = "UPDATE user_table SET height = ? where = ?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$height,$name]);
+    }
+
+    //体重
+    if($_POST['weight']==0){
+        $weight=$weight2;
+        $sql = "UPDATE user_table SET weight = ? where = ?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$weight,$name]);
+    }
+    
+    //運動強度
+    if(isset($_POST['gender'])){
+        $moment = $_POST['moment']; 
     }else{
         $moment = "";
     }
@@ -41,53 +60,27 @@
 
     //空白でなければ更新(ここから)
     if(isset($age)){        
-        $sql = "UPDATE user_table SET age = $age";
-        $stmt= $pdo->prepare($sql);
-        $stmt->execute();
+       
     }
 
     if(isset($gender)){
-        $sql = "UPDATE user_table SET gender = $gender";
+        $sql = "UPDATE user_table SET gender = ? where = ?";
         $stmt= $pdo->prepare($sql);
-        $stmt->execute();
-    }
-
-    if(isset($height)){
-        $sql = "UPDATE user_table SET height = $height";
-        $stmt= $pdo->prepare($sql);
-        $stmt->execute();
-    }
-
-    if(isset($weight)){
-        $sql = "UPDATE user_table SET weight = $weight";
-        $stmt= $pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$gender,$name]);
     }
 
     if(isset($moment)){
-        $sql = "UPDATE user_table SET moment = $moment";
+        $sql = "UPDATE user_table SET moment =  where = ?";
         $stmt= $pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$moment,$name]);
     }
 
     if(isset($target)){
-        $sql = "UPDATE user_table SET target = $target";
+        $sql = "UPDATE user_table SET target = ? where = ?";
         $stmt= $pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$target,$name]);
     }
     //(ここまで)
-
-    //DBから引っ張ってくる
-    $sql ="select * from user_table where name =?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['name']);
-
-    foreach($stmt as $row){
-        $age2=$row['age'];
-        $height2=$row['height'];
-        $weight2=$row['weight'];
-        $gender2=$row['gender'];
-    }
 
 
     //男女別の代謝計算用の値の判別
@@ -127,12 +120,12 @@
         $metabo=66.5+($weight2*$weightvalue)+($height2*$heightvalue)+($age2*$agevalue);
 
         // 代謝更新
-        $sql = "UPDATE user_table SET metabolism = $metabo";
+        $sql = "UPDATE user_table SET metabolism = ?";
         $stmt = $pdo->prepare($sql); 
-        $stmt->execute(); 
+        $stmt->execute($metabo); 
     }
     echo $metabo;
     //データの登録
      
     header('Location:user_information.php');
-?>
+?>h
