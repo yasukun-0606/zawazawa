@@ -3,8 +3,8 @@
 *結果表示画面
 *Name: T.S
 *CreateDate: 2020/07/15
-*Version: 1.00
-*Update: 2020/07/21
+*Version: 1.02
+*Update: 2020/07/24
 *******************************************
 -->
 
@@ -31,9 +31,9 @@
     //$name=$_SESSION[''];
     //$date=$_SESSION[''];                                                 //セッションの日付
 
-    $id="bbbbb";
+    $id="ccccc";
     $name="塩谷友浩";
-    $date="2020-07-19";
+    $date="2020-07-22";
 
     /****タイトル表示****/
      echo "<br/>";
@@ -103,13 +103,19 @@
             $stmt = $pdo->prepare($sql);                                                                //SQL文のセットとデータベースへ接続
             $stmt->execute([$id, $date, $name, $cal, $items]);                                          //フォーム情報をSQL文にセットし実行
 */
-            //ユーザーID＆日付で検索する
+            
+        
+            /*ユーザーID＆日付で検索する*/
             $sql = "select * from nutritionreg_table where UserID = ? and Date = ? ";                             //SQL文
             $stmt = $pdo->prepare($sql);                                //SQL文のセットとデータベースへ接続
             $stmt->execute([$id,$date]);                                     //フォーム情報をSQL文にセットし実行
             //$result=$stmt->fetch();
-
-            //if($result['UserID']==true){
+            /*えらーしょり　*/
+            if(empty($result['UserID'])){
+                $error_code = 200;
+            }else if(empty($result['Date'])){
+                $error_code = 200;
+            }else{
             
             /*****摂取コーナー！！！******/
             echo "<div class='block_a'>";                               //2段組左の設定
@@ -136,9 +142,18 @@
             
             echo "</p></div></div>";
             
+            }
 
         }catch(Exception $e){
             $error_code = 900;           //データベースに接続できなかった場合
+        }
+        /*エラーコメント */
+        if($error_code==900){
+            echo "<h1>でーたべーすえらー</h1>";
+        }else if($error_code==200){
+            echo "<h1>IDもしくは日付のデータがありません><</h1>";
+        }else{
+
         }
 
         try{
@@ -163,8 +178,15 @@
             $sql = "select * from momentreg_table where UserID = ? and Date = ?";    //SQL文
             $stmt = $pdo->prepare($sql);     //SQL文のセットとデータベースへ接続
             $stmt->execute([$id,$date]);             //フォーム情報をSQL文にセットし実行
-            
-            
+            /*えらーしょり */
+            $flag=0;                //  flagの初期化
+            if(empty($result['UserID'])){
+                $error_code = 200;
+                $flag=2;
+            }else if(empty($result['Date'])){
+                $error_code = 200;
+                $flag=2;
+            }else{
             /*****消費コーナー！！！！******/
             echo "<div class='block_b'>";       //2段組み右設定
             echo "<div class='title-box2-b'>";
@@ -192,10 +214,25 @@
             echo "</p></div></div>";
 
             echo "<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>";    //表示エリア分割
-            
+            }
         }catch(Exception $e){
             $error_code = 900;           //データベースに接続できなかった場合
         }
+        /*エラーコメント */
+        if($error_code==900){
+            if($flag==2){
+                echo "<br/>";
+            }else{
+                echo "<h1>でーたべーすえらー</h1>";
+            }
+        }else if($error_code==200){
+            if($flag==2){
+            }else{
+                echo "<h1>IDもしくは日付のデータがありません><</h1>";
+            }
+        }else{
+
+        
             /*****差分******/
             echo "<div class='title-box2-c'>";
             echo "<div class='title-box2-title-c'>カロリーの差</div>";
@@ -233,6 +270,7 @@
                 echo "<div class='flame01'><p align='center'>その調子です！</p></div>";
             }
                 echo "</div>";
+        }
 
             ?>
             <!--/*****OKボタン******/-->
