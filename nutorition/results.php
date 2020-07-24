@@ -3,7 +3,7 @@
 *結果表示画面
 *Name: T.S
 *CreateDate: 2020/07/15
-*Version: 1.03
+*Version: 1.10
 *Update: 2020/07/24
 *******************************************
 -->
@@ -23,18 +23,18 @@
 
     <?php
     //データベース接続情報ファイル
-    //require_once('../config.php');
-    require_once __DIR__ .'../config.php';
+    require_once('../config.php');
+
     //セッションスタート
     //session_start();
     //$id=$_SESSION[''];                                                        //セッションのゆーざーIDの格納
     //$name=$_SESSION[''];
     //$date=$_SESSION[''];                                                 //セッションの日付
-
-    $id="ccccc";
+    $id="bbbbb";
     $name="塩谷友浩";
-    $date="2020-07-22";
-
+    $date="2020-07-25";
+    
+    $error_code=0;
     /****タイトル表示****/
      echo "<br/>";
      echo "<h2 class='title'>";
@@ -52,83 +52,26 @@
      echo "<br/>"; 
 
         try{
-/*
-            //食材・料理・その他の分類
-            $num=2;                                                     //1:materials 2:dishes 3:foods
-
-            //
-        if($num==1){                                                    //食材なら
-            $id="aaaaa";                                                //ID
-            $date="2020-07-16";                                         //日付
-            $name="マヨネーズ";                                         //食材名
-            $items="1";                                                //100g単位の数
-            
-            $sql = "select * from materials where materials = ?";       //SQL文
-            $stmt = $pdo->prepare($sql);                                //SQL文のセットとデータベースへ接続
-            $stmt->execute([$name]);
-            foreach ($stmt as $row) {
-                // データベースのフィールド名で出力
-                $cal=$row['calories'];                                  //食材のカロリーを抽出
-            }
-        }elseif($num==2){                                               //料理なら
-            $id="aaaaa";                                                //ID
-            $date="2020-07-16";                                         //日付
-            $name="ビーフカレー";                                       //料理名
-            $items="2.5";                                               //個数
-            
-            $sql = "select * from dishes where dishes = ?";             //SQL文
-            $stmt = $pdo->prepare($sql);                                //SQL文のセットとデータベースへ接続
-            $stmt->execute([$name]);
-            foreach ($stmt as $row) {
-                // データベースのフィールド名で出力
-                $cal=$row['calories'];                                   //料理のカロリーを抽出
-            }
-        }else{                                                          //その他
-            $id="ccccc";                                                //ID
-            $date="2020-07-16";                                         //日付
-            $name="McDビックマック";                                    //商品名（その他）
-            $items="4";                                                 //個数
-            
-            $sql = "select * from foods where foods = ?";               //SQL文
-            $stmt = $pdo->prepare($sql);                                //SQL文のセットとデータベースへ接続
-            $stmt->execute([$name]);
-            foreach ($stmt as $row) {
-                // データベースのフィールド名で出力
-                $cal=$row['calories'];                                  //その他のカロリーを抽出
-            }
-        }
-
-            //入力データの挿入 
-            $sql = "insert into nutritionreg_table(UserID, Date, DetaName, Calorie, Items) values(?, ?, ?, ?, ?)";  //sql文
-            $stmt = $pdo->prepare($sql);                                                                //SQL文のセットとデータベースへ接続
-            $stmt->execute([$id, $date, $name, $cal, $items]);                                          //フォーム情報をSQL文にセットし実行
-*/
-            
-        
+   
             /*ユーザーID＆日付で検索する*/
             $sql = "select * from nutritionreg_table where UserID = ? and Date = ? ";                             //SQL文
             $stmt = $pdo->prepare($sql);                                //SQL文のセットとデータベースへ接続
-            $stmt->execute([$id,$date]);                                     //フォーム情報をSQL文にセットし実行
-            //$result=$stmt->fetch();
-            /*えらーしょり　*/
-            if(empty($result['UserID'])){
-                $error_code = 200;
-            }else if(empty($result['Date'])){
-                $error_code = 200;
-            }else{
-            
+            $stmt->execute([$id,$date]);                                     //フォーム情報をSQL文にセットし実行       
+          
             /*****摂取コーナー！！！******/
             echo "<div class='block_a'>";                               //2段組左の設定
             echo "<div class='title-box2-a'>";
             echo "<div class='title-box2-title-a'>総摂取カロリー</div>";
-            /*echo "<h3 class='title'>総摂取カロリー</h3>";*/
-            
+           
             echo "<p>";
             $eats=0;                                                    //総摂取カロリーを0で初期化
             
             echo "<textarea name='' cols=36% rows=13% >";             //摂取内訳テキストボックス
             
                 foreach($stmt as $row){
+                    if(empty($row['Date'])){        /*えらーしょり　*/
+                        break;
+                    }
                     echo $name=$row['DetaName']."：";                    //登録データ名の取得
                     echo $calorie=$row['Calorie']." kcal ";   //登録されたカロリーと個数の積
                     echo "\n";
@@ -136,71 +79,44 @@
                     $eats = $eats + $a;                                     //総摂取カロリーの計算
                 }
                 echo "</textarea>";
-            echo "<h3 align='center'>";                                     //中央揃え
-            echo $eats;                                                     //総摂取カロリーの表示
-            echo " kcal</h3>";
+                /*えらーしょり　*/
+                if(empty($row['Date'])){
+                    $error_code = 200;
+                }else{
+
+                
+                echo "<h3 align='center'>";                                     //中央揃え
+                echo $eats;                                                     //総摂取カロリーの表示
+                echo " kcal</h3>";
+                }
+                echo "</p></div></div>";
             
-            echo "</p></div></div>";
-            
-            }
+                
 
         }catch(Exception $e){
             $error_code = 900;           //データベースに接続できなかった場合
         }
-        /*エラーコメント */
-        if($error_code==900){
-            echo "<h1>でーたべーすえらー</h1>";
-        }else if($error_code==200){
-            echo "<h1>IDもしくは日付のデータがありません><</h1>";
-        }else{
-
-        }
+        
 
         try{
-/*
-            $id="aaaaa";            //ID
-            $date="2020-07-16";     //日付
-            $method="ウォーキング";    //運動名
-            $time="500";                //時間
 
-            $sql = "select * from exercise where exercise = ?";    //SQL文
-            $stmt = $pdo->prepare($sql);     //SQL文のセットとデータベースへ接続
-            $stmt->execute([$method]);      //フォーム情報をSQL文にセットし実行
-            foreach ($stmt as $row) {
-                // データベースのフィールド名で出力
-                $cal=$row['calories'];
-            }
-
-            $sql = "insert into momentreg_table(UserID, Date, Method, Calorie, WorkTime) values(?, ?, ?, ?, ?)";     //sql文
-            $stmt = $pdo->prepare($sql);                            //SQL文のセットとデータベースへ接続
-            $stmt->execute([$id, $date, $method, $cal, $time]);     //フォーム情報をSQL文にセットし実行
-*/
             $sql = "select * from momentreg_table where UserID = ? and Date = ?";    //SQL文
             $stmt = $pdo->prepare($sql);     //SQL文のセットとデータベースへ接続
             $stmt->execute([$id,$date]);             //フォーム情報をSQL文にセットし実行
-            /*えらーしょり */
-            $flag=0;                //  flagの初期化
-            if(empty($result['UserID'])){
-                $error_code = 200;
-                $flag=2;
-            }else if(empty($result['Date'])){
-                $error_code = 200;
-                $flag=2;
-            }else{
+            
             /*****消費コーナー！！！！******/
             echo "<div class='block_b'>";       //2段組み右設定
             echo "<div class='title-box2-b'>";
             echo "<div class='title-box2-title-b'>総消費カロリー</div>";
-            /*echo "<h3 class='title'>総消費カロリー</h3>";*/
+
             echo "<p>";
             $total2=0;      //総消費カロリー変数の初期化
             echo "<textarea name='' cols=36% rows=13% >";     //消費内訳テキストボックス
             
                 foreach($stmt as $row){
-                    //echo $row['UserID'].':'.$row['Date'].':'.$row['Method'].':'.$row['Calorie'].':'.$row['WorkTime'];
-                    //echo $row['DetaName'];
-                    //echo "　";
-                    //echo "<br/>";
+                    if(empty($row['Date'])){        /*えらーしょり　*/
+                    break;
+                    }
                     echo $row['Method']."：";       //運動名の取得
                     $a=$row['Calorie'];    //消費カロリーの算出
                     echo $a." kcal";                        //消費カロリーの表示
@@ -208,35 +124,36 @@
                     $total2 = $total2 + $a;             //総消費カロリーの算出
                 }
                 echo "</textarea>";
+                /*えらーしょり　*/
+                if(empty($row['Date'])){
+                    $error_code = 200;
+                }else{
+                
+                
                 echo "<h3 align='center'>";                
                 echo $total2;       //総消費カロリーの表示
                 echo " kcal</h3>";
-            echo "</p></div></div>";
-
+                }
+                echo "</p></div></div>";
+                
             echo "<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>";    //表示エリア分割
-            }
+            
         }catch(Exception $e){
             $error_code = 900;           //データベースに接続できなかった場合
         }
+             
         /*エラーコメント */
         if($error_code==900){
-            if($flag==2){
-                echo "<br/>";
-            }else{
-                echo "<h1>でーたべーすえらー</h1>";
-            }
+            echo "<center><h1>でーたべーすえらー</h1></center>";
         }else if($error_code==200){
-            if($flag==2){
-            }else{
-                echo "<h1>IDもしくは日付のデータがありません><</h1>";
-            }
+            echo "<center><h1>内容が登録されていません<br/>登録をお願いします</h1></center>";
         }else{
 
         
             /*****差分******/
             echo "<div class='title-box2-c'>";
             echo "<div class='title-box2-title-c'>カロリーの差</div>";
-            /*echo "<h3 class='title'>カロリーの差</h3>";*/
+
             echo "<h3 align='center'>";
             echo "＿人人人人人人＿<br/>";
             echo "＞　".$sa = $eats - $total2."";       //総消費カロリーと総摂取カロリーの差分
