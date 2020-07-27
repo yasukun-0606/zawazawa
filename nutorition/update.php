@@ -53,6 +53,11 @@
             <tb><b class="left">年齢</b></tb>
             <tb>&emsp;<input class="input_form" type = "text" name ="age">歳</tb>   <!--年齢変更フォーム-->
         </tr>
+        <tr>
+            <tb><b>&emsp;&emsp;&emsp;性別</b></tb>                          <!--性別入力-->
+            <tb>&emsp;<input type="radio" name="gender" value="1">男        <!--ラジオボタンで男と女を決める-->
+            &emsp;<input type="radio" name="gender" value="2">女</tb>
+        </tr>
         </table>
         <br>
         <table border="0">          <!--画面の体裁を整えるためにのテーブル-->
