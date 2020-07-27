@@ -3,8 +3,8 @@
 *結果表示画面
 *Name: T.S
 *CreateDate: 2020/07/15
-*Version: 1.10
-*Update: 2020/07/24
+*Version: 1.11
+*Update: 2020/07/27
 *******************************************
 -->
 
@@ -26,25 +26,40 @@
     require_once('../config.php');
 
     //セッションスタート
-    //session_start();
-    //$id=$_SESSION[''];                                                        //セッションのゆーざーIDの格納
-    //$name=$_SESSION[''];
-    //$date=$_SESSION[''];                                                 //セッションの日付
-    $id="bbbbb";
-    $name="塩谷友浩";
-    $date="2020-07-25";
+    session_start();
+    $name=$_SESSION['user_name'];
+    $year=$_SESSION['Year'];
+    $month=$_SESSION['Month'];
+    $day=$_SESSION['Day'];                                                 //セッションの日付
+    
+    if(strlen($month)==1){
+        $month='0'.$month;
+    }
+    if(strlen($day)==1){
+        $day='0'.$day;
+    }
+    
+    $sql="select * from user_table where name = ?";
+    $stmt = $pdo->prepare($sql);                            //SQL文のセットとデータベースへ接続
+    $stmt->execute([$name]);
+    foreach($stmt as $row){
+        $id=$row['id'];                                                        //セッションのゆーざーIDの格納
+    }
+    //$id="bbbbb";
+    //$name="塩谷友浩";
+    $date=$year."-".$month."-".$day;
     
     $error_code=0;
     /****タイトル表示****/
      echo "<br/>";
      echo "<h2 class='title'>";
-     echo $name;
+     echo $id;
      echo " さんの ";
      /*echo substr($date,0,4);
      echo "年";*/
-     echo substr($date,5,2);
+     echo $month;
      echo "月";
-     echo substr($date,8,2);
+     echo $day;
      echo "日";
      echo " のカロリー評価</h2>";
 
@@ -191,7 +206,7 @@
 
             ?>
             <!--/*****OKボタン******/-->
-            <br/><p align='center'><a href='https://www.dpt-inc.co.jp'><input type='button' value='OK' name='button' style='width:400px;height:100px;font-size:50px;font-weight:bold'></p></a><br/>
+            <br/><p align='center'><a href='http://localhost/zawazawa/nutorition/user_information.php'><input type='button' value='OK' name='button' style='width:400px;height:100px;font-size:50px;font-weight:bold'></p></a><br/>
         
         
         
