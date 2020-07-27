@@ -3,7 +3,7 @@
 *結果表示画面
 *Name: T.S
 *CreateDate: 2020/07/15
-*Version: 1.11
+*Version: 1.13
 *Update: 2020/07/27
 *******************************************
 -->
@@ -18,7 +18,7 @@
       <link rel="stylesheet" href="Booom.css">
       <h1 class="title">カロリー結果表示</h1>
 </header>
-<body>
+<body background = "back.png">
     <link rel="stylesheet" href="Booom.css">
 
     <?php
