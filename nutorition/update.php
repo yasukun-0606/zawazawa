@@ -8,20 +8,27 @@
     <script type="text/javascript">         //JS起動
     function check(){
         var flag = 0;       //フラグ管理(初期値0)
+        var height = document.user.height.value;        //身長の入力値格納
+        var weight = document.user.weight.value;        //体重の入力値格納
+        var age = document.user.age.value;              //年齢の入力値格納        
         // 設定開始（必須にする項目を設定してください）
 
         // 現実的な数値のチェック
-        if(document.user.height.value > 272 || document.user.height.value < 50){   //身長の入力チェック
-            flag = 2;
+       if(height > 272 || height< 50){   //身長の入力チェック
+            if(height != "" ||  weight != "" || age != ""){
+                flag = 2;
+                }
         }
-        else if(document.user.weight.value > 150 || document.user.weight.value < 0){　//体重の入力チェック
-            flag = 2;
+
+        else if(weight> 150 || weight < 0){　//体重の入力チェック
+            if(height != "" || weight != "" || age != ""){
+                flag = 2;
+            }
         }
-        else if(document.user.age.value > 130 || document.user.age.value < 0){
-            flag = 2;
-        }
-        else if(document.user.age.value == "" || document.user.height.value == "" || document.user.weight.value ==""){          //年齢の数値チェック
-            flag = 1;
+        else if(age > 130 || age < 0){
+            if(height != "" || weight != "" || age != ""){
+                flag = 2;
+            }
         }
         
         // 設定終了
