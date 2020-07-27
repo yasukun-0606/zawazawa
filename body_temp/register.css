@@ -4,34 +4,47 @@
 
 .relativeday{
     position: relative;
-    left: 50px;
+    left: 20px;
+    top: -1px;
+}
+
+.relativedaytext{
+    position: relative;
+    left: 40px;
 }
 
 .relativesel{
     position: relative;
-    left: 50px;
+    top: -1px;
+    right: 20px;
 }
 
 .temptext{
     position: relative;
-    left: 18px;
+    right: 36px;
     top: 54px;
+}
+
+.bodytemptext{
+    position: relative;
+    left: 64px;
+    top: 10px;
 }
 
 .relativetemp{
     position: relative;
-    top: 20px;
+    right: 100px;
 }
 
 .relativeDo{
     position: relative;
-    left: 18px;
+    right: 26px;
     top: 62px;
 }
 
 .relativeButton{
     position: relative;
-    right: 92px;
+    right: 6px;
     top: 120px;
 }
 
