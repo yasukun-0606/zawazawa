@@ -1,6 +1,6 @@
 /*
 *How_To_Use.htmlのcss
-*更新:2020/07/23
+*更新:2020/07/27
 *更新者:T.S
 */
 
@@ -200,6 +200,13 @@ a:hover{
     100%{color:#ff7f7f}
 }
 
+.blink3{
+    animation: blinkAnime3 1.1s infinite alternate;
+}
+@keyframes blinkAnime3{
+    0%{color:#000000}
+    100%{color:#ffca67}
+}
   .sample21{
     display  : inline-block;
     animation: sample21Anime 3s linear infinite; /* アニメーション指定 */
