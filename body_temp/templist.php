@@ -12,16 +12,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <header >
-    <h1 style ="font-size:200%" align = "center"　>体温カレンダー</h1>
-    </header>
-
-    <link rel="stylesheet" href = "templist.css">
-
+    <title>体温カレンダー</title>
 </head>
+<header >
+    <link rel="stylesheet" href = "templist.css">
+    <h1 class="title">体温カレンダー</h1>
+</header>
 
 <!--中央ぞろえ、背景色スカイブルー-->
-<body bgcolor ="skyblue" align = "center" >
+<body bgcolor ="skyblue" >
+<center>
 <!--体温確認画面へ-->
 <form action="templist.php" method="post" name="form1" id="form1">
 確認したい日付を選択してください
@@ -131,7 +131,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 
 
 <!--中央ぞろえのカレンダー表示-->
-<table bgcolor="#99ffff" align = "center" style ="font-size:35px" >
+<table bgcolor="#99ffff" style ="font-size:35px" >
     <tr>
         <th colspan="7" class="text"><?php echo $year; ?>年<?php echo '<input type="text" size="1" style="border:none;background-color:transparent; font-size:20px" name="nowmonth" readonly value="' . $monmon . '">'?> 月 </th>
     </form>
@@ -200,5 +200,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
     
 </form>
 </body>
+    
+    </center>
 </html>
 
