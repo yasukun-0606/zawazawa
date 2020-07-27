@@ -25,7 +25,7 @@
 <!--体温確認画面へ-->
 <form action="templist.php" method="post" name="form1" id="form1">
 確認したい日付を選択してください
-
+<br>
 
 <?php
 session_start();
@@ -133,7 +133,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 <!--中央ぞろえのカレンダー表示-->
 <table bgcolor="#99ffff" style ="font-size:35px" >
     <tr>
-        <th colspan="7" class="text"><?php echo $year; ?>年<?php echo '<input type="text" size="1" style="border:none;background-color:transparent; font-size:20px" name="nowmonth" readonly value="' . $monmon . '">'?> 月 </th>
+        <th colspan="7" class="text"><?php echo $year; ?>年<?php echo '<input type="text" size="1" style="border:none;background-color:transparent; width: 45px;  font-size:36px" name="nowmonth" readonly value="' . $monmon . '">'?> 月 </th>
     </form>
     <tr>
         <th> 日</th>
@@ -156,7 +156,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
         
         <td>
         <?php $cnt++;
-        //echo $value["day"];
+        echo '&nbsp';
         if($value['day'] != "") {
             if($value['day'] < 10) {
                 $day = '0' . $value['day'];
@@ -203,4 +203,3 @@ for ($i = 1; $i < $last_day + 1; $i++) {
     
     </center>
 </html>
-
