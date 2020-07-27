@@ -12,13 +12,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <header >
-    <h1 style ="font-size:200%" align = "center"　>体温カレンダー</h1>
-    </header>
-
-    <link rel="stylesheet" href = "templist.css">
-
+    <title>体温カレンダー</title>
 </head>
+<header >
+    <link rel="stylesheet" href = "temp.css">
+    <h1 class="title">体温カレンダー</h1>
+</header>
 
 <!--中央ぞろえ、背景色スカイブルー-->
 <body bgcolor ="skyblue" align = "center" >
