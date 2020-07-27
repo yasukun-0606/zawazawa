@@ -47,7 +47,7 @@
     </div>
     <br>
 
-    <form method="POST" action="user_information.php" name="user" onsubmit="return check()"> <!--ユーザー入力-->
+    <form method="POST" action="update_Eiyou.php" name="user" onsubmit="return check()"> <!--ユーザー入力-->
     <table border="0"　class="text1">           <!--画面の体裁を整えるためにのテーブル-->
         <tr>
             <tb><b class="left">年齢</b></tb>
