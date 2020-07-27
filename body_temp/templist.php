@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <header >
-    <h1 style ="font-size:400%" align = "center"　>体温カレンダー</h1>
+    <h1 style ="font-size:200%" align = "center"　>体温カレンダー</h1>
     </header>
 
     <link rel="stylesheet" href = "templist.css">
@@ -22,9 +22,10 @@
 
 <!--中央ぞろえ、背景色スカイブルー-->
 <body bgcolor ="skyblue" align = "center" >
-
 <!--体温確認画面へ-->
-<form action="temp.php" method="post" name="form1" id="form1">
+<form action="templist.php" method="post" name="form1" id="form1">
+確認したい日付を選択してください
+
 
 <?php
 session_start();
@@ -37,11 +38,34 @@ if(isset($name)){
 }
 // 現在の年月を取得
 $year = date('Y');
-$month = date('n');
+if(empty($_POST['nowmonth'])) {
+    $month = date('m');
+} 
+else {
+    $month = $_POST['nowmonth'];
+}
+$mon = '0';
+echo   '<form action="templist.php" method="post" name="form1" id="form1">';
+echo    '<input type="hidden" name="nowmonth" value="' . $month . '">';
+echo    '<input type="submit" name="month" value="先月" size="5"  style="font:15pt MS ゴシック; width:5%; height:7%">';
+echo    '<input type="submit" name="month" value="来月" size="5"  style="font:15pt MS ゴシック; width:5%; height:7%">';
+if(empty($_POST['month'])) {
+
+} 
+else if($_POST['month']=='先月') {
+    $mon = -1;
+}
+else if($_POST['month']=='来月') {
+    $mon = 1;
+}
+$monmon = $month + $mon;
+if($monmon == '0'){
+    $monmon = 12;
+}
 $today = date('d');
  
 // 月末日を取得
-$last_day = date('j', mktime(0, 0, 0, $month + 1, 0, $year));
+$last_day = date('j', mktime(0, 0, 0, $monmon + 1, 0, $year));
  
 $calendar = array();
 $j = 0;
@@ -50,7 +74,7 @@ $j = 0;
 for ($i = 1; $i < $last_day + 1; $i++) {
  
     // 曜日を取得
-    $week = date('w', mktime(0, 0, 0, $month, $i, $year));
+    $week = date('w', mktime(0, 0, 0, $monmon, $i, $year));
  
     // 1日の場合
     if ($i == 1) {
@@ -92,14 +116,14 @@ for ($i = 1; $i < $last_day + 1; $i++) {
  
 }
 ?>
-確認したい日付を選択してください
 <br>
 
 
 <!--中央ぞろえのカレンダー表示-->
 <table bgcolor="#99ffff" align = "center" style ="font-size:35px" >
     <tr>
-        <th colspan="7" class="text"><?php echo $year; ?>年<?php echo  $month; ?>月 </th>
+        <th colspan="7" class="text"><?php echo $year; ?>年<?php echo '<input type="text" size="1" style="border:none;background-color:transparent; font-size:20px" name="nowmonth" readonly value="' . $monmon . '">'?> 月 </th>
+    </form>
     <tr>
         <th> 日</th>
         <th> 月</th>
@@ -115,13 +139,13 @@ for ($i = 1; $i < $last_day + 1; $i++) {
         $cnt = 0; 
         $day = 0;
     ?>
+    <!--体温確認画面へ-->
+    <form action="temp.php" method="post" name="form1" id="form1">
     <?php foreach ($calendar as $key => $value): ?>
         
         <td>
         <?php $cnt++;
         //echo $value["day"];
-        $year = date('Y');
-        $month = date('m');
         if($value['day'] != "") {
             if($value['day'] < 10) {
                 $day = '0' . $value['day'];
@@ -131,6 +155,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 
         $datedata = $year . "-" . $month . "-" . $day;
 
+        print '<input type="hidden" name="month" value="' . $monmon . '">';
         print '<input  name="day" type="submit" value='.$value["day"].' 
                 style="border:none;background-color:transparent; color:coral; font-size:50px">';
         }

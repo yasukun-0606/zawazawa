@@ -3,8 +3,8 @@
 *カレンダーデータ表示
 *Name: T・M
 *CreateDate: 2020/07/21
-*Version: 0.03
-*Update: 2020/07/27
+*Version: 0.02
+*Update: 2020/07/24
 *******************************************
 -->
 
@@ -24,20 +24,24 @@
 
     <?php
     session_start();
+
     $year = date('Y');                        //対象年       
-    $month = date('m');                       //対象月                                                        
+    $month = $_POST['month'];                 //対象月
+    if($month < 10){
+        $month = '0' . $month;
+    }                                                        
     $day = $_POST["day"];                     //対象日         
     if($day < 10){
         $day = '0' . $day;
     }
     $date = $year . "-" . $month . "-" . $day; //対象の日付
-    $id = $_SESSION['user_name'];              //UserName
+    $name = $_SESSION['user_name'];            //UserName
     $error_code=0;                             //error_code                                                 
 
     /****タイトル表示****/
      echo "<br/>";                             
      echo "<h2>";
-     echo $id;                                 //UserName                      
+     echo $name;                                 //UserName                      
      echo "さんの ";
      echo substr($date,0,4);                   //文字列から年を取得
      echo "年";
@@ -53,15 +57,16 @@
         //データベース接続情報ファイル
         require_once __DIR__ .'../config.php';
     
-        
-        try{                                                  
+        try{
+
             
-            $sql = "select * from body_temp where date = ?";       //SQL文
+            $sql = "select * from body_temp where user_name =" . $name . "";       //SQL文
             $stmt = $pdo->prepare($sql);                            //SQL文のセットとデータベースへ接続
-            $stmt->execute([$date]);                                //日付データの一致参照
+            //$stmt->execute([$date]);                                //日付データの一致参照
             foreach ($stmt as $row) {                               
                                                                     // データベースのフィールド名で出力
-                $temp=$row['temp'];                                  //体温を抽出
+                //$temp=$row['temp'];                                  //体温を抽出
+                echo $stmt;
             }
             
             if(empty($temp)){                                      //体温の空白チェック
@@ -123,5 +128,3 @@
 
 </body>
 </html>
-
-    
