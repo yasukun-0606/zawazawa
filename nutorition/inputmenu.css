@@ -1,0 +1,62 @@
+/* 料理名のブロックに関する設定 */
+
+.ME_biglabel{
+  display:block;
+  text-align: center;
+  width:300px;
+  background:white;
+  margin: 0 auto;
+
+} 
+
+
+.ME_middlelabel{
+
+    text-align: center;
+    width:40px;
+    height:10px;
+
+}
+.ME_smalllabel{
+    text-align: center;
+    width:20px;
+    height:10px;
+
+}
+.ME_selectnamelabel{
+  position: absolute;
+  top: 60px;
+  left:110px;
+}
+.ME_numlabel{
+  position: absolute;
+  top: 60px;
+  left: 250px;
+}
+.ME_attention{
+  position:absolute;
+  top: 78px;
+  left:250px;
+  font-size: 12px;
+  color: rgb(91, 93, 93);
+}
+.ME_selectnamebox{
+  position: absolute;
+  top: 120px;
+  left: 85px; 
+  width: 140px;
+  height: 30px;
+  
+}
+.ME_numbox{
+  position: absolute;
+  top: 120px;
+  left: 250px;
+  width:50px;
+  height: 25px;
+}
+.ME_registbutton{
+    position:absolute;
+    top:200px;
+    left:260px;
+} 

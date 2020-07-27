@@ -1,0 +1,27 @@
+/* サイト移行のボタンに関する設定 */
+
+
+
+.jumpexercise{
+    position: absolute;
+    top: 430px;
+    right: 360px;
+    width: 200px;
+
+}
+.jumpnutrition{
+    
+    position: absolute;
+    top: 100px;
+    right: 200px;
+    width: 200px;
+
+
+}
+.jumpresult{
+    position: absolute;
+    top: 150px;
+    right: 200px;
+    width: 200px;
+
+}

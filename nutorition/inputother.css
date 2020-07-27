@@ -1,0 +1,100 @@
+/* その他のブロックに関する設定 */
+
+.OT_biglabel{
+  display:block;
+  text-align: center;
+  width:300px;
+  background:white;
+  margin: 0 auto;
+
+} 
+
+
+.OT_middlelabel{
+
+    text-align: center;
+    width:40px;
+    height:10px;
+
+}
+.OT_smalllabel{
+    text-align: center;
+    width:20px;
+    height:10px;
+
+}
+.OT_selectnamelabel{
+  position: absolute;
+  top: 60px;
+  left:110px;
+}
+.OT_numlabel{
+  position: absolute;
+  top: 60px;
+  left: 250px;
+}
+.OT_attention{
+  position:absolute;
+  top: 78px;
+  left:250px;
+  font-size: 12px;
+  color: rgb(91, 93, 93);
+}
+.OT_selectnamebox{
+  position: absolute;
+  top: 80px;
+  left: 90px; 
+  width: 140px;
+  height: 30px;
+  
+}
+.OT_numbox{
+  position: absolute;
+  top: 80px;
+  left: 250px;
+  width:50px;
+  height: 30px;
+}
+.OT_label1{
+  position:absolute;
+  top:120px;
+  left:60px;
+}
+.OT_label2{
+  position:absolute;
+  top:120px;
+  left:140px;
+}
+.OT_label3{
+  position:absolute;
+  top:120px;
+  left:300px;
+}
+.OT_ppos{
+  position:absolute;
+  top:140px;
+  left:60px;
+
+}
+.OT_box1{
+  position:absolute;
+  top:160px;
+  left:140px;
+  width:140px;
+}
+.OT_box2{
+  position:absolute;
+  top:160px;
+  left:300px;
+  width: 60px;
+}
+.OT_registbutton{
+    position:absolute;
+    top:80px;
+    left:320px;
+} 
+.OT_dataregistbutton{
+  position:absolute;
+  top:250px;
+  left:320px;
+} 
