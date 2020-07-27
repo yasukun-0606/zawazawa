@@ -3,8 +3,8 @@
 *カレンダーデータ表示
 *Name: T・M
 *CreateDate: 2020/07/21
-*Version: 0.02
-*Update: 2020/07/24
+*Version: 0.03
+*Update: 2020/07/27
 *******************************************
 -->
 
@@ -23,6 +23,7 @@
     <center>
 
     <?php
+    session_start();
     $year = date('Y');                        //対象年       
     $month = date('m');                       //対象月                                                        
     $day = $_POST["day"];                     //対象日         
@@ -30,7 +31,7 @@
         $day = '0' . $day;
     }
     $date = $year . "-" . $month . "-" . $day; //対象の日付
-    $id = "Miyaji";                            //UserName
+    $id = $_SESSION['user_name'];              //UserName
     $error_code=0;                             //error_code                                                 
 
     /****タイトル表示****/
@@ -113,7 +114,7 @@
         echo '<br/><br/>';      //改行
 
         /****カレンダーに戻るリンク設定****/
-        echo "<div aline = 'center'><a href='https://www.dpt-inc.co.jp/'>カレンダーに戻る</a></div>";
+        echo "<div aline = 'center'><a href='templist.php'>カレンダーに戻る</a></div>";
 
         
     ?>
