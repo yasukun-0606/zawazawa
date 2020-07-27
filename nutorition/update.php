@@ -11,10 +11,7 @@
         // 設定開始（必須にする項目を設定してください）
 
         // 現実的な数値のチェック
-        if(document.user.age.value == "" || document.user.height.value == "" || document.user.weight.value ==""){          //年齢の数値チェック
-            flag = 1;
-        }
-        else if(document.user.height.value > 272 || document.user.height.value < 50){   //身長の入力チェック
+        if(document.user.height.value > 272 || document.user.height.value < 50){   //身長の入力チェック
             flag = 2;
         }
         else if(document.user.weight.value > 150 || document.user.weight.value < 0){　//体重の入力チェック
@@ -22,6 +19,9 @@
         }
         else if(document.user.age.value > 130 || document.user.age.value < 0){
             flag = 2;
+        }
+        else if(document.user.age.value == "" || document.user.height.value == "" || document.user.weight.value ==""){          //年齢の数値チェック
+            flag = 1;
         }
         
         // 設定終了
@@ -84,7 +84,7 @@
     <p class="text">目標(目標の体重や体系を入力)</p>           <!--目標入力-->
         <textarea  class="text" type = "text" name ="target" cols="40"></textarea>      <!--目標変更入力フォーム-->
         <br>
-    <p><input class="send" type="submit" value="送信"  onclick=history.back()></p>      <!--ユーザー情報画面に戻る-->
+    <p><input class="send" type="submit" value="送信" ></p>      <!--ユーザー情報画面に戻る-->
     
     </form>
 
