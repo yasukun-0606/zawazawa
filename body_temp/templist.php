@@ -31,6 +31,9 @@
 session_start();
 //ユーザーネームの呼び出し
 $name = $_SESSION['user_name'];
+//表示月の初期化
+$monmon = "";
+//名前を表示
 if(isset($name)){
     echo $name . 'さん';
 } else {
@@ -44,21 +47,29 @@ if(empty($_POST['nowmonth'])) {
 else {
     $month = $_POST['nowmonth'];
 }
+
+//月の増減用変数
 $mon = '0';
 echo   '<form action="templist.php" method="post" name="form1" id="form1">';
 echo    '<input type="hidden" name="nowmonth" value="' . $month . '">';
 echo    '<input type="submit" name="month" value="先月" size="5"  style="font:15pt MS ゴシック; width:5%; height:7%">';
 echo    '<input type="submit" name="month" value="来月" size="5"  style="font:15pt MS ゴシック; width:5%; height:7%">';
-if(empty($_POST['month'])) {
 
+//受け取った値によって月の増減と表示月を変更
+if(empty($_POST['month'])) {
+    $monmon = $month + $mon;
 } 
 else if($_POST['month']=='先月') {
     $mon = -1;
+    $monmon = $month + $mon;
 }
 else if($_POST['month']=='来月') {
     $mon = 1;
+    $monmon = $month + $mon;
+} else {
+    $monmon = $_POST['month'];
+    if($monmon[0]=='0') $monmon = substr($monmon, 1, 2);
 }
-$monmon = $month + $mon;
 if($monmon == '0'){
     $monmon = 12;
 }
