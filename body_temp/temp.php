@@ -18,6 +18,7 @@
       <link rel="stylesheet" href="Booom.css">
       <h1 class="title">体温結果表示</h1>
 </header>
+<form name="tempform" action="templist.php" method="post">
 <body>
     <!--中央揃え-->
     <center>
@@ -64,7 +65,9 @@
             $stmt = $pdo->prepare($sql);                            //SQL文のセットとデータベースへ接続
             $stmt->execute();                                //日付データの一致参照
             foreach ($stmt as $row) {                               
+                                                                    // データベースのフィールド名で出力
                 $temp=$row['temp'];                                  //体温を抽出
+                //echo $stmt;
             }
             
             if(empty($temp)){                                      //体温の空白チェック
@@ -115,9 +118,9 @@
         }
 
         echo '<br/><br/>';      //改行
-
+        echo '<input type="hidden" name="month" value="' . $month . '">'; 
         /****カレンダーに戻るリンク設定****/
-        echo "<div aline = 'center'><a href='templist.php'>カレンダーに戻る</a></div>";
+        echo "<input type='submit' value='カレンダーに戻る' size='5'  style='font:15pt MS ゴシック; width:200px; height:60px'/>";
 
         
     ?>
@@ -125,4 +128,5 @@
     </center>
 
 </body>
+</form>
 </html>
