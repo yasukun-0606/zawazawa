@@ -36,7 +36,7 @@ require_once('../config.php');
     $stmts->execute([$date]);                                   //実行結果を格納する    
     $result = $stmts->fetch(PDO::FETCH_ASSOC);
     if(empty($result['date'])){                                 //DBに指定した体温があるかチェック
-        echo 'kjdghaafebj';
+        //echo 'kjdghaafebj';
     } else {
       try {
         $sqld = "DELETE FROM body_temp WHERE date = :date";     //前のデータを削除
