@@ -60,13 +60,11 @@
         try{
 
             
-            $sql = "select * from body_temp where user_name =" . $name . "";       //SQL文
+            $sql = 'select * from body_temp where user_name ="' . $name .'" AND date = "' . $date . '"';       //SQL文
             $stmt = $pdo->prepare($sql);                            //SQL文のセットとデータベースへ接続
-            //$stmt->execute([$date]);                                //日付データの一致参照
+            $stmt->execute();                                //日付データの一致参照
             foreach ($stmt as $row) {                               
-                                                                    // データベースのフィールド名で出力
-                //$temp=$row['temp'];                                  //体温を抽出
-                echo $stmt;
+                $temp=$row['temp'];                                  //体温を抽出
             }
             
             if(empty($temp)){                                      //体温の空白チェック
