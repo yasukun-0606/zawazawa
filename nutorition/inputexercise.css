@@ -1,0 +1,65 @@
+.EX_biglabel{
+    display:block;
+    text-align: center;
+    width:300px;
+    background:white;
+    margin: 0 auto;
+  
+  } 
+  
+  
+  .EX_middlelabel{
+  
+      text-align: center;
+      width:40px;
+      height:10px;
+  
+  }
+  .EX_smalllabel{
+      text-align: center;
+      width:20px;
+      height:10px;
+  
+  }
+  .EX_selectnamelabel{
+    position: absolute;
+    top: 60px;
+    left:110px;
+  }
+  .EX_numlabel{
+    position: absolute;
+    top: 60px;
+    left: 250px;
+  }
+  .EX_attention{
+    position:absolute;
+    top: 78px;
+    left:250px;
+    font-size: 12px;
+    color: rgb(91, 93, 93);
+  }
+  .EX_selectnamebox{
+    position: absolute;
+    top: 120px;
+    left: 90px; 
+    max-height: 60px;
+    /*スクロールバーを表示する*/
+    overflow: scroll;
+    /*デフォルトで水平方向のスクロールバーが入ってくるので非表示にする*/
+    overflow-x: hidden;
+    margin-top:0px;
+    width: 140px;
+    height: 30px;
+  }
+  .EX_numbox{
+    position: absolute;
+    top: 120px;
+    left: 250px;
+    width:50px;
+    height:30px;
+  }
+  .EX_registbutton{
+      position:absolute;
+      top:200px;
+      left:260px;
+  } 
