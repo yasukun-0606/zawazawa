@@ -37,9 +37,10 @@ body{
 
 .menu{
     background-color: black;
+    /*background-size: 100%;*/
     opacity:0.8;
     width:300px;
-    height:521px;
+    height:577px;
     text-align:center;
 }
 a{
@@ -50,6 +51,7 @@ a{
     text-align:center; 
     background-color:black;
     animation: SlideIn 1.6s;
+    width:100%;
 }
 
 /* CSSアニメーションの設定 */

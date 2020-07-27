@@ -1,6 +1,6 @@
 <?php
     /**
-     * 2020/07/20 川上恭輝　更新
+     * 2020/07/27 川上恭輝　更新
      * 機能：セッション情報があればユーザー名でトップページを開く
      * 機能：セッション情報がなければゲストさんで表示しログインページへ
      * 機能：登録済みの音楽ファイルを再生できるようになった
@@ -44,7 +44,7 @@
         echo "<br><br>";
         echo "<br><a href='../nutorition/eiyouhome.php' class='button'>栄養管理</a>";
         echo "<br><br><br><br>";
-        echo "<a href='#' class='sub_button'>体調管理</a>";
+        echo "<a href='../body_temp/select.php' class='sub_button'>体調管理</a>";
         echo "<br><br>";
         echo "<p>流す曲を選択してください。</p>";
         echo "<select id='music_name'>";                        //曲の選択（リストボックス）

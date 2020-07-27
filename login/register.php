@@ -1,7 +1,7 @@
 <?php
 
     /**
-     * 2020/07/13 川上恭輝　更新
+     * 2020/07/27 川上恭輝　更新
      * 機能：新規登録機能
      * 備考：register.phpからのデータを受け取る
      * 注意：CSSファイルは書き替えないでください。
@@ -23,7 +23,6 @@
         <div id="main">
     <?php
 
-        //データベース接続情報ファイル（ログイン用）※ログインフォルダから動かさないでください。
         require_once('../config.php');
 
         //入力フォームから入力されたデータを受け取る
@@ -60,7 +59,6 @@
        }
 
         if($error_code == 0){
-            //echo "<div class='ansForm'>";
             echo "<h2 style='text-align:center;'>ユーザー登録が完了しました。</h2>";
             echo "<hr><br>";
             echo "<table class='centerForm'>";
@@ -68,7 +66,6 @@
             echo "<tr><th>ユーザー名</th><td>". h($name). "</td></tr>";
             echo "</table>";
             echo "<p class='p_center'><a class='button' href='login.html'>ログインページ</a></p>";
-            //echo "</div>";
         } else if($error_code == 100){
             echo "<h2>未入力項目があります。</h2>";
             echo "<hr><br>";
