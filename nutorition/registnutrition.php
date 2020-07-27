@@ -1,21 +1,23 @@
 <?php
-include 'config.php';
-//include 'function.php';
-// session();
-// $_month=$_SESSION['month'];
-// $_date=$_SESSION['day'];
-// $_id=$_SESSION['user_id'];
-// $_name=$_SESSION['user_name'];
-// $_year=$_SESSION['year'];
-// $ymd=$_year-$_month-$_date //date型をつくるための文字列
-/* 
-セッション時に月と日とユーザーネームを取る 
-ユーザーネームからユザーidを抽出
-postで結果表示画面に月日とユーザーidとユーザーネームを送ること-->
-///0724にやるべきこと　jsからcountとlogarrayを取って確定ボタンを押したらデータ挿入を行うものを作る
-*/
-?>
+require_once '../config.php';
 
+session_start();
+ $_month=$_SESSION['month'];
+ $_date=$_SESSION['day'];
+ $_id=$_SESSION['user_id'];
+ $_name=$_SESSION['user_name'];
+ $_year=$_SESSION['year'];
+
+?>
+<?php
+	if(strlen($_month)==1){
+		$_month='0'.$_month;
+	}
+	if(strlen($_day)==1){
+		$_day='0'.$_day;
+	}
+	$ymd=$_year.'-'.$_month.'-'.$_date //date型をつくるための文字列
+?>
 
 <!DOCTYPE html>
 
@@ -25,13 +27,20 @@ postで結果表示画面に月日とユーザーidとユーザーネームを�
 <meta charset="UTF-8">
 <script src="MA_pushdata.js"></script> 
 
-<link href="http://localhost/test/styleform.css" rel="stylesheet">
+<!-- <link href="http://localhost/test/styleform.css" rel="stylesheet">
 <link href="http://localhost/test/inputmaterial.css" rel="stylesheet">
 <link href="http://localhost/test/inputmenu.css" rel="stylesheet">
 <link href="http://localhost/test/inputother.css" rel="stylesheet">
 <link href="http://localhost/test/registdata.css" rel="stylesheet">
-<link href="http://localhost/test/jumpsite.css" rel="stylesheet">
+<link href="http://localhost/test/jumpsite.css" rel="stylesheet"> -->
 
+<link href="http://localhost/zawazawa/nutorition/styleform.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/inputmaterial.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/inputmenu.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/inputother.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/inputexercise.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/registdata.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/jumpsite.css" rel="stylesheet">
 </head>
 <body>
 </body>
@@ -69,7 +78,6 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
 <label for="name"class="MA_attention">(※肉類は100gで1個として扱います)</label>
 </p>
 
-<!-- <input type="button" class="MA_registbutton"  name="MA_add" value="決定!" onclick="MA_clickgo()"><br> -->
 </form>
 
 
@@ -87,22 +95,6 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
 <p><label for="name" class="ME_numlabel">個数</label>
 
 <!-- 料理名のプルダウン作成 -->
-<?php
-
-// $sql= "select * from dishes";
-// $stmt = $pdo -> prepare($sql);
-// $stmt->execute();
-// echo "<form method='post'>";
-// echo "<select id='ME_name' name='ME_Name' class='ME_selectnamebox'>";
-// while($res=$stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコード取ってくる
-// 	  $names=$res['dishes'];
-//    	  $kcal=$res['calories'];
-// 	echo "<option value='$names'>$names</option>";
-// }	
-//    echo "</select>";
-//    echo "</form>";
-// ?>
-
 <?php
 $sql= "select * from dishes";
 $stmt = $pdo -> prepare($sql);
@@ -270,7 +262,7 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {/
 		$resultkcal=$hit['calories']*$checknum;//総カロリー
 		//ここで重複チェック
 		$repeat=false;	
-		$sql="SELECT * FROM nutritionreg_table WHERE UserID = 'abc' AND Date = '2020-07-01' AND DetaName = ? limit 1";//UserIDとDateはセッションから持ってくる
+		$sql="SELECT * FROM nutritionreg_table WHERE UserID = $_id AND Date = $ymd AND DetaName = ? limit 1";//UserIDとDateはセッションから持ってくる
 		$stmt = $pdo -> prepare($sql);
 		$stmt->execute([$checkname]);
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -279,9 +271,9 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {/
 		}
 	}
 	if($repeat==false){
-		$sql="INSERT INTO nutritionreg_table(UserID,Date,DetaName,Calorie,Items) VALUE('abc','2020-07-01',?,?,?)";//　結合時ユーザーIDと日付データも挿入すること正しいカラム名に変更すること
+		$sql="INSERT INTO nutritionreg_table(UserID,Date,DetaName,Calorie,Items) VALUE(?,?,?,?,?)";//　結合時ユーザーIDと日付データも挿入すること正しいカラム名に変更すること
 		$stmt = $pdo -> prepare($sql);
-		$stmt->execute([$checkname,$resultkcal,$checknum]); 
+		$stmt->execute([$_id,$ymd,$checkname,$resultkcal,$checknum]); 
 	}
 }
 	
@@ -293,10 +285,9 @@ if(isset($_POST['back'])) {//modoruが押された時！
 	if(empty($_POST['back'])){	 
 	}
 	else{
-		$day='2020-07-01';//本来はユーザーIDと日付をもらう
 		$sql="DELETE FROM nutritionreg_table ORDER BY Number DESC LIMIT 1";//　結合時ユーザーIDと日付データも挿入すること正しいカラム名に変更すること
 		$stmt = $pdo -> prepare($sql);
-		$stmt->execute();//本来もう少し増える
+		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 }

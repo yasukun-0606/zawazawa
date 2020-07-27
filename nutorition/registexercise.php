@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <?php
-include 'config.php';
+require_once '../config.php';
+session_start();
+ $_month=$_SESSION['month'];
+ $_date=$_SESSION['day'];
+ $_id=$_SESSION['user_id'];
+ $_name=$_SESSION['user_name'];
+ $_year=$_SESSION['year'];
+
+ if(strlen($_month)==1){
+	$_month='0'.$_month;
+ }	
+ if(strlen($_day)==1){
+	$_day='0'.$_day;
+ }
+ $ymd=$_year.'-'.$_month.'-'.$_date //date型をつくるための文字列
+
 ?>
 <html lang="ja">
 <head>
@@ -15,13 +30,13 @@ include 'config.php';
 <link href="http://localhost/test/inputexercise.css" rel="stylesheet">
 <link href="http://localhost/test/registdata.css" rel="stylesheet">
 <link href="http://localhost/test/jumpsite.css" rel="stylesheet"> -->
-<link href="http://localhost/zawazawadb/styleform.css" rel="stylesheet">
-<link href="http://localhost/zawazawadb/inputmaterial.css" rel="stylesheet">
-<link href="http://localhost/zawazawadb/inputmenu.css" rel="stylesheet">
-<link href="http://localhost/zawazawadb/inputother.css" rel="stylesheet">
-<link href="http://localhost/zawazawadb/inputexercise.css" rel="stylesheet">
-<link href="http://localhost/zawazawadb/registdata.css" rel="stylesheet">
-<link href="http://localhost/zawazawadb/jumpsite.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/styleform.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/inputmaterial.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/inputmenu.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/inputother.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/inputexercise.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/registdata.css" rel="stylesheet">
+<link href="http://localhost/zawazawa/nutorition/jumpsite.css" rel="stylesheet">
 </head>
 
 <body>
@@ -50,7 +65,7 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
   	echo "<option value='$names'>$names</option>";
 }	
   echo "</select>"; 
-  echo "<input type='text' id='EX_num' name='EX_Num'placeholder='個'class='EX_numbox'>";
+  echo "<input type='text' id='EX_num' name='EX_Num'placeholder='分'class='EX_numbox'>";
   echo "<button class='EX_registbutton'type='submit' name='EX_add' value='ボタン' onclick='EX_clickgo()'>決定</button>";
   echo "</form>";
 ?>
@@ -73,18 +88,18 @@ if(isset($_POST['EX_add'])) {//決定が押された時！
 		$resultkcal=$result['calories']*$checknum;//総カロリー
 		//ここで重複チェック
 		$repeat=false;	
-		$sql="SELECT * FROM momentreg_table WHERE UserID = 'abc' AND Date = '2020-07-01' AND Method = ? limit 1";//UserIDとDateはセッションから持ってくる
+		$sql="SELECT * FROM momentreg_table WHERE UserID = ? AND Date = ? AND Method = ? limit 1";//UserIDとDateはセッションから持ってくる
 		$stmt = $pdo -> prepare($sql);
-		$stmt->execute([$checkname]);
+		$stmt->execute([$_id,$ymd,$checkname]);
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		if($result > 0){
 			$repeat=true;	
 		}
 		if($repeat==false){
-			$sql="INSERT INTO momentreg_table(UserID,Date,Method,Calorie,WorkTime) VALUE('abc','2020-07-01',?,?,?)";//　結合時ユーザーIDと日付データも挿入すること正しいカラム名に変更すること
+			$sql="INSERT INTO momentreg_table(UserID,Date,Method,Calorie,WorkTime) VALUE(?,?,?,?,?)";//　結合時ユーザーIDと日付データも挿入すること正しいカラム名に変更すること
 			$stmt = $pdo -> prepare($sql);
-			$stmt->execute([$checkname,$resultkcal,$checknum]); 
+			$stmt->execute([$_id,$ymd,$checkname,$resultkcal,$checknum]); 
 		}
 	}
 	else{
@@ -100,7 +115,6 @@ if(isset($_POST['back'])) {//modoruが押された時！
 	if(empty($_POST['back'])){	 
 	}
 	else{
-		$day='2020-07-01';//本来はユーザーIDと日付をもらう
 		$sql="DELETE FROM momentreg_table ORDER BY Number DESC LIMIT 1";//　結合時ユーザーIDと日付データも挿入すること正しいカラム名に変更すること
 		$stmt = $pdo -> prepare($sql);
 		$stmt->execute();
@@ -112,9 +126,9 @@ if(isset($_POST['back'])) {//modoruが押された時！
 
 <?php
 			echo "<div style='float:left;'class='displayexerciseformat'>";
-			$sql="select * from momentreg_table where UserID = 'abc' and Date = '2020-07-01'";
+			$sql="select * from momentreg_table where UserID = ? and Date = ?";
 			$stmt = $pdo -> prepare($sql);
-			$stmt->execute();
+			$stmt->execute([$_id,$ymd]);
 	
 		while($res=$stmt->fetch(PDO::FETCH_ASSOC)){
 			echo $name=$res['Method'];

@@ -9,9 +9,4 @@ var judge=0;
      if (material==""||num==""){
        alert("空白部分を埋めてください！");
      }
-     else{
-       document.getElementById("registfield").value ="\n"+document.getElementById("registfield").value+material+num+"分";
-       logarray[count]=document.getElementById("registfield").value;
-       count++;
-     }
    };
