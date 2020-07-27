@@ -19,7 +19,7 @@
     //ユーザーIDがあるかないかを検索する
     $sql = "select * from user_table where name = ?";          //SQL文
     $stmt = $pdo->prepare($sql);                            //SQL文のセットとデータベースへ接続
-    $stmt->execute([$id]);                                  //フォーム情報をSQL文にセットし実行
+    $stmt->execute([$name]);                                  //フォーム情報をSQL文にセットし実行
     $result = $stmt->fetch();                               //実行結果を変数に保存
 
     //ユーザーIDの空白チェック
