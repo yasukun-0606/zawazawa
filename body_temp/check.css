@@ -1,0 +1,12 @@
+
+/*ヘッダーの周囲の余白を削除*/
+*{
+    margin:0;
+    padding:0;
+}
+
+.title{
+    text-align:center; 		/*文字を中央にする*/
+    background-color:black;	/*背景を黒色にする*/
+    color:white;		/*文字色を白にする*/
+}
