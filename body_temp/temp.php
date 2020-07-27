@@ -56,7 +56,7 @@
      echo "<br/>";      //改行
 
         //データベース接続情報ファイル
-        require_once __DIR__ .'../config.php';
+       require_once('../config.php');
     
         try{
 
