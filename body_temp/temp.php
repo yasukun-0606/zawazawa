@@ -23,6 +23,8 @@
     <center>
 
     <?php
+    session_start();
+
     $year = date('Y');                        //対象年       
     $month = date('m');                       //対象月                                                        
     $day = $_POST["day"];                     //対象日         
@@ -30,13 +32,13 @@
         $day = '0' . $day;
     }
     $date = $year . "-" . $month . "-" . $day; //対象の日付
-    $id = "Miyaji";                            //UserName
+    $name = $_SESSION['user_name'];            //UserName
     $error_code=0;                             //error_code                                                 
 
     /****タイトル表示****/
      echo "<br/>";                             
      echo "<h2>";
-     echo $id;                                 //UserName                      
+     echo $name;                                 //UserName                      
      echo "さんの ";
      echo substr($date,0,4);                   //文字列から年を取得
      echo "年";
@@ -52,10 +54,10 @@
         //データベース接続情報ファイル
         require_once __DIR__ .'../config.php';
     
-        
-        try{                                                  
+        try{
+
             
-            $sql = "select * from body_temp where date = ?";       //SQL文
+            $sql = "select * from body_temp where user_name = ?";       //SQL文
             $stmt = $pdo->prepare($sql);                            //SQL文のセットとデータベースへ接続
             $stmt->execute([$date]);                                //日付データの一致参照
             foreach ($stmt as $row) {                               
@@ -113,7 +115,7 @@
         echo '<br/><br/>';      //改行
 
         /****カレンダーに戻るリンク設定****/
-        echo "<div aline = 'center'><a href='https://www.dpt-inc.co.jp/'>カレンダーに戻る</a></div>";
+        echo "<div aline = 'center'><a href='templist.php'>カレンダーに戻る</a></div>";
 
         
     ?>
@@ -122,5 +124,3 @@
 
 </body>
 </html>
-
-    
