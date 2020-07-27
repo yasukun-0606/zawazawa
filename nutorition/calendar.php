@@ -19,6 +19,8 @@
 
     function check(){
         var flag = 0;
+        var now = new Date();
+        var year = now.getFullYear();   //今年の西暦を取得
         // 設定開始（必須にする項目を設定してください）
 
         if(document.today.month.value == ""){          //月」の入力をチェック
@@ -32,10 +34,16 @@
             if((document.today.month.value == 4 || document.today.month.value == 6 || document.today.month.value == 9 || document.today.month.value ==11) && document.today.day.value == 31){
                 flag = 2;       //4,6,9,11月　チェック
             }
-            else if(document.today.month.value == 2 && document.today.day.value > 29){  //2月チェック
-                flag = 2;
+            else if(document.today.month.value == 2){  //うるう年チェック
+                if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0){      //うるう年の場合
+                    if( document.today.day.value > 29){
+                        flag = 2;
+                    }
+                }
+                else if(document.today.day.value > 28){         //うるう年じゃない場合
+                    flag = 2;
+                }
             }
-
         }
         else {
             flag = 2;       //月のチェック「
