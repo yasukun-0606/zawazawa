@@ -24,7 +24,7 @@
         var day = document.today.day.value;           //入力された日付を取得
         // 設定開始（必須にする項目を設定してください）
 
-        if(month < 13　&& day < 32){          //ありえない数値をチェック
+        if(month < 13　&& day < 32 && year > 1926 && year < 2100){          //ありえない数値をチェック
             if((month == 4 || month == 6 || month == 9 || month == 11) && day == 31){
                 flag = 1;       //4,6,9,11月　チェック
             }
@@ -56,11 +56,11 @@
         
         // 設定終了
         if(flag　== 1){
-            window.alert('入力した月日がありえません'); // 入力ミスがあれば警告ダイアログを表示
+            window.alert('入力した年月日は存在しないか対応していません。'); // 入力ミスがあれば警告ダイアログを表示
             return false; // 送信を中止
         }
         else if(flag == 2){
-            window.alert('必須項目に未入力がありました'); // 入力漏れがあれば警告ダイアログを表示
+            window.alert('未入力の項目ありました。'); // 入力漏れがあれば警告ダイアログを表示
             return false; // 送信を中止
         }
         else{
