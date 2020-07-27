@@ -11,10 +11,14 @@
     <meta charset="UTF-8">
     <title>体調管理</title>
 </head>
+<header >
+    <link rel="stylesheet" href = "templist.css">
+    <h1 class="title">体調管理</h1>
+</header>
 <body bgcolor="skyblue">
 <div class="container">
 <span class="target" >
-<font size="7">体調管理</font><br><br><br><br><br>
+<br><br><br><br><br>
 <button type="button" size="5" onclick="location.href='./register.php'" style="font:15pt MS ゴシック; width:10%; height:10%">登録</button>    <!-- 登録ボタン -->
 <button type="button" size="5" onclick="location.href='./templist.php'" style="font:15pt MS ゴシック; width:10%; height:10%">記録一覧</button>  <!-- 記録一覧ボタン -->
 <img src="temp.png" style="position: absolute; left: 130px; top: 208px;" width="20%" height="40%">
