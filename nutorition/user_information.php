@@ -113,7 +113,7 @@
         <br>
         <br>
         <div>
-            <button class="margin1" type="submit" onclick="location.href='http://localhost/zawazawa/update.php'" >登録画面更新　<!--登録更新画面へ遷移-->
+            <button class="margin1" type="submit" onclick="location.href='http://localhost/zawazawa-master/update.php'" >登録画面更新　<!--登録更新画面へ遷移-->
         </div>
         <br>
         <br>
