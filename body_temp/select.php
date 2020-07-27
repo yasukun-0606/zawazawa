@@ -12,7 +12,7 @@
     <title>体調管理</title>
 </head>
 <header >
-    <link rel="stylesheet" href = "templist.css">
+    <link rel="stylesheet" href = "select.css">
     <h1 class="title">体調管理</h1>
 </header>
 <body bgcolor="skyblue">
