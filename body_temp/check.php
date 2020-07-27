@@ -23,9 +23,11 @@
 
     //データベース接続情報ファイル（ログイン用）※ログインフォルダから動かさないでください。
     require_once __DIR__ .'/config.php';
-
+    $input_day = '';
     $input_month = $_POST['month'];                               //月の値を受け取る
-    $input_day = $_POST['day'];                                   //日の値を受け取る
+    if(!empty($_POST['day'])){
+      $input_day = $_POST['day'];                                   //日の値を受け取る
+    }
     $input_date = '2020-' . $input_month . '-' . $input_day;      //受け取った月日を合わせる
     $date = date('Y-m-d',strtotime($input_date));                 //date型に変換
     $temp = $_POST['temp_n'];                                     //体温を受け取る

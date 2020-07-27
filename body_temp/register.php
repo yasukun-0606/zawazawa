@@ -17,18 +17,14 @@
 <header>
   <h1 class="title" align="center">入力画面</h1>
 </header>
-<?php
-  session_start();
-
-  $_SESSION['user_name'] = 'ing';
-  echo 
-  ("
-    <body bgcolor=\"skyblue\">
-    <div class=\"parent\">
-    <form name=\"formName\" action=\"check.php\" method=\"post\">                     <!--確認画面へのフォーム-->
-      <font size=\"7\">日付と体温を入力してください</font><br><br><br><br><br>
-      <font size=\"6\">日付　月</font>
-      <select name=\"month\" style=\"width:5%; font-size:28px\" id=\"relative5\" onChange=\"functionName()\">   //月のリストボックス
+    <body bgcolor="skyblue">
+    <div class="parent">
+    <form name="formName" action="check.php" method="post">                     <!--確認画面へのフォーム-->
+      <font size="7">日付と体温を入力してください</font><br><br><br><br><br>
+      <font size="6">日付</font>
+      <select name="month" style="width:5%; font-size:28px" class="relativesel" onChange="functionName()">   <!--月のリストボックス-->
+      <?php
+      echo("
         <option value = \"1\">1</option>
         <option value = \"2\">2</option>
         <option value = \"3\">3</option>
@@ -41,12 +37,22 @@
         <option value = \"10\">10</option>
         <option value = \"11\">11</option>
         <option value = \"12\">12</option>
-      </select><br>
-      <font size=\"6\" id=\"relativeday\"> 日 </font>
-      <select name=\"day\" style=\"width:5%; font-size:28px\" id=\"relativeday\">     //日のリストボックス
+        ")
+      ?>
       </select>
-
-
+      <font size="6">月</font>
+      <select name="day" style="width:5%; font-size:28px" class="relativeday">
+      <?php
+        $i = 1;
+        while($i<=31){
+          echo '<option value = "' . $i . '">' . $i . '</option>';
+          $i++;
+        }
+      ?>
+      </select>
+      <font size="6" class="relativeday"> 日 </font>
+      <?php
+      echo("
         <script type = \"text/javascript\">   //javascriptのコード
           function functionName(){
             //alert(\"Button is clicked\");
@@ -80,12 +86,11 @@
         </script>
     ")
   ?>
-
-        <font size='6' id='relativetemp'>体温</font>
-        <input id='temptext' type='text' name='temp_n' style=' font:12pt MS ゴシック;width:6em;height:2.2em' />
-        <font size='6' id='relativeDo'>℃</font>
+        <font size='6' class='relativetemp'>体温</font>
+        <input class='temptext' type='text' name='temp_n' style=' font:12pt MS ゴシック;width:6em;height:2.2em' />
+        <font size='6' class='relativeDo'>℃</font>
         <!-- 確認画面へ -->
-        <input id='relativeButton' type='submit' value='確認' size='5'  style='font:15pt MS ゴシック; width:5%; height:7%'/>
+        <input class='relativeButton' type='submit' value='確認' size='5'  style='font:15pt MS ゴシック; width:5%; height:7%'/>
         <font size='6'></font>
         </form>
       </div>
