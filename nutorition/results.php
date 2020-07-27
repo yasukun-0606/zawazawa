@@ -53,7 +53,7 @@
     /****タイトル表示****/
      echo "<br/>";
      echo "<h2 class='title'>";
-     echo $id;
+     echo $name;
      echo " さんの ";
      /*echo substr($date,0,4);
      echo "年";*/
