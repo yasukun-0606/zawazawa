@@ -44,6 +44,13 @@
       </select><br>
       <font size=\"6\" id=\"relativeday\"> 日 </font>
       <select name=\"day\" style=\"width:5%; font-size:28px\" id=\"relativeday\">     //日のリストボックス
+      <?php
+        $i = 1;
+        while($i<=31){
+          echo '<option value = "' . $i . '">' . $i . '</option>';
+          $i++;
+        }
+      ?>
       </select>
 
 
