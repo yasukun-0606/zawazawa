@@ -24,7 +24,7 @@
 session_start();
 
 //データベース接続情報ファイル（ログイン用）※ログインフォルダから動かさないでください。
-require_once __DIR__ .'/config.php';
+require_once('../config.php');
     //$_SESSION['user_name'] = 'いんぐ';
     $name = $_SESSION['user_name'];
     $date = $_POST['date_n'];     //日付
