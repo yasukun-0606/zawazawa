@@ -1,0 +1,41 @@
+.parent{
+    text-align: center;
+}
+
+.relativeday{
+    position: relative;
+    left: 50px;
+}
+
+.relativesel{
+    position: relative;
+    left: 50px;
+}
+
+.temptext{
+    position: relative;
+    left: 18px;
+    top: 54px;
+}
+
+.relativetemp{
+    position: relative;
+    top: 20px;
+}
+
+.relativeDo{
+    position: relative;
+    left: 18px;
+    top: 62px;
+}
+
+.relativeButton{
+    position: relative;
+    right: 92px;
+    top: 120px;
+}
+
+/*フォームを中央ぞろえにする*/
+.centerForm{
+    margin:auto;
+}
