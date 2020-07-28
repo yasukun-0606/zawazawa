@@ -66,3 +66,9 @@ table td {
     height: 40px;               /*縦幅40px*/
     margin-left: 10px;          /*左からの幅を設定*/
 }
+
+/*カレンダーの今日の日付の部分*/
+.number{
+     font-weight: 1000;         /*文字の太さ変更*/
+     color:  #ff8c00;           /*フォント色変更*/
+}
