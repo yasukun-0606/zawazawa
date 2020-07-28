@@ -15,7 +15,7 @@
 
 body{
     color:black;
-    background:green;
+    background-image: url("back.png");
 }
 .displayformat{
     border-style:solid;
@@ -38,6 +38,15 @@ body{
     border-style:solid;
     border-color: #00ff00 #ff0000 #0000ff #000000; 
     width:400px;
+    height:280px;
+    background:orange;
+    position:relative;
+}
+.inputformatexe{
+    border-style:solid;
+    border-color: #00ff00 #ff0000 #0000ff #000000;
+    left: 250px; 
+    width:800px;
     height:280px;
     background:orange;
     position:relative;

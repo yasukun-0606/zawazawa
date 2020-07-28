@@ -1,26 +1,29 @@
 <?php
-require_once '../config.php';
-
+require_once('../config.php');
 session_start();
- $_month=$_SESSION['month'];
- $_date=$_SESSION['day'];
- $_id=$_SESSION['user_id'];
- $_name=$_SESSION['user_name'];
- $_year=$_SESSION['year'];
-
-?>
+ $_month=$_SESSION['Month'];
+ $_date=$_SESSION['Day'];
+ $_name=$_SESSION['user_name'];//
+ $_year=$_SESSION['Year'];
+ ?>
 <?php
-	if(strlen($_month)==1){
+	if(strlen($_month)==1){//月を2桁表示
 		$_month='0'.$_month;
 	}
-	if(strlen($_day)==1){
-		$_day='0'.$_day;
+	if(strlen($_date)==1){//日を2桁表示
+		$_date='0'.$_date;
 	}
 	$ymd=$_year.'-'.$_month.'-'.$_date //date型をつくるための文字列
 ?>
 
 <!DOCTYPE html>
-
+<?php
+ $sql="select * from user where user_name=?";
+ $stmt=$pdo->prepare($sql);
+ $stmt->execute([$_name]);
+ $res=$stmt->fetch(PDO::FETCH_ASSOC);
+ $_id=$res['user_id'];
+?>
 <html lang="ja">
 <head>
 <h1 class="title">摂取カロリー登録画面</h1>
@@ -44,6 +47,71 @@ session_start();
 </head>
 <body>
 </body>
+
+<?php
+//新規登録処理
+	if(isset($_POST['dataregist'])) {//新規登録のボタンが押された時
+		 $checkradio=$_POST['OT_radio'];//ラジオボタンで登録場所の選択
+		 $checkname=$_POST['OT_name'];//登録名取得
+		 $checkkcal=$_POST['OT_kcal'];//登録カロリー取得
+		 $repeat=false;//重複チェック変数
+		
+			if(!empty($checkname) && !empty($checkkcal)){
+			//空白データのチェック
+				switch ($checkradio){
+	 			//チェックラジオを用いてテーブル名の選択、変数を用いて後で代入する予定でしたが、うまくいかなかったので許してください
+					case 1:
+						$sql="SELECT * FROM materials WHERE materials = :names limit 1";//重複データチェック用クエリ
+						$stmt = $pdo -> prepare($sql);
+						$stmt->bindParam(':names', $checkname, PDO::PARAM_STR,30);
+						$stmt->execute();
+						$result = $stmt->fetch(PDO::FETCH_ASSOC);
+						if($result > 0){//重複データが1つ以上あるならばフラグを建てる
+							$repeat=true;
+						break;
+						}
+						$sql= "INSERT INTO materials(materials,calories) VALUES(?,?)";
+						break;
+					case 2:
+						$sql="SELECT * FROM dishes WHERE dishes = :names limit 1";//重複データチェック用クエリ
+						$stmt = $pdo -> prepare($sql);
+						$stmt->bindParam(':names', $checkname, PDO::PARAM_STR,30);
+						$stmt->execute();
+						$result = $stmt->fetch(PDO::FETCH_ASSOC);
+						if($result > 0){//重複データが1つ以上あるならばフラグを建てる
+							$repeat=true;
+						break;
+						}
+						$sql= "INSERT INTO dishes(dishes,calories) VALUES(?,?)";
+						break;
+					case 3:
+						$sql="SELECT * FROM foods WHERE foods = :names limit 1";//重複データチェック用クエリ
+						$stmt = $pdo -> prepare($sql);
+						$stmt->bindParam(':names', $checkname, PDO::PARAM_STR,30);
+						$stmt->execute();
+						$result = $stmt->fetch(PDO::FETCH_ASSOC);
+						if($result > 0){//重複データが1つ以上あるならばフラグを建てる
+							$repeat=true;
+						break;
+						}
+						$sql= "INSERT INTO foods(foods,calories) VALUES(?,?)";
+						break;
+					default:
+						echo "ラジオボタンに変な値はいってる";
+
+				}
+				if($repeat==false){//データの重複がなければデータを追加する
+					$stmt = $pdo -> prepare($sql);
+					$stmt->execute([$checkname,$checkkcal]);
+				}
+		}
+	}
+?>
+
+
+
+
+
  <!----------------------------------食品名のブロック----------------------------------->                                  
 <div style="float:left;" class="inputformat">
 <br>
@@ -68,7 +136,7 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
   	echo "<option value='$names'>$names</option>";
 }	
   echo "</select>"; 
-  echo "<input type='text' id='MA_num' name='MA_Num'placeholder='個'class='MA_numbox'>";
+  echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください' id='MA_num' name='MA_Num'placeholder='個'class='MA_numbox'>";
   echo "<button class='MA_registbutton'type='submit' name='MA_add' value='ボタン' onclick='MA_clickgo()'>決定</button>";
   echo "</form>";
 ?>
@@ -107,7 +175,7 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
   	echo "<option value='$names'>$names</option>";
 }	
   echo "</select>"; 
-  echo "<input type='text' id='ME_num' name='ME_Num'placeholder='個'class='ME_numbox'>";
+  echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください'　id='ME_num' name='ME_Num'placeholder='個'class='ME_numbox'>";
   echo "<button class='ME_registbutton'type='submit' name='ME_add' value='ボタン' onclick='ME_clickgo()'>決定</button>";
   echo "</form>";
 ?>
@@ -146,14 +214,10 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
   	echo "<option value='$names'>$names</option>";
 }	
   echo "</select>"; 
-  echo "<input type='text' id='OT_num' name='OT_Num'placeholder='個'class='OT_numbox'>";
+  echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください'　id='OT_num' name='OT_Num'placeholder='個'class='OT_numbox'>";
   echo "<button class='OT_registbutton'type='submit' name='OT_add' value='ボタン' onclick='OT_clickgo()'>決定</button>";
   echo "</form>";
 ?>
-
-
-
-
 
 <form method="post">
 <p class = OT_ppos>
@@ -162,96 +226,35 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
 <input type="radio" name="OT_radio" value="3" checked>その他<br>
 </p>
 <input id="OT_registname"type="text" name="OT_name" class="OT_box1"placeholder="名前">
-<input id="OT_registkcal"type="text" name="OT_kcal" class="OT_box2"placeholder="kcal">
+<input type="text" pattern="[\d.]*" title="数字かドットで入力してください"　id="OT_registkcal" name="OT_kcal" class="OT_box2"placeholder="kcal">
 <button class="OT_dataregistbutton"type="submit" name="dataregist" value="ボタン" onclick="window.location.reload(true);" >新規登録</button>
 </form>
-
-
 </div>
-<?php
-//新規登録処理
-	if(isset($_POST['dataregist'])) {//新規登録のボタンが押された時
-		 $checkradio=$_POST['OT_radio'];
-		 $checkname=$_POST['OT_name'];
-		 $checkkcal=$_POST['OT_kcal'];
-		 $repeat=false;//重複チェック変数
-		
-			if(!empty($checkname) && !empty($checkkcal)){
-			//空白データのチェック
-				switch ($checkradio){
-	 			//テーブル名の選択、変数を用いて後で代入する予定でしたが、うまくいかなかったので許してください
-					case 1:
-						$sql="SELECT * FROM materials WHERE materials = :names limit 1";//重複データチェック　結合時namesを正しいカラム名に変更すること
-						$stmt = $pdo -> prepare($sql);
-						$stmt->bindParam(':names', $checkname, PDO::PARAM_STR,30);
-						$stmt->execute();
-						$result = $stmt->fetch(PDO::FETCH_ASSOC);
-						if($result > 0){//重複データが1つ以上あるならばフラグを建てる
-							$repeat=true;
-						break;
-						}
-						$sql= "INSERT INTO materials(materials,calories) VALUES(?,?)";
-						break;
-					case 2:
-						$sql="SELECT * FROM dishes WHERE dishes = :names limit 1";//重複データチェック
-						$stmt = $pdo -> prepare($sql);
-						$stmt->bindParam(':names', $checkname, PDO::PARAM_STR,30);
-						$stmt->execute();
-						$result = $stmt->fetch(PDO::FETCH_ASSOC);
-						if($result > 0){
-							$repeat=true;
-						break;
-						}
-						$sql= "INSERT INTO dishes(dishes,calories) VALUES(?,?)";
-						break;
-					case 3:
-						$sql="SELECT * FROM foods WHERE foods = :names limit 1";//重複データチェック
-						$stmt = $pdo -> prepare($sql);
-						$stmt->bindParam(':names', $checkname, PDO::PARAM_STR,30);
-						$stmt->execute();
-						$result = $stmt->fetch(PDO::FETCH_ASSOC);
-						if($result > 0){
-							$repeat=true;
-						break;
-						}
-						$sql= "INSERT INTO foods(foods,calories) VALUES(?,?)";
-						break;
-					default:
-						echo "ラジオボタンに変な値はいってる";
-
-				}
-				if($repeat==false){//データの重複がなければデータを追加する
-					$stmt = $pdo -> prepare($sql);
-					$stmt->execute([$checkname,$checkkcal]);
-				}
-		}
-	}
-?>
 
 <!-- 決定を押したときに、リザルトで表示するDBへのデータ挿入 -->
 <?php
-if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {//決定が押された時！ うまくいかなければそれぞれの結果ボタンの名前をMAとかつけて論理和で結ぶ
-	if(isset($_POST['MA_add'])){//食品名のとき
-		if(($_POST['MA_Num']!="")&&($_POST['MA_Name'])!=""){
+if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {//いずれかの決定ボタンが押された時
+	if(isset($_POST['MA_add'])){//押されたのが食品名のとき
+		if(($_POST['MA_Num']!="")&&($_POST['MA_Name'])!=""){//個数と名前の空白チェック
 	 		$checkradio=1;//id
 			$checkname=$_POST['MA_Name'];//名前
 			$checknum=$_POST['MA_Num'];//個数
 			$sql="select * from materials where materials = ?";
 		 	}
 		}
-	else if(isset($_POST['ME_add'])){//料理名のとき
-		if(($_POST['ME_Num']!="")&&($_POST['ME_Name'])!=""){//料理名のとき
-			echo $checkradio=2;//id
-	    	echo $checkname=$_POST['ME_Name'];//名前
-	    	echo $checknum=$_POST['ME_Num'];//個数
+	else if(isset($_POST['ME_add'])){//押されたのが料理名のとき
+		if(($_POST['ME_Num']!="")&&($_POST['ME_Name'])!=""){//個数と名前の空白チェック
+			$checkradio=2;//id
+	    	$checkname=$_POST['ME_Name'];//名前
+	    	$checknum=$_POST['ME_Num'];//個数
 	    	$sql="select * from dishes where dishes = ? ";
 		}
 	}
-	else if(isset($_POST['OT_add'])){//料理名のとき
-		if(($_POST['OT_Num']!="")&&($_POST['OT_Name'])!=""){//その他のとき
-			echo $checkradio=3;//id
-	    	echo $checkname=$_POST['OT_Name'];//名前
-	    	echo $checknum=$_POST['OT_Num'];//個数
+	else if(isset($_POST['OT_add'])){//押されたのがその他のとき
+		if(($_POST['OT_Num']!="")&&($_POST['OT_Name'])!=""){//個数と名前の空白チェック
+			$checkradio=3;//id
+	    	$checkname=$_POST['OT_Name'];//名前
+	    	$checknum=$_POST['OT_Num'];//個数
 	    	$sql="select * from foods where foods = ? ";
 	 	}
 	}
@@ -260,34 +263,36 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {/
 		$stmt->execute([$checkname]);
 		$hit=$stmt->fetch(PDO::FETCH_ASSOC);
 		$resultkcal=$hit['calories']*$checknum;//総カロリー
-		//ここで重複チェック
+		//ここから重複チェック
 		$repeat=false;	
-		$sql="SELECT * FROM nutritionreg_table WHERE UserID = $_id AND Date = $ymd AND DetaName = ? limit 1";//UserIDとDateはセッションから持ってくる
+		$sql="SELECT * FROM nutritionreg_table WHERE UserID = ? AND Date = ? AND DetaName = ? limit 1";//重複チェッククエリ
 		$stmt = $pdo -> prepare($sql);
-		$stmt->execute([$checkname]);
+		$stmt->execute([$_id,$ymd,$checkname]);
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
-		if($result > 0){
+		if($result > 0){//重複が見つかればフラグを建てる
 			$repeat=true;	
 		}
+		//ここまで
 	}
-	if($repeat==false){
-		$sql="INSERT INTO nutritionreg_table(UserID,Date,DetaName,Calorie,Items) VALUE(?,?,?,?,?)";//　結合時ユーザーIDと日付データも挿入すること正しいカラム名に変更すること
+	if($repeat==false){//重複データがなければ
+		$sql="INSERT INTO nutritionreg_table(UserID,Date,DetaName,Calorie,Items) VALUE(?,?,?,?,?)";//データの挿入
 		$stmt = $pdo -> prepare($sql);
-		$stmt->execute([$_id,$ymd,$checkname,$resultkcal,$checknum]); 
+		$stmt->execute([$_id,$ymd,$checkname,$resultkcal,$checknum]);
+		
 	}
 }
 	
 
 ?>
 <?php 
-//ひとつもどるを押したときに、リザルトで表示するDBへのデータ挿入
-if(isset($_POST['back'])) {//modoruが押された時！
-	if(empty($_POST['back'])){	 
+//ひとつもどるを押したときに、最新レコードを削除する関数
+if(isset($_POST['back'])) {//戻るが押された時！
+	if(empty($_POST['back'])){	 //念のため
 	}
 	else{
-		$sql="DELETE FROM nutritionreg_table ORDER BY Number DESC LIMIT 1";//　結合時ユーザーIDと日付データも挿入すること正しいカラム名に変更すること
+		$sql="DELETE FROM nutritionreg_table WHERE UserID = ? AND Date = ? ORDER BY Number DESC LIMIT 1";//　最新レコードを降順で一番上に持ってきて上から1行削除
 		$stmt = $pdo -> prepare($sql);
-		$stmt->execute();
+		$stmt->execute([$_id,$ymd]);
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 }
@@ -297,12 +302,14 @@ if(isset($_POST['back'])) {//modoruが押された時！
 
 <?php
 			echo "<div style='float:left;'class='displayformat'>";
-			$sql="select * from nutritionreg_table where UserID = 'abc' and Date = '2020-07-01'";
+			//データベースから該当カラムのデータを抽出
+			$sql="select * from nutritionreg_table where UserID = ? and Date = ?";//データベースの値取得
 			$stmt = $pdo -> prepare($sql);
-			$stmt->execute();
+			$stmt->execute([$_id,$ymd]);
 		
 		while($res=$stmt->fetch(PDO::FETCH_ASSOC)){
-			echo $name=$res['DetaName'];
+			//料理名×個数＝総カロリー　の形式で表示
+			echo $name=$res['DetaName'];//
 			echo "×";
 			echo $num=$res['Items'];
 			echo "個＝";
@@ -312,9 +319,9 @@ if(isset($_POST['back'])) {//modoruが押された時！
 	echo "<form action='registnutrition.php' method='post'>";
 	echo "<input type='submit' class='backbutton' name='back' value='データを1つ取り消す' onclick='clickback()'><br>";
 	echo "</form>";
-	echo "</div>";	
 	echo "<form action='registexercise.php' method='post'>";
 	echo "<input type='submit' class='jumpexercise'  name='button' value='運動データ登録へ' ><br>";
-	echo "</form>"
+	echo "</form>";
+	echo "</div>";	
 ?>
 </html>
