@@ -50,6 +50,21 @@ a:hover{
     margin: 0; 
     padding: 0;
 }
+
+.box2a {
+    width: 250px;
+    height: 75px;
+    margin: auto;
+    color: #2c2c2f;
+    border: solid 2px #5b8bd0;/*点線*/
+    background: rgba(240, 248, 255, 0.746);/*背景色*/
+    border-radius : 18px 18px;               /* 角丸の指定          */
+}
+.box2a p {
+    margin: 0; 
+    padding: 0;
+}
+
 .box3 {
     padding: 0.5em 1em;
     margin: 2em 0;
