@@ -73,6 +73,9 @@ else if($_POST['month']=='来月') {
 if($monmon == '0'){
     $monmon = 12;
 }
+else if($monmon == '13'){
+    $monmon == 1;    
+}
 $today = date('d');
  
 // 月末日を取得
