@@ -29,7 +29,7 @@ body{
 
 .user_t1{
     width: 600px;                     /*横幅600px*/
-    background-color: #72e92d;      /*背景の色を設定*/
+    background-color: #b9f34ccb;      /*背景の色を設定*/
     margin: 0 auto;                    /*画面中央へ自動設定*/
     border: medium solid #f14646;   /*枠の色を設定*/
     line-height:35px;                   /*枠の太さを設定*/
@@ -47,7 +47,7 @@ body{
     text-align: left;       /*文字を左に寄せる*/
     margin: 0 auto;         /*配置を自動的に中央寄せ*/
     width: 500px;           /*横幅500px*/
-    background-color: #ff84e0;      /*背景の色を指定*/
+    background-color: #ff7a8598;      /*背景の色を指定*/
     border: medium solid #4e50db;   /*枠ぶちの色を指定*/
     line-height:35px; 
 }
