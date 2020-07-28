@@ -111,11 +111,11 @@ for ($i = 1; $i < $last_day + 1; $i++) {
  
     // 配列に日付をセット
     if($i == $today){
-        $calendar[$j]['day'] ="@".$i."@";       //今日の日付は＠
+        $calendar[$j]['day'] ="<a class='number'>".$i."</a>";       //今日の日付は＠
         $j++;
     }
     else{
-        $calendar[$j]['day'] = $i;
+        $calendar[$j]['day'] ="&nbsp;&nbsp;".$i."&nbsp;&nbsp;";
         $j++;
     }
     
@@ -140,7 +140,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 <br>
 <table bgcolor="#ffffff">
     <tr>
-        <th colspan="7" class="text"><?php echo $year; ?>年<?php echo $month; ?>月のカレンダー </th>
+        <?php echo "<th colspan='7' class='text'> $year 年 $month 月のカレンダー </th>"; ?>  <!--年月表示-->
     <tr>
         <th>日</th>
         <th>月</th>
@@ -152,26 +152,25 @@ for ($i = 1; $i < $last_day + 1; $i++) {
     </tr>
  
     <tr>
-    <?php $cnt = 0; ?>
-    <?php foreach ($calendar as $key => $value): ?>
+    <?php $cnt = 0;
+    foreach ($calendar as $key => $value){
  
-        <td>
-        <?php $cnt++;
+        echo "<td>";
+        $cnt++;
         if($value==$today){
-            ECHO "<FONT COLOR='BLUE'>$value/FONT>";
-        }else{
+            echo $value["day"];
+        }else{ 
             echo $value["day"];
         }
-        ?>
-        </td>
+        
+        echo "</td>";
  
-    <?php if ($cnt == 7): ?>
-    </tr>
-    <tr>
-    <?php $cnt = 0; ?>
-    <?php endif; ?>
- 
-    <?php endforeach; ?>
+        if ($cnt == 7){
+            echo "</tr>";
+            echo "<tr>";
+            $cnt = 0;
+        }
+    }?>
     </tr>
 </table>
 <br>
@@ -183,7 +182,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
     <input class="input_C" type = "text" name ="month">月
     <input class="input_C" type = "text" name ="day">日<br>
     <br>
-    ※今日の日付は@で挟んでいる日付<br>
+    ※今日の日付はオレンジ色の太字の数字の日付<br>
     </p>
     <input class="send_C" type="submit" value="ユーザー登録画面へ">
 </form>
