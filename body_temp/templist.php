@@ -74,7 +74,7 @@ if($monmon == '0'){
     $monmon = 12;
 }
 else if($monmon == '13'){
-    $monmon == 1;    
+    $monmon = 1;    
 }
 $today = date('d');
  
