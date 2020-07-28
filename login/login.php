@@ -68,6 +68,7 @@
         } else if($error_code == 50){
             session_regenerate_id(true); //session_idを新しく生成し、置き換える
             $_SESSION['user_name'] = $result['user_name'];
+            $_SESSION['user_id']= $result['user_id'];
             header('Location: home.php');
             exit();
         }
