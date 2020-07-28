@@ -51,16 +51,15 @@ else {
 //月の増減用変数
 $mon = '0';
 echo   '<form action="templist.php" method="post" name="form1" id="form1">';
-echo    '<input type="hidden" name="nowmonth" value="' . $month . '">';
 echo    '<input type="submit" name="month" value="先月" size="5"  style="font:15pt MS ゴシック; width:5%; height:7%">';
 echo    '<input type="submit" name="month" value="来月" size="5"  style="font:15pt MS ゴシック; width:5%; height:7%">';
 
 //受け取った値によって月の増減と表示月を変更
 if(empty($_POST['month'])) {
-    $monmon = $month + $mon;
+    $monmon = $month + $mon;    //初回,取得した月と増減を確認してmonmonに代入する
 } 
 else if($_POST['month']=='先月') {
-    $mon = -1;
+    $mon = -1;                  //先月
     $monmon = $month + $mon;
 }
 else if($_POST['month']=='来月') {
@@ -133,10 +132,12 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 <br>
 
 
+
 <!--中央ぞろえのカレンダー表示-->
 <table bgcolor="#99ffff" style ="font-size:35px" >
     <tr>
-        <th colspan="7" class="text"><?php echo $year; ?>年<?php echo '<input type="text" size="1" style="border:none;background-color:transparent; width: 45px;  font-size:36px" name="nowmonth" readonly value="' . $monmon . '">'?> 月 </th>
+        <?php echo "<input type='hidden' name='nowmonth' value='" . $monmon . "'>"?>
+        <th colspan="7" class="text"><?php echo $year; ?>年<?php echo $monmon; ?> 月 </th>
     </form>
     <tr>
         <th> 日</th>
