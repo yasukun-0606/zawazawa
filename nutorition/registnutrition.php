@@ -30,13 +30,6 @@ session_start();
 <meta charset="UTF-8">
 <script src="MA_pushdata.js"></script> 
 
-<!-- <link href="http://localhost/test/styleform.css" rel="stylesheet">
-<link href="http://localhost/test/inputmaterial.css" rel="stylesheet">
-<link href="http://localhost/test/inputmenu.css" rel="stylesheet">
-<link href="http://localhost/test/inputother.css" rel="stylesheet">
-<link href="http://localhost/test/registdata.css" rel="stylesheet">
-<link href="http://localhost/test/jumpsite.css" rel="stylesheet"> -->
-
 <link href="http://localhost/zawazawa/nutorition/styleform.css" rel="stylesheet">
 <link href="http://localhost/zawazawa/nutorition/inputmaterial.css" rel="stylesheet">
 <link href="http://localhost/zawazawa/nutorition/inputmenu.css" rel="stylesheet">
@@ -175,9 +168,10 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
   	echo "<option value='$names'>$names</option>";
 }	
   echo "</select>"; 
-  echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください'　id='ME_num' name='ME_Num'placeholder='個'class='ME_numbox'>";
+  echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください' id='ME_num' name='ME_Num'placeholder='個'class='ME_numbox'>";  
   echo "<button class='ME_registbutton'type='submit' name='ME_add' value='ボタン' onclick='ME_clickgo()'>決定</button>";
   echo "</form>";
+
 ?>
 
 </p>
@@ -207,14 +201,14 @@ $stmt->execute();
 
 //プルダウン作成+
 echo "<form action='registnutrition.php' method='post'>";
-echo "<select id='OT_name' name='OT_Name' class='OT_selectnamebox'>";
+echo "<select id='OT_dname' name='OT_Name' class='OT_selectnamebox'>";
 while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコード取ってくる
   	$names=$res['foods'];
   	$kcal=$res['calories'];
   	echo "<option value='$names'>$names</option>";
 }	
   echo "</select>"; 
-  echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください'　id='OT_num' name='OT_Num'placeholder='個'class='OT_numbox'>";
+  echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください' id='OT_dnum' name='OT_Num'placeholder='個'class='OT_numbox'>";
   echo "<button class='OT_registbutton'type='submit' name='OT_add' value='ボタン' onclick='OT_clickgo()'>決定</button>";
   echo "</form>";
 ?>
@@ -233,13 +227,16 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
 
 <!-- 決定を押したときに、リザルトで表示するDBへのデータ挿入 -->
 <?php
-if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {//いずれかの決定ボタンが押された時
+if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {
+	$j=false;
+	//いずれかの決定ボタンが押された時
 	if(isset($_POST['MA_add'])){//押されたのが食品名のとき
 		if(($_POST['MA_Num']!="")&&($_POST['MA_Name'])!=""){//個数と名前の空白チェック
 	 		$checkradio=1;//id
 			$checkname=$_POST['MA_Name'];//名前
 			$checknum=$_POST['MA_Num'];//個数
 			$sql="select * from materials where materials = ?";
+			$j=true;
 		 	}
 		}
 	else if(isset($_POST['ME_add'])){//押されたのが料理名のとき
@@ -247,7 +244,8 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {/
 			$checkradio=2;//id
 	    	$checkname=$_POST['ME_Name'];//名前
 	    	$checknum=$_POST['ME_Num'];//個数
-	    	$sql="select * from dishes where dishes = ? ";
+			$sql="select * from dishes where dishes = ? ";
+			$j=true;
 		}
 	}
 	else if(isset($_POST['OT_add'])){//押されたのがその他のとき
@@ -255,10 +253,11 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {/
 			$checkradio=3;//id
 	    	$checkname=$_POST['OT_Name'];//名前
 	    	$checknum=$_POST['OT_Num'];//個数
-	    	$sql="select * from foods where foods = ? ";
+			$sql="select * from foods where foods = ? ";
+			$j=true;
 	 	}
 	}
-	if(!empty($checkname)&&!empty($checknum)){//名前と個数が入力されているか確認
+	if($j==true){
 		$stmt = $pdo -> prepare($sql);
 		$stmt->execute([$checkname]);
 		$hit=$stmt->fetch(PDO::FETCH_ASSOC);
@@ -273,13 +272,14 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {/
 			$repeat=true;	
 		}
 		//ここまで
-	}
+	
 	if($repeat==false){//重複データがなければ
 		$sql="INSERT INTO nutritionreg_table(UserID,Date,DetaName,Calorie,Items) VALUE(?,?,?,?,?)";//データの挿入
 		$stmt = $pdo -> prepare($sql);
 		$stmt->execute([$_id,$ymd,$checkname,$resultkcal,$checknum]);
 		
 	}
+}
 }
 	
 
@@ -323,5 +323,6 @@ if(isset($_POST['back'])) {//戻るが押された時！
 	echo "<input type='submit' class='jumpexercise'  name='button' value='運動データ登録へ' ><br>";
 	echo "</form>";
 	echo "</div>";	
+	
 ?>
 </html>

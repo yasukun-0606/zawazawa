@@ -27,13 +27,6 @@ session_start();
 <meta charset="UTF-8">
   <title>運動データ登録</title>
 <script src="EX_pushdata.js"></script>
-<!-- <link href="http://localhost/test/styleform.css" rel="stylesheet">
-<link href="http://localhost/test/inputmaterial.css" rel="stylesheet">
-<link href="http://localhost/test/inputmenu.css" rel="stylesheet">
-<link href="http://localhost/test/inputother.css" rel="stylesheet">
-<link href="http://localhost/test/inputexercise.css" rel="stylesheet">
-<link href="http://localhost/test/registdata.css" rel="stylesheet">
-<link href="http://localhost/test/jumpsite.css" rel="stylesheet"> -->
 <link href="http://localhost/zawazawa/nutorition/styleform.css" rel="stylesheet">
 <link href="http://localhost/zawazawa/nutorition/inputmaterial.css" rel="stylesheet">
 <link href="http://localhost/zawazawa/nutorition/inputmenu.css" rel="stylesheet">
@@ -51,8 +44,8 @@ session_start();
 <div style="float:left;" class="inputformatexe">
 <br>
 
-<label for="name" class="MA_biglabel">  トレーニング内容  </label> 
-<p><label for="name" class="MA_selectnamelabel">内容選択</label> </p>
+<label for="name" class="EX_biglabel">  トレーニング内容  </label> 
+<p><label for="name" class="EX_selectnamelabel">内容選択</label> </p>
 <!-- 運動のプルダウン作成 -->
 <?php
 // DB接続しSQLを発行してデータを取得
@@ -69,14 +62,14 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
   	echo "<option value='$names'>$names</option>";
 }	
   echo "</select>"; 
-  echo "<input type='text' id='EX_num' name='EX_Num'placeholder='分'class='EX_numbox'>";
+  echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください' id='EX_num' name='EX_Num'placeholder='分'class='EX_numbox'>";
   echo "<button class='EX_registbutton'type='submit' name='EX_add' value='ボタン' onclick='EX_clickgo()'>決定</button>";
   echo "</form>";
 ?>
 </p>
 
-<p><label for="name"class="MA_numlabel">時間</label>
-<label for="name"class="MA_attention">(※分単位の入力をお願いします)</label>
+<p><label for="name"class="EX_numlabel">時間</label>
+<label for="name"class="EX_attention">(※分単位の入力をお願いします)</label>
 </p>
 <?php
 
@@ -148,7 +141,7 @@ if(isset($_POST['back'])) {//ひとつ戻るが押された時！
 			echo "kcal<br/>";
 		 }
 	echo "<form action='registexercise.php' method='post'>";
-	echo "<input type='submit' class='backbutton' name='back' value='データを1つ取り消す' onclick='clickback()'><br>";
+	echo "<input type='submit' class='exebackbutton' name='back' value='データを1つ取り消す' onclick='clickback()'><br>";
 	echo "</form>";
 	echo "<form action='registnutrition.php' method='post'>";
 	echo "<input type='submit' class='jumpnutrition' name='button' value='栄養データ登録へ' ><br>";
