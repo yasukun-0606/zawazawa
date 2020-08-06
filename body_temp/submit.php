@@ -14,7 +14,7 @@
 <header>
   <h1 class="title" align="center">登録完了画面</h1>
 </header>
-<body bgcolor="skyblue">
+<body>
 <div class="container">
 <span class="target" >
 <font size="7">登録完了しました。</font><br><br><br><br><br>
