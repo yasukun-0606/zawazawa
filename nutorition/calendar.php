@@ -111,7 +111,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
  
     // 配列に日付をセット
     if($i == $today){
-        $calendar[$j]['day'] ="<a class='number'>".$i."</a>";       //今日の日付は＠
+        $calendar[$j]['day'] ="<a class='number'>".$i."</a>";       //今日の日付はオレンジタグ
         $j++;
     }
     else{
@@ -182,10 +182,13 @@ for ($i = 1; $i < $last_day + 1; $i++) {
     <input class="input_C" type = "text" name ="month">月
     <input class="input_C" type = "text" name ="day">日<br>
     <br>
-    ※今日の日付はオレンジ色の太字の数字の日付<br>
+    ※今日の日付はオレンジ色の太字の数字<br>
     </p>
     <input class="send_C" type="submit" value="ユーザー登録画面へ">
 </form>
+    <br>
+    <br>
+    <button class="margin1" type="submit" onclick="location.href='../login/home.php'" >ホームへ<!--ホーム画面へ遷移-->
 </body>
 
 
