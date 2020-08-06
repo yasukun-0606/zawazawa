@@ -13,10 +13,11 @@
     <!--入力画面専用のCSS-->
     <link rel="stylesheet" href="register.css">
 </head>
-
 <header>
-  <h1 class="title" align="center">入力画面</h1>
+      <link rel="stylesheet" href="Booom.css">
+      <h1 class="title">入力画面</h1>
 </header>
+
 <?php
   session_start();
 
@@ -99,4 +100,9 @@
         </form>
       </div>
   </body>
+  <style>
+body{
+  background-color:#F0E7B3;
+}
+</style>
 </html>

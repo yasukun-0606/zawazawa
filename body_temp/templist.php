@@ -19,7 +19,11 @@
     <h1 class="title">体温カレンダー</h1>
 </header>
 
-<!--中央ぞろえ、背景色スカイブルー-->
+<style>
+body{
+  background-color:#F0E7B3;
+}
+</style>
 <body>
 <center>
 <!--体温確認画面へ-->
