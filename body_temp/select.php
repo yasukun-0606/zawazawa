@@ -15,7 +15,7 @@
     <link rel="stylesheet" href = "select.css">
     <h1 class="title">体調管理</h1>
 </header>
-<body bgcolor="skyblue">
+<body>
 <div class="container">
 <span class="target" >
 <br><br><br><br><br>
