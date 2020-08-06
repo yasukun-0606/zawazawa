@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="check.css">
   <h1 class="title">確認画面</h1>
 </header>
-<body bgcolor="skyblue">
+<body>
 <div class="container">
 <span class="target" >
 <?php
