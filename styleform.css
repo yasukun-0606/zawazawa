@@ -1,0 +1,53 @@
+/*摂取カロリー登録、消費カロリー登録に関する共通部分の設定 */
+
+*{
+    margin:0;
+    padding:0;
+}
+
+
+.title{
+    text-align:center; 		/*文字を中央にする*/
+    background-color:black;	/*背景を黒色にする*/
+    color:white;		/*文字色を白にする*/
+}
+
+
+body{
+    color:black;
+    background-image: url("back.png");
+}
+.displayformat{
+    border-style:solid;
+    border-color: #00ff00 #ff0000 #0000ff #000000; 
+    width:1200px;
+    height:280px;
+    background:white;
+    position: relative ;
+}
+.displayexerciseformat{
+    border-style:solid;
+    border-color: #00ff00 #ff0000 #0000ff #000000;
+    top:235px; 
+    width:800px;
+    height:280px;
+    background:white;
+    position: relative ;
+}
+.inputformat{
+    border-style:solid;
+    border-color: #00ff00 #ff0000 #0000ff #000000; 
+    width:400px;
+    height:280px;
+    background:orange;
+    position:relative;
+}
+.inputformatexe{
+    border-style:solid;
+    border-color: #00ff00 #ff0000 #0000ff #000000;
+    left: 250px; 
+    width:800px;
+    height:280px;
+    background:orange;
+    position:relative;
+}
