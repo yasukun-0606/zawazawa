@@ -107,8 +107,8 @@
     <!--行先ボタン-->
         <div>
             <button class="margin1" type="submit" onclick="location.href='./results.php'" > <?php echo "$_month 月$_day 日";?>の結果    <!--結果画面に遷移-->
-            <button class="margin1" type="submit" onclick="location.href='./registexercise.php'">カロリー入力　　<!--カロリー入力画面に遷移-->
-            <button class="margin1" type="submit" onclick="location.href='./registnutrition.php'">今日の運動情報　<!--今日の運動情報に遷移-->
+            <button class="margin1" type="submit" onclick="location.href='./registnutrition.php'">カロリー入力　　<!--カロリー入力画面に遷移-->
+            <button class="margin1" type="submit" onclick="location.href='./registexercise.php'">今日の運動情報　<!--今日の運動情報に遷移-->
         </div>
         <br>
         <br>
