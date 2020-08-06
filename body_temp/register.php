@@ -94,7 +94,8 @@
         <br>
         <!-- 確認画面へ -->
         <input id='relativeButton' type='submit' value='確認' size='5'  style='font:15pt MS ゴシック; width:75px; height:7%'/>
-        <font size='6'></font>
+        <!-- 選択画面へ -->
+        <input type='button' value='戻る' onClick='history.back()' style='font:15pt MS ゴシック; width:75px; height:7%'>
         </form>
       </div>
   </body>
