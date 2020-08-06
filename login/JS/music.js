@@ -15,6 +15,8 @@ function init(){
         audio.src="music/song_shiho_shining_star.mp3";
     } else if(document.getElementById("music_name").value == "you"){
         audio.src="music/song_kei_where_you_are.mp3";
+    } else if(document.getElementById("music_name").value == "spring"){
+        audio.src="music/20200530shinshun.mp3";
     }
 }
 
