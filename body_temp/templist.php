@@ -20,7 +20,7 @@
 </header>
 
 <!--中央ぞろえ、背景色スカイブルー-->
-<body bgcolor ="skyblue" >
+<body>
 <center>
 <!--体温確認画面へ-->
 <form action="templist.php" method="post" name="form1" id="form1">
