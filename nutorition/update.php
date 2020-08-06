@@ -14,7 +14,7 @@
         // 設定開始（必須にする項目を設定してください）
 
         // 現実的な数値のチェック
-        if(height > 272 if((height > 272 || height < 50 )&& height != ""){   //身長の入力チェック
+        if((height > 272 || height < 50 )&& height != ""){   //身長の入力チェック
             flag = 2;
         }
         else if((weight > 150 || weight < 0 )&& weight != ""){　//体重の入力チェック
