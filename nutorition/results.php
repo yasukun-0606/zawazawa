@@ -174,18 +174,22 @@
             echo "＞　".$sa = $eats - $total2."";       //総消費カロリーと総摂取カロリーの差分
             echo "kcal　＜<br/>";
             echo "￣^Y^Y^Y^Y^￣<br/></h3>";
-            if($sa>100){      
-                echo "<div class='flame01'><p align='center'>ウォーキング20分強程度です</p></div>";
-            }elseif($sa>200){      
-                echo "<div class='flame01'><p align='center'>ウォーキング40分強程度です</p></div>";
-            }elseif($sa>300){      
-                echo "<div class='flame01'><p align='center'>ランニング30分程度です</p></div>";
-            }elseif($sa>400){      
-                echo "<div class='flame01'><p align='center'>ランニング40分程度です</p></div>";
+            if($sa>1500){      
+                echo "<div class='flame01'><p align='center'>食べすぎです！！！</p></div>";
+            }elseif($sa>1000){      
+                echo "<div class='flame01'><p align='center'>5.5km遠泳分程度です</p></div>";
             }elseif($sa>500){      
                 echo "<div class='flame01'><p align='center'>ランニング50分程度です</p></div>";
-            }elseif($sa>1000){         
-                echo "<div class='flame01'><p align='center'>5.5km遠泳分程度です</p></div>";            
+            }elseif($sa>400){      
+                echo "<div class='flame01'><p align='center'>ウォーキング40分強程度です</p></div>";
+            }elseif($sa>300){      
+                echo "<div class='flame01'><p align='center'>ランニング40分程度です</p></div>";
+            }elseif($sa>200){      
+                echo "<div class='flame01'><p align='center'>ランニング30分程度です</p></div>";
+            }elseif($sa>100){         
+                echo "<div class='flame01'><p align='center'>ウォーキング20分強程度です</p></div>";            
+            }elseif($sa<-1500){       
+                echo "<div class='flame01'><p align='center'>あれれ～？おかしいぞ～？</p></div>";
             }elseif($sa<-1000){       
                 echo "<div class='flame01'><p align='center'>和牛のサーロインステーキ200g程度の差です</p></div>";
             }elseif($sa<-500){       
