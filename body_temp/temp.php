@@ -109,15 +109,19 @@ body{
             //echo '<br/>';
 
             /****体温データの判断結果****/
-            if($temp>=37.5){
+            if($temp>=42){
+                echo "<div class='flame01'><p align='center'>体温が高すぎます　測り直してください</p></div>";
+            }elseif($temp>=37.5){
                 //37.5℃以上
                 echo "<div class='flame01'><p align='center'>規定体温を超えています！病院に行きましょう</p></div>";
             }elseif($temp>=37){
                 //37℃以上
                 echo "<div class='flame01'><p align='center'>微熱気味です　状況報告を行い判断を仰ぎましょう</p></div>";
-            }else{
+            }elseif($temp>=34){
                 //平熱
                 echo "<div class='flame01'><p align='center'>問題ありません　元気よく出勤をしましょう</p></div>";
+            }else{
+                echo "<div class='flame01'><p align='center'>体温が低すぎます　測り直してください</p></div>";
             }
                 
         }
