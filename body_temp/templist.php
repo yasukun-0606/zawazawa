@@ -177,7 +177,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 
         print '<input type="hidden" name="month" value="' . $monmon . '">';
         print '<input  name="day" type="submit" value='.$value["day"].' 
-                style="border:none;background-color:transparent; color:red; font-size:50px">';
+                style="border:none;background-color:transparent; color:black; font-size:50px">';
         }
         ?>
         
