@@ -17,6 +17,11 @@
   <h1 class="title" align="center">登録画面</h1>
 </header>
 
+<style>
+body{
+  background-color:#F0E7B3;
+}
+</style>
 <body bgcolor='skyblue'>
   <div class='parent'>
     <form action='register.php' method='post'>

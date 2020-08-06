@@ -19,6 +19,11 @@
       <h1 class="title">体温結果表示</h1>
 </header>
 <form name="tempform" action="templist.php" method="post">
+<style>
+body{
+  background-color:#F0E7B3;
+}
+</style>
 <body>
     <!--中央揃え-->
     <center>

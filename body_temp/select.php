@@ -24,12 +24,15 @@
 <br><br><br><br>
 <!--ホーム画面へ-->
 <button type="button" size="5" onclick="location.href='../login/home.php'" style="font:13pt MS ゴシック; width:10%; height:10%">ホーム画面へ</button>  
-<img src="temp.png" style="position: absolute; left: 130px; top: 208px;" width="20%" height="40%">
-<img src="temp.png" style="position: absolute; left: 950px; top: 208px;" width="20%" height="40%">  
+<img src="ping1.png" style="position: absolute; left: 130px; top: 208px;" width="20%" height="40%">
+<img src="ping2.png" style="position: absolute; left: 950px; top: 208px;" width="20%" height="40%">  
 </span>
 </div>
 <!-- 中央揃えにする -->
 <style>
+body{
+  background-color:#F0E7B3;
+}
 .container{
   display:table;
   width:100%;

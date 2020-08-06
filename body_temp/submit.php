@@ -58,6 +58,9 @@ require_once('../config.php');
   </div>
   <!-- 中央揃えにする -->
   <style>
+  body{
+  background-color:#F0E7B3;
+}
   .container{
     display:table;
     width:100%;
