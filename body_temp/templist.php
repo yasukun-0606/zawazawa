@@ -26,10 +26,6 @@ body{
 </style>
 <body>
 <center>
-<!--体温確認画面へ-->
-<form action="templist.php" method="post" name="form1" id="form1">
-確認したい日付を選択してください
-<br>
 
 <?php
 session_start();
@@ -39,7 +35,7 @@ $name = $_SESSION['user_name'];
 $monmon = "";
 //名前を表示
 if(isset($name)){
-    echo $name . 'さん';
+    echo $name . 'さん<br>';
 } else {
     //echo 'no--------------------u';
 }
@@ -51,13 +47,15 @@ if(empty($_POST['nowmonth'])) {
 else {
     $month = $_POST['nowmonth'];
 }
-
 //月の増減用変数
 $mon = '0';
-echo   '<form action="templist.php" method="post" name="form1" id="form1">';
-echo    '<input type="submit" name="month" value="先月" size="5"  style="font:15pt MS ゴシック; width:5%; height:7%">';
-echo    '<input type="submit" name="month" value="来月" size="5"  style="font:15pt MS ゴシック; width:5%; height:7%">';
-
+//<!--体温確認画面へ-->
+echo '<form action="templist.php" method="post" name="form1" id="form1">';
+echo "確認したい日付を選択してください";
+echo "<br>";
+//echo   '<form action="templist.php" method="post" name="form1" id="form1">';
+echo    ' <input type="submit" name="month" value="先月" size="5"  style="font:15pt MS ゴシック; width:5%; height:7%">';
+echo    '<input type="submit" class="positions" name="month" value="来月" size="5"  style="font:15pt MS ゴシック; width:5%; height:7%">';
 //受け取った値によって月の増減と表示月を変更
 if(empty($_POST['month'])) {
     $monmon = $month + $mon;    //初回,取得した月と増減を確認してmonmonに代入する
@@ -138,10 +136,13 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 
 
 <!--中央ぞろえのカレンダー表示-->
-<table bgcolor="#99ffff" style ="font-size:35px" >
+<table bgcolor="#FFFFAA" style ="font-size:35px" >
     <tr>
+       
         <?php echo "<input type='hidden' name='nowmonth' value='" . $monmon . "'>"?>
         <th colspan="7" class="text"><?php echo $year; ?>年<?php echo $monmon; ?> 月 </th>
+        
+    </tr>
     </form>
     <tr>
         <th> 日</th>
@@ -176,7 +177,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 
         print '<input type="hidden" name="month" value="' . $monmon . '">';
         print '<input  name="day" type="submit" value='.$value["day"].' 
-                style="border:none;background-color:transparent; color:coral; font-size:50px">';
+                style="border:none;background-color:transparent; color:red; font-size:50px">';
         }
         ?>
         
