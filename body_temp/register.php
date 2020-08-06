@@ -22,7 +22,7 @@
 
   $name = $_SESSION['user_name'];
   ?>
-    <body style="background-color:skyblue;">
+    <body>
     <div class="parent">
     <form name="formName" action="check.php" method="post">                     <!--確認画面へのフォーム-->
       <font size="7">日付と体温を入力してください</font><br><br><br><br><br>
