@@ -52,6 +52,7 @@
         echo "<option value='moon'>月と狼</option>";
         echo "<option value='star'>シャイニングスター</option>";
         echo "<option value='you'>where you are</option>";
+        echo "<option value='spring'>新春</option>";
         echo "</select>";
         echo "<br><br>";
         echo "<input class='music_button' type='button' value='スタート' onclick='music_start()'>"; //音楽再生ファンクション実行
