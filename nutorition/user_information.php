@@ -106,15 +106,15 @@
 
     <!--行先ボタン-->
         <div>
-            <button class="margin1" type="submit" onclick="location.href='http://localhost/zawazawa/nutorition/results.php'" > <?php echo "$_month 月$_day 日";?>の結果    <!--結果画面に遷移-->
-            <button class="margin1">カロリー入力　　<!--カロリー入力画面に遷移-->
-            <button class="margin1">今日の運動情報　<!--今日の運動情報に遷移-->
+            <button class="margin1" type="submit" onclick="location.href='./results.php'" > <?php echo "$_month 月$_day 日";?>の結果    <!--結果画面に遷移-->
+            <button class="margin1" type="submit" onclick="location.href='./registexercise.php'">カロリー入力　　<!--カロリー入力画面に遷移-->
+            <button class="margin1" type="submit" onclick="location.href='./registnutrition.php'">今日の運動情報　<!--今日の運動情報に遷移-->
         </div>
         <br>
         <br>
         <div>
-            <button class="margin1" type="submit" onclick="location.href='http://localhost/zawazawa/nutorition/update.php'" >登録画面更新　<!--登録更新画面へ遷移-->
-            <button class="margin1" type="submit" onclick="location.href='http://localhost/zawazawa/nutorition/calendar.php'" >カレンダー画面更新　<!--カレンダー画面へ遷移-->
+            <button class="margin1" type="submit" onclick="location.href='./update.php'" >登録画面更新　<!--登録更新画面へ遷移-->
+            <button class="margin1" type="submit" onclick="location.href='./calendar.php'">カレンダーに戻る<!--カレンダー画面へ戻る-->
         </div>
         <br>
         <br>
