@@ -114,7 +114,7 @@
     <br>
         <br>
         <div>
-            <button class="margin1" type="submit" onclick="location.href='https://www.dpt-inc.co.jp/'" >ホームへ<!--ホーム画面へ遷移-->
+            <button class="margin1" type="submit" onclick="location.href='../login/home.php'" >ホームへ<!--ホーム画面へ遷移-->
         </div>
 
 </body>
