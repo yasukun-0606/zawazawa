@@ -58,14 +58,18 @@
         <script type = "text/javascript">   //javascriptのコード
           function functionName(){
             
+            　var now = new Date();
+              var year = now.getFullYear();
+              var y;
               var select1 = document.forms.formName.month;    
               var select2 = document.forms.formName.day;      
               var i=1;
               var sel =  select1.options[select1.selectedIndex].value;
               select2.options.length = 0;                                     //日のリストボックス初期化
               if(sel == "2") {                                              //2月なら28日まで追加
-                
-                while(i<=28){
+                if((year%4==0 && year%100!=0) || year%400==0) y = 29;
+                else y = 28;
+                while(i<=y){
                   select2.options[i-1] = new Option(i);            
                   i++;
                 }
