@@ -12,6 +12,21 @@
     <title>体調管理</title>
     <!--入力画面専用のCSS-->
     <link rel="stylesheet" href="register.css">
+  
+    <script type="text/javascript">
+
+    function check(){
+      var temp = document.formName.temp_n.value;
+
+      if(temp<34.0 || temp>41.0){
+        window.alert('適切な体温を入力してください。'); // 入力ミスがあれば警告ダイアログを表示
+        return false; // 送信を中止
+      }
+      else{
+        return true; // 送信を実行
+      }
+    }
+    </script>
 </head>
 <header>
       <link rel="stylesheet" href="Booom.css">
@@ -25,7 +40,7 @@
   ?>
     <body>
     <div class="parent">
-    <form name="formName" action="check.php" method="post">                     <!--確認画面へのフォーム-->
+    <form name="formName" action="check.php" method="post" onsubmit="return check()">                     <!--確認画面へのフォーム-->
       <font size="7">日付と体温を入力してください</font><br><br><br><br><br>
       <font size="6"><b>日付</b></font>
       <br>
@@ -118,7 +133,7 @@
         <font size='6' id='relativeDo'>℃</font>
         <br>
         <!-- 確認画面へ -->
-        <input id='relativeButton' maxlength="4" type='submit' value='確認' size='5'  style='font:15pt MS ゴシック; width:75px; height:7%'/>
+        <input id='relativeButton' pattern='[\d.]*' maxlength="4" type='submit' value='確認' size='5'  style='font:15pt MS ゴシック; width:75px; height:7%'/>
         <!-- 選択画面へ -->
         <input type='button' value='戻る' onClick='history.back()' style='font:15pt MS ゴシック; width:75px; height:7%'>
         </form>
