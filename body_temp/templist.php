@@ -33,6 +33,8 @@ session_start();
 $name = $_SESSION['user_name'];
 //表示月の初期化
 $monmon = "";
+//表示年の初期化
+$year = "";
 //名前を表示
 if(isset($name)){
     echo $name . 'さん<br>';
@@ -40,7 +42,12 @@ if(isset($name)){
     //echo 'no--------------------u';
 }
 // 現在の年月を取得
-$year = date('Y');
+if(empty($_POST['nowyear'])) {
+    $year = date('Y');
+} 
+else {
+    $year = $_POST['nowyear'];
+}
 if(empty($_POST['nowmonth'])) {
     $month = date('m');
 } 
@@ -139,7 +146,9 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 <table bgcolor="#FFFFAA" style ="font-size:35px" >
     <tr>
        
-        <?php echo "<input type='hidden' name='nowmonth' value='" . $monmon . "'>"?>
+        <?php echo "<input type='hidden' name='nowmonth' value='" . $monmon . "'>";
+            　echo "<input type='hidden' name='nowyear' value='" . $year . "'>";
+        ?>
         <th colspan="7" class="text"><?php echo $year; ?>年<?php echo $monmon; ?> 月 </th>
         
     </tr>
@@ -176,6 +185,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
         $datedata = $year . "-" . $month . "-" . $day;
 
         print '<input type="hidden" name="month" value="' . $monmon . '">';
+        print '<input type="hidden" name="year" value="' . $year . '">';
         print '<input  name="day" type="submit" value='.$value["day"].' 
                 style="border:none;background-color:transparent; color:black; font-size:50px">';
         }
