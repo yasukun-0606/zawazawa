@@ -147,7 +147,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
     <tr>
        
         <?php echo "<input type='hidden' name='nowmonth' value='" . $monmon . "'>";
-            　echo "<input type='hidden' name='nowyear' value='" . $year . "'>";
+              echo "<input type='hidden' name='nowyear' value='" . $year . "'>";
         ?>
         <th colspan="7" class="text"><?php echo $year; ?>年<?php echo $monmon; ?> 月 </th>
         
