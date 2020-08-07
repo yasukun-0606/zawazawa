@@ -22,13 +22,13 @@
     session_start();
     $name = $_SESSION['user_name'];
     $date = '';
-
     $input_day = '';                                              //日の初期化
     $input_month = $_POST['month'];                               //月の値を受け取る
+    $input_year = $_POST['year'];                                 //年の値を受け取る
     if(!empty($_POST['day'])){
       $input_day = $_POST['day'];                                   //日の値を受け取る
     }
-    $input_date = '2020-' . $input_month . '-' . $input_day;      //受け取った月日を合わせる
+    $input_date = $input_year . '-' . $input_month . '-' . $input_day;      //受け取った月日を合わせる
     $date = date('Y-m-d',strtotime($input_date));                 //date型に変換
     $temp = $_POST['temp_n'];                                     //体温を受け取る
 
