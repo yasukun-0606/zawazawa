@@ -29,27 +29,47 @@
       <font size="7">日付と体温を入力してください</font><br><br><br><br><br>
       <font size="6"><b>日付</b></font>
       <br>
+      <select name="year" style="width:90px; font-size:28px" id="relativesel">   <!--今年と去年のリストボックス-->
+      <?php
+          $y = date('Y');
+          $my = $y-1;
+          echo "<option value = '" . $y . "'selected>" . $y . "</option>'"; 
+          echo "<option value = '" . $my . "'>" . $my . "</option>'";            
+      ?>
+      </select>
+      <font size="6">年</font>
       <select name="month" style="width:75px; font-size:28px" id="relativesel" onChange="functionName()">   <!--月のリストボックス-->
-        <option value = "1">1</option>
-        <option value = "2">2</option>
-        <option value = "3">3</option>
-        <option value = "4">4</option>
-        <option value = "5">5</option>
-        <option value = "6">6</option>
-        <option value = "7">7</option>
-        <option value = "8">8</option>
-        <option value = "9">9</option>
-        <option value = "10">10</option>
-        <option value = "11">11</option>
-        <option value = "12">12</option>
+        <?php
+          $m = date('m');
+          $i = 1;
+          while($i<=12){
+            if($i==$m) echo "<option value = '" . $i . "'selected>" . $i . "</option>'"; 
+            else echo "<option value = '" . $i . "'>" . $i . "</option>'";                            //現在の月を表示
+            $i++;
+          }
+        ?>
       </select>
       <font size="6">月</font>
       <select name="day" style="width:75px; font-size:28px" id="relativeday">  <!--日のリストボックス-->   
       <?php
+        $y = date('Y');
+        $m = date('d');
         $i = 1;
-        while($i<=31){
-          echo "<option value = $i>$i</option>'";                            //最初の画面表示時に日のリストボックスを31日まで要素に追加
-          //echo '<option value = " . $i . ">' . $i . '</option>';
+        $ld = 0;
+        if($m==2){                                                  //2月の場合
+          if(($y%4==0 && $y%100!=0) || $y%400==0) $l = 29;          //うるう年の判定
+          else $ld = 28;
+        }
+        else if( $m == "4" || $m == "6" ||                        //4,6,9,11月なら30日まで追加
+                    $m == "9" || $m == "11" ){
+          $ld = 30;
+        }
+        else {
+          $ld = 31;
+        }
+        while($i<=$ld){
+          if($i==$m) echo "<option value = '" . $i . "'selected>" . $i . "</option>'"; 
+          else echo "<option value = '" . $i . "'>" . $i . "</option>'"; 
           $i++;
         }
       ?>
@@ -98,7 +118,7 @@
         <font size='6' id='relativeDo'>℃</font>
         <br>
         <!-- 確認画面へ -->
-        <input id='relativeButton' type='submit' value='確認' size='5'  style='font:15pt MS ゴシック; width:75px; height:7%'/>
+        <input id='relativeButton' maxlength="4" type='submit' value='確認' size='5'  style='font:15pt MS ゴシック; width:75px; height:7%'/>
         <!-- 選択画面へ -->
         <input type='button' value='戻る' onClick='history.back()' style='font:15pt MS ゴシック; width:75px; height:7%'>
         </form>
