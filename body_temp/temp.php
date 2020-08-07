@@ -31,7 +31,7 @@ body{
     <?php
     session_start();
 
-    $year = date('Y');                        //対象年       
+    $year = $_POST['year'];                   //対象年       
     $month = $_POST['month'];                 //対象月
     if($month < 10){
         $month = '0' . $month;
@@ -127,7 +127,8 @@ body{
         }
 
         echo '<br/><br/>';      //改行
-        echo '<input type="hidden" name="month" value="' . $month . '">'; 
+        echo '<input type="hidden" name="month" value="' . $month . '">';
+        echo '<input type="hidden" name="nowyear" value="' . $year . '">';
         /****カレンダーに戻るリンク設定****/
         echo "<input type='submit' value='カレンダーに戻る' size='5'  style='font:15pt MS ゴシック; width:200px; height:60px'/>";
 
