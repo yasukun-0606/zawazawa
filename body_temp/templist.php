@@ -80,9 +80,11 @@ else if($_POST['month']=='来月') {
 }
 if($monmon == '0'){
     $monmon = 12;
+    $year--;
 }
 else if($monmon == '13'){
-    $monmon = 1;    
+    $monmon = 1;
+    $year++;
 }
 $today = date('d');
  
