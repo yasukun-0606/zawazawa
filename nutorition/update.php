@@ -81,7 +81,7 @@
     上記で近いものを選択してください。</div>
  
     <br>
-    <p class="text">目標(目標の体重や体系を入力)</p>           <!--目標入力-->
+    <p class="text">目標(目標の体重や体型を入力)</p>           <!--目標入力-->
         <textarea  class="text" type = "text" name ="target" cols="40"></textarea>      <!--目標変更入力フォーム-->
         <br>
     <p><input class="send" type="submit" value="送信" ></p>      <!--ユーザー情報画面に戻る-->
