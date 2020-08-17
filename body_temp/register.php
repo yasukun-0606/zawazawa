@@ -129,11 +129,11 @@
         <br>
         <font size='6' id='relativetemptext'><b>体温</b></font>
         <!--体温入力-->
-        <input id='temptext' type='text' name='temp_n' style=' font:12pt MS ゴシック;width:5em;height:1.8em' />
+        <input id='temptext' pattern='[\d.]*' maxlength='4' type='text' name='temp_n' style=' font:12pt MS ゴシック;width:5em;height:1.8em' />
         <font size='6' id='relativeDo'>℃</font>
         <br>
         <!-- 確認画面へ -->
-        <input id='relativeButton' pattern='[\d.]*' maxlength="4" type='submit' value='確認' size='5'  style='font:15pt MS ゴシック; width:75px; height:7%'/>
+        <input id='relativeButton' type='submit' value='確認' size='5'  style='font:15pt MS ゴシック; width:75px; height:7%'/>
         <!-- 選択画面へ -->
         <input type='button' value='戻る' onClick='history.back()' style='font:15pt MS ゴシック; width:75px; height:7%'>
         </form>
