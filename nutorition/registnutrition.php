@@ -110,7 +110,7 @@ session_start();
 <br>
 <label for="name" class="MA_biglabel">  食品名  </label> 
 <p><label for="name" class="MA_selectnamelabel">食品名選択</label> </p>
-
+<label for="name" class="tlabel">時間選択</label> 
 
 
 <!-- 食品名のプルダウン作成 -->
@@ -131,12 +131,17 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
   echo "</select>"; 
   echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください' id='MA_num' name='MA_Num'placeholder='個'class='MA_numbox'>";
   echo "<button class='MA_registbutton'type='submit' name='MA_add' value='ボタン' onclick='MA_clickgo()'>決定</button>";
+  echo "<p class = tpos>";
+  echo "<input type='radio' name='t1' value='1' checked>朝";
+  echo "<input type='radio' name='t1' value='2' >昼";
+  echo "<input type='radio' name='t1' value='3' >夜";
+  echo "</p>";
   echo "</form>";
-?>
+  ?>
 
 <form method="post">
 <p><label for="name"class="MA_numlabel">個数</label>
-<label for="name"class="MA_attention">(※肉類は100gで1個として扱います)</label>
+<label for="name"class="MA_attention">(※食品は100gで1個として扱います)</label>
 </p>
 
 </form>
@@ -154,6 +159,7 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
 <p><label for="name" class="ME_selectnamelabel">料理名選択</label> </p>
 </p>
 <p><label for="name" class="ME_numlabel">個数</label>
+<label for="name" class="tlabel">時間選択</label> 
 
 <!-- 料理名のプルダウン作成 -->
 <?php
@@ -170,7 +176,12 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
   echo "</select>"; 
   echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください' id='ME_num' name='ME_Num'placeholder='個'class='ME_numbox'>";  
   echo "<button class='ME_registbutton'type='submit' name='ME_add' value='ボタン' onclick='ME_clickgo()'>決定</button>";
-  echo "</form>";
+  echo "<p class = tpos>";
+  echo "<input type='radio' name='t2' value='1' checked>朝";
+  echo "<input type='radio' name='t2' value='2'>昼";
+  echo "<input type='radio' name='t2' value='3'>夜";
+  echo "</p>";
+  echo "</form>"
 
 ?>
 
@@ -187,10 +198,9 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
 
 <label for="name" class="OT_biglabel">  その他  </label>   
 <p><label for="name" class="OT_selectnamelabel">品目名選択</label> </p>
-<label for="name" class="OT_label1">登録場所</label>
-<label for="name" class="OT_label2">登録名</label>
-<label for="name" class="OT_label3">カロリー</label>
 <label for='name' class='OT_numlabel'>個数</label>
+
+<label for="name" class="tlabel">時間選択</label> 
 
 
 <?php
@@ -210,13 +220,27 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
   echo "</select>"; 
   echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください' id='OT_dnum' name='OT_Num'placeholder='個'class='OT_numbox'>";
   echo "<button class='OT_registbutton'type='submit' name='OT_add' value='ボタン' onclick='OT_clickgo()'>決定</button>";
+  echo "<p class = tpos>";
+  echo "<input type='radio' name='t3' value='1' checked>朝";
+  echo "<input type='radio' name='t3' value='2'>昼";
+  echo "<input type='radio' name='t3' value='3'>夜";
+  echo "</p>";
   echo "</form>";
-?>
+  ?>
+</div>
+<!-- 新規登録のブロック -->
+<div style="float:left;"class="inputformat">
+<br>
+
+<label for="name" class="NE_biglabel">新規登録</label>   
+<label for="name" class="OT_label2">登録名</label>
+<label for="name" class="OT_label3">カロリー</label>
+<label for="name" class="OT_label1">登録場所</label>
 
 <form method="post">
 <p class = OT_ppos>
-<input type="radio" name="OT_radio" value="1" checked>食品名<br>
-<input type="radio" name="OT_radio" value="2" checked>料理名<br>
+<input type="radio" name="OT_radio" value="1" >食品名<br>
+<input type="radio" name="OT_radio" value="2" >料理名<br>
 <input type="radio" name="OT_radio" value="3" checked>その他<br>
 </p>
 <input id="OT_registname"type="text" name="OT_name" class="OT_box1"placeholder="名前">
@@ -232,7 +256,8 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {
 	//いずれかの決定ボタンが押された時
 	if(isset($_POST['MA_add'])){//押されたのが食品名のとき
 		if(($_POST['MA_Num']!="")&&($_POST['MA_Name'])!=""){//個数と名前の空白チェック
-	 		$checkradio=1;//id
+			$checkradio=1;//id
+			$time=$_POST['t1'];
 			$checkname=$_POST['MA_Name'];//名前
 			$checknum=$_POST['MA_Num'];//個数
 			$sql="select * from materials where materials = ?";
@@ -242,6 +267,7 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {
 	else if(isset($_POST['ME_add'])){//押されたのが料理名のとき
 		if(($_POST['ME_Num']!="")&&($_POST['ME_Name'])!=""){//個数と名前の空白チェック
 			$checkradio=2;//id
+			$time=$_POST['t2'];
 	    	$checkname=$_POST['ME_Name'];//名前
 	    	$checknum=$_POST['ME_Num'];//個数
 			$sql="select * from dishes where dishes = ? ";
@@ -251,6 +277,7 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {
 	else if(isset($_POST['OT_add'])){//押されたのがその他のとき
 		if(($_POST['OT_Num']!="")&&($_POST['OT_Name'])!=""){//個数と名前の空白チェック
 			$checkradio=3;//id
+			$time=$_POST['t3'];
 	    	$checkname=$_POST['OT_Name'];//名前
 	    	$checknum=$_POST['OT_Num'];//個数
 			$sql="select * from foods where foods = ? ";
@@ -264,9 +291,9 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {
 		$resultkcal=$hit['calories']*$checknum;//総カロリー
 		//ここから重複チェック
 		$repeat=false;	
-		$sql="SELECT * FROM nutritionreg_table WHERE UserID = ? AND Date = ? AND DetaName = ? limit 1";//重複チェッククエリ
+		$sql="SELECT * FROM nutritionreg_table WHERE UserID = ? AND Date = ? AND DetaName = ? AND Time_Zone = ? limit 1";//重複チェッククエリ
 		$stmt = $pdo -> prepare($sql);
-		$stmt->execute([$_id,$ymd,$checkname]);
+		$stmt->execute([$_id,$ymd,$checkname,$time]);
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if($result > 0){//重複が見つかればフラグを建てる
 			$repeat=true;	
@@ -274,10 +301,10 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {
 		//ここまで
 	
 	if($repeat==false){//重複データがなければ
-		$sql="INSERT INTO nutritionreg_table(UserID,Date,DetaName,Calorie,Items) VALUE(?,?,?,?,?)";//データの挿入
+		$sql="INSERT INTO nutritionreg_table(UserID,Date,DetaName,Calorie,Items,Time_Zone) VALUE(?,?,?,?,?,?)";//データの挿入
 		$stmt = $pdo -> prepare($sql);
-		$stmt->execute([$_id,$ymd,$checkname,$resultkcal,$checknum]);
-		
+		$stmt->execute([$_id,$ymd,$checkname,$resultkcal,$checknum,$time]);
+
 	}
 }
 }
@@ -290,9 +317,10 @@ if(isset($_POST['back'])) {//戻るが押された時！
 	if(empty($_POST['back'])){	 //念のため
 	}
 	else{
-		$sql="DELETE FROM nutritionreg_table WHERE UserID = ? AND Date = ? ORDER BY Number DESC LIMIT 1";//　最新レコードを降順で一番上に持ってきて上から1行削除
+		$button=$_POST['del'];
+		$sql="DELETE FROM nutritionreg_table WHERE UserID = ? AND Date = ? and Time_Zone = ? ORDER BY Number DESC LIMIT 1";//　最新レコードを降順で一番上に持ってきて上から1行削除
 		$stmt = $pdo -> prepare($sql);
-		$stmt->execute([$_id,$ymd]);
+		$stmt->execute([$_id,$ymd,$button]);
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 }
@@ -301,9 +329,12 @@ if(isset($_POST['back'])) {//戻るが押された時！
 
 
 <?php
-			echo "<div style='float:left;'class='displayformat'>";
+/*************朝の登録カロリー**************/
+			echo "<div style='float:left;'class='tinputformat'>";
+			echo "<label for='name' class='tbiglabel'>朝</label>";
+			echo "<br>";
 			//データベースから該当カラムのデータを抽出
-			$sql="select * from nutritionreg_table where UserID = ? and Date = ?";//データベースの値取得
+			$sql="select * from nutritionreg_table where UserID = ? and Date = ? and Time_Zone = 1";//データベースの値取得
 			$stmt = $pdo -> prepare($sql);
 			$stmt->execute([$_id,$ymd]);
 		
@@ -316,13 +347,68 @@ if(isset($_POST['back'])) {//戻るが押された時！
 			echo $kcal=$res['Calorie'];
 			echo "kcal<br/>";
 		 }
-	echo "<form action='registnutrition.php' method='post'>";
-	echo "<input type='submit' class='backbutton' name='back' value='データを1つ取り消す' onclick='clickback()'><br>";
-	echo "</form>";
-	echo "<form action='registexercise.php' method='post'>";
-	echo "<input type='submit' class='jumpexercise'  name='button' value='運動データ登録へ' ><br>";
-	echo "</form>";
-	echo "</div>";	
+		 echo "</div>";
+	
+/*************昼の登録カロリー**************/
+echo "<div style='float:left;'class='tinputformat'>";
+echo "<label for='name' class='tbiglabel'>昼</label>";
+echo "<br>";
+//データベースから該当カラムのデータを抽出
+$sql="select * from nutritionreg_table where UserID = ? and Date = ? and Time_Zone = 2";//データベースの値取得
+$stmt = $pdo -> prepare($sql);
+$stmt->execute([$_id,$ymd]);
+
+while($res=$stmt->fetch(PDO::FETCH_ASSOC)){
+//料理名×個数＝総カロリー　の形式で表示
+echo $name=$res['DetaName'];//
+echo "×";
+echo $num=$res['Items'];
+echo "個＝";
+echo $kcal=$res['Calorie'];
+echo "kcal<br/>";
+}
+echo "</div>";
+/*************夜**************/
+echo "<div style='float:left;'class='tinputformat'>";
+echo "<label for='name' class='tbiglabel'>夜</label>";
+echo "<br>";
+//データベースから該当カラムのデータを抽出
+$sql="select * from nutritionreg_table where UserID = ? and Date = ? and Time_Zone = 3";//データベースの値取得
+$stmt = $pdo -> prepare($sql);
+$stmt->execute([$_id,$ymd]);
+
+while($res=$stmt->fetch(PDO::FETCH_ASSOC)){
+//料理名×個数＝総カロリー　の形式で表示
+echo $name=$res['DetaName'];//
+echo "×";
+echo $num=$res['Items'];
+echo "個＝";
+echo $kcal=$res['Calorie'];
+echo "kcal<br/>";
+}
+echo "</div>";
+
+
+echo "<div style='float:left;'class='tinputformat'>";
+echo "<form action='registnutrition.php' method='post'>";
+//朝昼夜の消すデータをラジオボタンで選択する
+echo "<p class = dpos>";
+echo "<label for='name'>時間選択</label><br>";
+echo "<input type='radio' name='del' value='1' checked>朝";
+echo "<input type='radio' name='del' value='2'>昼";
+echo "<input type='radio' name='del' value='3'>夜";
+echo "</p>";
+echo "<input type='submit' class='backbutton' name='back' value='データを1つ取り消す' onclick='clickback()'><br>";
+echo "</form>";
+echo "<form action='registexercise.php' method='post'>";
+echo "<input type='submit' class='jumpexercise'  name='button' value='運動データ登録へ' ><br>";
+echo "</form>";
+echo "</div>";	
 	
 ?>
+
+
+
+
+
 </html>
