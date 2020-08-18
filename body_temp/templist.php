@@ -189,7 +189,12 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 
         print '<input type="hidden" name="month" value="' . $monmon . '">';
         print '<input type="hidden" name="year" value="' . $year . '">';
-        print '<input  name="day" type="submit" value='.$value["day"].' 
+        //当日の日は強調
+        if($year==date('Y') && $monmon==date('n') && $value['day']==date('d')) {
+            print '<input  name="day" type="submit" value='.$value["day"].' 
+                style="border:solid #ff0000;background-color:transparent; color:black; font-size:50px">';
+        } else {
+            print '<input  name="day" type="submit" value='.$value["day"].' 
                 style="border:none;background-color:transparent; color:black; font-size:50px">';
         }
         ?>
