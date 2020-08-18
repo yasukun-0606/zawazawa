@@ -28,6 +28,7 @@
 
     <body>
     <header>
+    <a href="home.php"><img class="roll float" src="img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
     <h1 class="title">体調・栄養管理アプリ</h1>
     </header>
     <div class="menu">
@@ -42,9 +43,9 @@
         echo '<p>ようこそ' .  h($_SESSION['user_name']) . "さん</p><br>";
         echo "<a href='logout.php' class='log'>ログアウト</a>";
         echo "<br><br>";
-        echo "<br><a href='../body_temp/select.php' class='sub_button'>体調管理</a>";
+        echo "<br><a href='../body_temp/select.php' class='button'>体調管理</a>";
         echo "<br><br><br><br>";
-        echo "<a href='../nutorition/eiyouhome.php' class='button'>栄養管理</a>";
+        echo "<a href='../nutorition/eiyouhome.php' class='sub_button'>栄養管理</a>";
         echo "<br><br>";
         echo "<p>流す曲を選択してください。</p>";
         echo "<select id='music_name'>";                        //曲の選択（リストボックス）
