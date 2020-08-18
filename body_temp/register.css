@@ -19,10 +19,24 @@
     right: 20px;
 }
 
-.temptext{
+#timetext{
     position: relative;
     right: 36px;
-    top: 54px;
+}
+
+#timesel{
+    position: relative;
+    top: 1px;
+}
+#temptext{
+    position: relative;
+    left: 35px;
+    top: -7px;
+}
+
+#bodytemptext{
+    position: relative;
+    left: -1px;
 }
 
 .bodytemptext{
@@ -36,10 +50,9 @@
     right: 100px;
 }
 
-.relativeDo{
+#relativeDo{
     position: relative;
-    right: 26px;
-    top: 62px;
+    left: 40px
 }
 
 .relativeButton{

@@ -30,30 +30,15 @@ require_once('../config.php');
     //$_SESSION['user_name'] = 'いんぐ';
     $name = $_SESSION['user_name'];
     $date = $_POST['date_n'];     //日付
+    $day = $_POST['day'];     //日
+    $month = $_POST['month'];     //月
+    $year = $_POST['year'];     //年
+    $time = $_POST['time'];   //時間帯
     $temp = $_POST['temp_n'];     //体温
 
-    //echo '<p style="position: absolute; right: 0px; top: 0px">' . '<font size="5">' .$date. '</font>' .'</p>';
-    $sqls = "select * from body_temp where date = ?";           //SQL文を記載
-    $stmts = $pdo->prepare($sqls);                              //SQL文をセットしデータベースに接続
-    $stmts->execute([$date]);                                   //実行結果を格納する    
-    $result = $stmts->fetch(PDO::FETCH_ASSOC);
-    if(empty($result['date'])){                                 //DBに指定した体温があるかチェック
-        //echo 'kjdghaafebj';
-    } else {
-      try {
-        $sqld = "DELETE FROM body_temp WHERE date = :date";     //前のデータを削除
-        $stmts = $pdo->prepare($sqld);
-        $stmts->bindValue(':date', $date);
-        $stmts->execute();
-      } catch (Exception $e) {
-        echo $e->getMessage();
-        die();
-      }
-    }
-
-    $sql = "insert into body_temp(user_name, date, temp) values(?, ?, ?)";
+    $sql = "insert into body_temp(user_name, date, year, month, day, time, temp) values(?, ?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$name, $date, $temp]);                              //DBに登録
+    $stmt->execute([$name, $date, $year, $month, $day, $time, $temp]);                             //DBに登録
 
 ?>
   </span>

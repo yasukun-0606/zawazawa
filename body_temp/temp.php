@@ -44,6 +44,14 @@ body{
     $date = $year . "-" . $month . "-" . $day; //対象の日付
     $name = $_SESSION['user_name'];            //UserName
     $error_code=0;                             //error_code                                                 
+    $tempsum=0;                                //月体温合計
+    $tempave=0;                                //月体温平均
+    $counter=0;                                //月体温データ数
+    $sun='';                                   //朝の体温
+    $noon='';                                 //昼の体温
+    $night='';                                 //夜の体温
+    $i=0;                                      //ループ用変数
+    $error_name='データがありません';           //エラー内容 
 
     /****タイトル表示****/
      echo "<br/>";                             
@@ -72,24 +80,77 @@ body{
             $stmt->execute();                                //日付データの一致参照
             foreach ($stmt as $row) {                               
                                                                     // データベースのフィールド名で出力
-                $temp=$row['temp'];                                  //体温を抽出
-                //echo $stmt;
+                $temp = $row['temp'];                                                    
+                if($row['time']=='朝') {
+                    $sun=$row['temp'];                                  //朝の体温を抽出
+                } else if($row['time']=='昼'){
+                    $noon=$row['temp'];                                  //朝の体温を抽出
+                } else if($row['time']=='夜'){
+                    $night=$row['temp'];
+                }
             }
-            
+            $sql = 'select * from body_temp where month ="' . $month .'"';       //SQL文
+            $stmt = $pdo->prepare($sql);                            //SQL文のセットとデータベースへ接続
+            $stmt->execute();                                //日付データの一致参照
+            foreach ($stmt as $row) {                               
+                                                                    // データベースのフィールド名で出力
+                $tempsum+=$row['temp'];                             //月の体温の合計
+                $counter+=1;                                        //月データ数
+
+            }
+
+            if($counter!=0){
+                $tempave=round($tempsum/$counter, 1);               //月データのアベレージ
+            }
+                              
+
             if(empty($temp)){                                      //体温の空白チェック
                 $error_code = 200;
-            } else {
-
-               /****体温の表示****/
-                echo '<p style="font-size:20px;">';
-                echo "<h3 align='center'>";
-                echo "＿人人人人人人＿<br/>";
-                echo "＞　".$temp;                                       //指定日の体温表示
-                echo "℃　＜<br/>";
-                echo "￣^Y^Y^Y^Y^￣<br/></h3>";                         
-                echo '</p>';
-                
             }
+
+            echo '<p style="font-size:20px;">';
+            echo "<h3 align='center'>";
+            echo '朝　　　　　　　　　　昼　　　　　　　　　　夜<br/>';
+
+            for($i=1;$i<=3;$i++){
+                                      //指定日の体温表示
+                if($i==1) {
+                    if(empty($sun)) echo $error_name;
+                    else echo   $sun . "℃";
+                    echo "　　　";
+                }
+                else if($i==2) {
+                    echo "　　　  ";
+                    if(empty($noon)) echo $error_name;
+                    else echo   $noon . "℃";
+                    echo "　　  ";
+                }
+                else if($i==3) {
+                    echo "　　　";
+                    if(empty($night)) {
+                        echo $error_name;
+                        echo "<br/>";
+                    } else echo $night . "℃<br/>";
+                    echo "　　　　";
+                }
+            }
+          /*  for($i=1;$i<=3;$i++){
+                echo "￣^Y^Y^Y^Y^￣　　　";
+                if($i==3) echo "<br/>";
+            }
+*/
+        if($counter==0){
+            echo "<h2>データがありません 平均体温を計算できません</h2>";
+        }else{
+            echo "<br/><br/>";
+            echo "月の平均体温";
+            echo "<br/>";
+            echo $tempave;
+            echo "℃　<br/>";
+            echo '</h3></p>';
+
+        }
+
 
         }catch(Exception $e){
             $error_code = 900;                                      //データベースに接続できなかった場合
@@ -99,7 +160,7 @@ body{
             echo "<h2>DBエラー</h2>";                               //エラーコード
           //  echo "<hr><br>";
         }elseif($error_code==200){
-            echo "<h2>データがありません 登録をお願いします</h2>";                  //データベースエラー
+         //   echo "<h2>データがありません 登録をお願いします</h2>";                  //データベースエラー
         }else{
 
 
@@ -120,7 +181,7 @@ body{
                 echo "<div class='flame01'><p align='center'>微熱気味です　状況報告を行い判断を仰ぎましょう</p></div>";
             }elseif($temp>=34){
                 //平熱
-                echo "<div class='flame01'><p align='center'>問題ありません　元気よく出勤をしましょう</p></div>";
+                echo "<div class='flame01'><p align='center'>問題ありません　健康です</p></div>";
             }else{
                 echo "<div class='flame01'><p align='center'>体温が低すぎます　測り直してください</p></div>";
             }

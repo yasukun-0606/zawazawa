@@ -27,6 +27,7 @@
     $input_day = '';                                              //日の初期化
     $input_month = $_POST['month'];                               //月の値を受け取る
     $input_year = $_POST['year'];                                 //年の値を受け取る
+    $input_time = $_POST['time'];                                 //時間帯の値を受け取る
     if(!empty($_POST['day'])){
       $input_day = $_POST['day'];                                   //日の値を受け取る
     }
@@ -49,9 +50,15 @@
         echo '<p> <font size="10"> こちらの内容でよろしいですか？ <br /> <br /> </font> </p>';
         echo '<div style="display:inline-block; padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">';
         echo '<input type="hidden" name="date_n" value="' . $date . '">';
+        echo '<input type="hidden" name="day" value="' . $input_day . '">';
+        echo '<input type="hidden" name="month" value="' . $input_month . '">';
+        echo '<input type="hidden" name="year" value="' . $input_year . '">';
         echo '<input type="hidden" name="temp_n" value="' . $temp . '">';
-        echo '<p>' . '<font size="6">' . '日付　'  .$date. '</font>' . '</p>';                          //入力された日付の表示
-        echo '<p>' . '<font size="6">' . '体温&nbsp&nbsp　' .$temp. '℃　　' . '</font>' . '</p>';      //入力された体温の表示
+        echo '<input type="hidden" name="time" value="' . $input_time . '">';
+        echo '<input type="hidden" name="temp_n" value="' . $temp . '">';
+        echo '<p align="left">' . '<font size="6">' . '日付　'  .$date. '</font>' . '</p>';                          //入力された日付の表示
+        echo '<p align="left">' . '<font size="6" > 時間帯　　　' . $input_time . '</font>' . '</p>';    //入力された時間帯の表示
+        echo '<p align="left">' . '<font size="6">' . '体温&nbsp&nbsp　' .$temp. '℃　　' . '</font>' . '</p>';      //入力された体温の表示
         echo '</div>';
         //登録画面へ
         echo '　　　　　　　　　　<input type="submit" value="登録" background-color:"red" ; style="font-size:30px;　width:300px; height:80px">　';

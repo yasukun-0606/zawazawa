@@ -123,17 +123,24 @@
         </script>
         <br>
         <br>
-        <font size='6' id='relativetemptext'><b>体温</b></font>
+        <font size='6' id='timetext'><b>測定時間帯</b></font>
+        <select name="time" style="width:70px; font-size:28px" id='timesel'>  <!--朝昼夜のリストボックス-->
+          <option value = 朝 selected> 朝 </option>
+          <option value = 昼> 昼 </option>
+          <option value = 夜> 夜 </option>
+        </select>
+        <br>
+        <br>
+        <font size='6' id='bodytemptext'><b>体温</b></font>
         <br/>
         <!--体温入力-->
-        <input id='temptext' pattern='[\d.]*' maxlength='4' type='text' name='temp_n' style=' font:12pt MS ゴシック;width:5em;height:1.8em' />
+        <input id='temptext' pattern='[\d.]*' maxlength='4' type='text' name='temp_n' style=' font:12pt MS ゴシック;width:4em;height:1.8em' />
         <font size='6' id='relativeDo'>℃</font>
         <br/><br/><br/>
         <!-- 確認画面へ -->
-        <input id='relativeButton' type='submit' value='登録確認' size='5'  style='font:15pt MS ゴシック; width:100px; height:7%'/>
+        <input id='relativeButton' type='submit' value='登録確認' size='5'  style='font:15pt MS ゴシック; width:75px; height:7%'/>
         <!-- 選択画面へ -->
-        　　　
-        <a href='http://localhost/zawazawa/body_temp/select.php'><input type='button' value='体温Topへ' style='font:15pt MS ゴシック; width:100px; height:7%'/></a>
+        <a href='http://localhost/zawazawa/body_temp/select.php'><input type='button' value='体温Topへ' style='font:15pt MS ゴシック; width:75px; height:7%'/></a>
         </form>
       </div>
   </body>
