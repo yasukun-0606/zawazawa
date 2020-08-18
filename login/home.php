@@ -42,9 +42,9 @@
         echo '<p>ようこそ' .  h($_SESSION['user_name']) . "さん</p><br>";
         echo "<a href='logout.php' class='log'>ログアウト</a>";
         echo "<br><br>";
-        echo "<br><a href='../nutorition/eiyouhome.php' class='button'>栄養管理</a>";
+        echo "<br><a href='../body_temp/select.php' class='sub_button'>体調管理</a>";
         echo "<br><br><br><br>";
-        echo "<a href='../body_temp/select.php' class='sub_button'>体調管理</a>";
+        echo "<a href='../nutorition/eiyouhome.php' class='button'>栄養管理</a>";
         echo "<br><br>";
         echo "<p>流す曲を選択してください。</p>";
         echo "<select id='music_name'>";                        //曲の選択（リストボックス）
