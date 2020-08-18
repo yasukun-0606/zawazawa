@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <title>新規登録画面</title>
-    <link rel="stylesheet" href = "Login.css">　<!--CSS読み込み-->
+    <link rel="stylesheet" href = "Login.css"><!--CSS読み込み-->
 
     <script type="text/javascript">//Js読み込み
 
@@ -73,9 +73,9 @@
     </script>
 
 </head>
-
 <header>
-      <h1 class="head">ユーザー情報登録</h1>  <!--ヘッダー情報-->
+    <a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
+      <h1 class="title1">ユーザー情報登録</h1>  <!--ヘッダー情報-->
 </header>
 
 <body background ="back.png">  <!--背景設定-->
@@ -108,17 +108,17 @@
             <!--体重入力-->
             <tb><b class="left">&emsp;体重(kg)</b></tb> 
             <!--体重入力フォーム-->
-            <tb><input class="input_form" type = "text" name ="weight">kg</tb>     
+            <tb><input class="input_form" type = "number" name ="weight">kg</tb>     
         </tr>
     </table> 
     <br>
     <br>
     <!--運動強度の入力-->
     <p class="text">普段の運動強度目安</p>        
-    <!--運動強度の説明とラジオボタン-->
+    <!--運動強度の説明とラジオボタン--><!--ラジオボタンで入力する-->
     <div class="Login_t1">日常生活の運動強度についての説明<br>          
-    &emsp;<input type="radio" name="moment" value="1">1.生活の大部分が座っている(例：デスクワークが多い人)<br>　<!--ラジオボタンで入力する-->
-    <input type="radio" name="moment" value="2">2.座位中心だが移動することが多い。あるいは軽いスポーツ等をしている人(例：営業等で移動が多い人)<br>
+    &emsp;<input type="radio" name="moment" value="1">1.生活の大部分が座っている(例：デスクワークが多い人)<br>
+    &emsp;<input type="radio" name="moment" value="2">2.座位中心だが移動することが多い。あるいは軽いスポーツ等<br>&emsp;&emsp;  をしている人(例：営業等で移動が多い人)<br>
     &emsp;<input type="radio" name="moment" value="3">3.移動や肉体労働が多い人(例：工事現場で作業している人)<br>
     上記で近いものを選択してください。</div>
     

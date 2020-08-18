@@ -37,6 +37,7 @@
 </head>
 
 <header>
+<a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
       <h1 class="head">登録情報変更画面</h1>    <!--ヘッダー設定-->
 </header>
 
@@ -51,7 +52,7 @@
     <table border="0"　class="text1">           <!--画面の体裁を整えるためにのテーブル-->
         <tr>
             <tb><b class="left">年齢</b></tb>
-            <tb>&emsp;<input class="input_form" type = "text" name ="age">歳</tb>   <!--年齢変更フォーム-->
+            <tb>&emsp;<input class="input_form" type = "number" name ="age">歳</tb>   <!--年齢変更フォーム-->
         </tr>
         <tr>
             <tb><b>&emsp;&emsp;&emsp;性別</b></tb>                          <!--性別入力-->
@@ -63,11 +64,11 @@
         <table border="0">          <!--画面の体裁を整えるためにのテーブル-->
         <tr>
             <tb><b class="left">身長(㎝)</b></tb>
-            <tb><input class="input_form" type = "text" name ="height">㎝</tb>      <!--身長変更フォーム-->
+            <tb><input class="input_form" type = "number" name ="height">㎝</tb>      <!--身長変更フォーム-->
         </tr>
         <tr>
             <tb><b class="left">体重(kg)</b></tb>
-            <tb><input class="input_form" type = "text" name ="weight">kg</tb>      <!--体重変更フォーム-->
+            <tb><input class="input_form" type = "number" name ="weight">kg</tb>      <!--体重変更フォーム-->
         </tr>
     </table> 
     <br>

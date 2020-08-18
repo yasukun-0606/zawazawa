@@ -65,6 +65,7 @@
 </head>
 
 <header>
+<a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
       <h1 class="head">ユーザー情報登録</h1>        <!--ヘッダー情報-->
 </header>
 

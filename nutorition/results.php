@@ -16,6 +16,7 @@
 </head>
 <header>
       <link rel="stylesheet" href="Booom.css">
+      <a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
       <h1 class="title">カロリー結果表示</h1>
 </header>
 <body background = "back.png">
@@ -81,15 +82,15 @@
             echo "<p>";
             $eats=0;                                                    //総摂取カロリーを0で初期化
             
-            echo "<textarea name='' cols=36% rows=13% >";             //摂取内訳テキストボックス
+            echo "<textarea name='' cols=50 rows=13% >";             //摂取内訳テキストボックス
             
                 foreach($stmt as $row){
                     if(empty($row['Date'])){        /*えらーしょり　*/
                         break;
                     }
                     echo $name=$row['DetaName']."：";                    //登録データ名の取得
-                    echo $calorie=$row['Calorie']." kcal ";   //登録されたカロリーと個数の積
-                    echo "\n";
+                    echo $calorie=$row['Calorie']." kcal";   //登録されたカロリーと個数の積
+                    echo "  ".$row['Items']."個\n";   //運動時間の表示
                     $a=$row['Calorie'];                       //登録されたカロリーと個数の積
                     $eats = $eats + $a;                                     //総摂取カロリーの計算
                 }
@@ -99,7 +100,7 @@
                     $error_code = 200;
                 }else{
 
-                
+                echo "</br>※食材は100gで1個としています";
                 echo "<h3 align='center'>";                                     //中央揃え
                 echo $eats;                                                     //総摂取カロリーの表示
                 echo " kcal</h3>";
@@ -126,7 +127,7 @@
 
             echo "<p>";
             $total2=0;      //総消費カロリー変数の初期化
-            echo "<textarea name='' cols=36% rows=13% >";     //消費内訳テキストボックス
+            echo "<textarea name='' cols=50 rows=13% >";     //消費内訳テキストボックス
             
                 foreach($stmt as $row){
                     if(empty($row['Date'])){        /*えらーしょり　*/
@@ -135,7 +136,7 @@
                     echo $row['Method']."：";       //運動名の取得
                     $a=$row['Calorie'];    //消費カロリーの算出
                     echo $a." kcal";                        //消費カロリーの表示
-                    echo "      ".$row['WorkTime']."分\n";   //運動時間の表示
+                    echo "  ".$row['WorkTime']."分\n";   //運動時間の表示
                     $total2 = $total2 + $a;             //総消費カロリーの算出
                 }
                 echo "</textarea>";
@@ -189,7 +190,7 @@
             }elseif($sa>100){         
                 echo "<div class='flame01'><p align='center'>ウォーキング20分強程度です</p></div>";            
             }elseif($sa<-1500){       
-                echo "<div class='flame01'><p align='center'>あれれ～？おかしいぞ～？</p></div>";
+                echo "<div class='flame01'><p align='center'>登録内容はあっていますか？</p></div>";
             }elseif($sa<-1000){       
                 echo "<div class='flame01'><p align='center'>和牛のサーロインステーキ200g程度の差です</p></div>";
             }elseif($sa<-500){       

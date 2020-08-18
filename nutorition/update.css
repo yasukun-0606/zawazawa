@@ -75,3 +75,18 @@ body{
     background-color: #eede83;  /*背景色*/
     margin: 0 auto;                 /*自動中央揃え*/
 }
+.float{
+    float:left;
+  }
+  /*
+  .roll {
+    animation: rollkAnime 4s linear infinite;
+  }
+  @keyframes rollkAnime{
+     50% {
+           transform: rotateY(180deg);
+         }
+    100% {
+           transform: rotateY(360deg);
+         }
+  }

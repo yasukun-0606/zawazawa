@@ -23,9 +23,10 @@ session_start();
 ?>
 <html lang="ja">
 <head>
+<a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
 <h1 class="title">消費カロリー登録画面</h1>
 <meta charset="UTF-8">
-  <title>運動データ登録</title>
+  <title>消費カロリー登録</title>
 <script src="EX_pushdata.js"></script>
 <link href="http://localhost/zawazawa/nutorition/styleform.css" rel="stylesheet">
 <link href="http://localhost/zawazawa/nutorition/inputmaterial.css" rel="stylesheet">
@@ -62,7 +63,7 @@ while($res = $stmt->fetch(PDO::FETCH_ASSOC)){  // 実行結果から1レコー�
   	echo "<option value='$names'>$names</option>";
 }	
   echo "</select>"; 
-  echo "<input type='text' pattern='[\d.]*' title='数字かドットで入力してください' id='EX_num' name='EX_Num'placeholder='分'class='EX_numbox'>";
+  echo "<input type='text' pattern='[\d.]*' title='正の数値で入力してください' id='EX_num' name='EX_Num'placeholder='分'class='EX_numbox'>";
   echo "<button class='EX_registbutton'type='submit' name='EX_add' value='ボタン' onclick='EX_clickgo()'>決定</button>";
   echo "</form>";
 ?>

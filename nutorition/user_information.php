@@ -18,7 +18,8 @@
 </head>
 
 <header>
-      <h1 class="head">ユーザー情報</h1>            <!--ヘッダー指定-->
+    <a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
+    <h1 class="head">ユーザー情報</h1>            <!--ヘッダー指定-->
 </header>
 
 <body background ="back.png">       <!--背景の画像設定-->
@@ -119,7 +120,7 @@
         <br>
         <br>
         <div>
-            <button class="margin1" type="submit" onclick="location.href='../login/home.php'" >ホームへ<!--ホーム画面へ遷移-->
+            <!--<button class="margin1" type="submit" onclick="location.href='../login/home.php'" >ホームへ--><!--ホーム画面へ遷移-->
         </div>
 
 

@@ -71,6 +71,7 @@
 
 </head>
 <header>
+<a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
       <h1 class="head">日付選択</h1>
 </header>
 
@@ -184,7 +185,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
     <br>
     ※今日の日付はオレンジ色の太字の数字<br>
     </p>
-    <input class="send_C" type="submit" value="ユーザー登録画面へ">
+    <input class="send_C" type="submit" value="ユーザー情報画面">
 </form>
     <br>
     <br>
