@@ -4,7 +4,6 @@
     * 機能：日付と体温の入力
   */
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,10 +13,8 @@
     <link rel="stylesheet" href="register.css">
   
     <script type="text/javascript">
-
     function check(){
       var temp = document.formName.temp_n.value;
-
       if(temp<34.0 || temp>41.0){
         window.alert('適切な体温を入力してください。'); // 入力ミスがあれば警告ダイアログを表示
         return false; // 送信を中止
@@ -30,12 +27,11 @@
 </head>
 <header>
       <link rel="stylesheet" href="Booom.css">
+      <a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
       <h1 class="title">入力画面</h1>
 </header>
-
 <?php
   session_start();
-
   $name = $_SESSION['user_name'];
   ?>
     <body>
@@ -128,14 +124,16 @@
         <br>
         <br>
         <font size='6' id='relativetemptext'><b>体温</b></font>
+        <br/>
         <!--体温入力-->
         <input id='temptext' pattern='[\d.]*' maxlength='4' type='text' name='temp_n' style=' font:12pt MS ゴシック;width:5em;height:1.8em' />
         <font size='6' id='relativeDo'>℃</font>
-        <br>
+        <br/><br/><br/>
         <!-- 確認画面へ -->
-        <input id='relativeButton' type='submit' value='確認' size='5'  style='font:15pt MS ゴシック; width:75px; height:7%'/>
+        <input id='relativeButton' type='submit' value='登録確認' size='5'  style='font:15pt MS ゴシック; width:100px; height:7%'/>
         <!-- 選択画面へ -->
-        <input type='button' value='戻る' onClick='history.back()' style='font:15pt MS ゴシック; width:75px; height:7%'>
+        　　　
+        <a href='http://localhost/zawazawa/body_temp/select.php'><input type='button' value='体温Topへ' style='font:15pt MS ゴシック; width:100px; height:7%'/></a>
         </form>
       </div>
   </body>

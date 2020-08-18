@@ -130,3 +130,18 @@ body {
     height: 80%;
     background: yellow;
 }
+.float{
+  float:left;
+}
+/*
+.roll {
+  animation: rollkAnime 4s linear infinite;
+}
+@keyframes rollkAnime{
+   50% {
+         transform: rotateY(180deg);
+       }
+  100% {
+         transform: rotateY(360deg);
+       }
+}

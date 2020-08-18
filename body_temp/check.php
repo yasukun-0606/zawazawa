@@ -13,6 +13,7 @@
 </head>
 <header>
   <link rel="stylesheet" href="check.css">
+  <a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
   <h1 class="title">確認画面</h1>
 </header>
 <body>
@@ -22,6 +23,7 @@
     session_start();
     $name = $_SESSION['user_name'];
     $date = '';
+
     $input_day = '';                                              //日の初期化
     $input_month = $_POST['month'];                               //月の値を受け取る
     $input_year = $_POST['year'];                                 //年の値を受け取る

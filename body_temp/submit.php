@@ -12,7 +12,9 @@
     <title>体調管理</title>
 </head>
 <header>
-  <h1 class="title" align="center">登録完了画面</h1>
+      <link rel="stylesheet" href="Booom.css">
+      <a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
+      <h1 class="title">登録完了画面</h1>
 </header>
 <body>
 <div class="container">

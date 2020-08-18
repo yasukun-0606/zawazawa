@@ -14,6 +14,7 @@
 </head>
 
 <header>
+<a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
   <h1 class="title" align="center">登録画面</h1>
 </header>
 

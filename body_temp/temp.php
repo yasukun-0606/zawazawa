@@ -16,6 +16,7 @@
 </head>
 <header>
       <link rel="stylesheet" href="Booom.css">
+      <a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
       <h1 class="title">体温結果表示</h1>
 </header>
 <form name="tempform" action="templist.php" method="post">
@@ -131,7 +132,8 @@ body{
         echo '<input type="hidden" name="nowyear" value="' . $year . '">';
         /****カレンダーに戻るリンク設定****/
         echo "<input type='submit' value='カレンダーに戻る' size='5'  style='font:15pt MS ゴシック; width:200px; height:60px'/>";
-
+        echo "      ";
+        echo "<a href='register.php'><input type='button' value='登録画面へ' size='5'  style='font:15pt MS ゴシック; width:200px; height:60px'/></a>";
         
     ?>
 

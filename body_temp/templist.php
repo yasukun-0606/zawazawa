@@ -16,6 +16,7 @@
 </head>
 <header >
     <link rel="stylesheet" href = "templist.css">
+    <a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
     <h1 class="title">体温カレンダー</h1>
 </header>
 
@@ -84,7 +85,7 @@ if($monmon == '0'){
 }
 else if($monmon == '13'){
     $monmon = 1;
-    $year++;
+    $year++;    
 }
 $today = date('d');
  
@@ -149,7 +150,7 @@ for ($i = 1; $i < $last_day + 1; $i++) {
     <tr>
        
         <?php echo "<input type='hidden' name='nowmonth' value='" . $monmon . "'>";
-              echo "<input type='hidden' name='nowyear' value='" . $year . "'>";
+                echo "<input type='hidden' name='nowyear' value='" . $year . "'>";
         ?>
         <th colspan="7" class="text"><?php echo $year; ?>年<?php echo $monmon; ?> 月 </th>
         
