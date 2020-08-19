@@ -28,7 +28,7 @@
 <header>
       <link rel="stylesheet" href="Booom.css">
       <a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
-      <h1 class="title">入力画面</h1>
+      <h1 class="title">体温入力画面</h1>
 </header>
 <?php
   session_start();
@@ -38,8 +38,7 @@
     <div class="parent">
     <form name="formName" action="check.php" method="post" onsubmit="return check()">                     <!--確認画面へのフォーム-->
       <font size="7">日付と体温を入力してください</font><br><br><br><br><br>
-      <font size="6"><b>日付</b></font>
-      <br>
+      <font size="6"><b>日付　</b></font>
       <select name="year" style="width:90px; font-size:28px" id="relativesel">   <!--今年と去年のリストボックス-->
       <?php
           $y = date('Y');
@@ -132,15 +131,15 @@
         <br>
         <br>
         <font size='6' id='bodytemptext'><b>体温</b></font>
-        <br/>
         <!--体温入力-->
         <input id='temptext' pattern='[\d.]*' maxlength='4' type='text' name='temp_n' style=' font:12pt MS ゴシック;width:4em;height:1.8em' />
         <font size='6' id='relativeDo'>℃</font>
         <br/><br/><br/>
         <!-- 確認画面へ -->
-        <input id='relativeButton' type='submit' value='登録確認' size='5'  style='font:15pt MS ゴシック; width:75px; height:7%'/>
+        <input id='relativeButton' type='submit' value='登録確認' size='5'  style='font:15pt MS ゴシック; width:100px; height:7%'/>
+        　　　
         <!-- 選択画面へ -->
-        <a href='http://localhost/zawazawa/body_temp/select.php'><input type='button' value='体温Topへ' style='font:15pt MS ゴシック; width:75px; height:7%'/></a>
+        <a href='http://localhost/zawazawa/body_temp/select.php'><input type='button' value='体温Topへ' style='font:15pt MS ゴシック; width:100px; height:7%'/></a>
         </form>
       </div>
   </body>

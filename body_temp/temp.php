@@ -47,6 +47,9 @@ body{
     $tempsum=0;                                //月体温合計
     $tempave=0;                                //月体温平均
     $counter=0;                                //月体温データ数
+    $daysum=0;                                 //日体温合計
+    $dayave=0;                                 //日体温平均
+    $daycount=0;                               //日付体温データ数
     $sun='';                                   //朝の体温
     $noon='';                                 //昼の体温
     $night='';                                 //夜の体温
@@ -89,7 +92,9 @@ body{
                     $night=$row['temp'];
                 }
             }
-            $sql = 'select * from body_temp where month ="' . $month .'"';       //SQL文
+            
+
+            $sql = 'select * from body_temp where user_name ="' . $name .'" AND month ="' . $month .'"';       //SQL文
             $stmt = $pdo->prepare($sql);                            //SQL文のセットとデータベースへ接続
             $stmt->execute();                                //日付データの一致参照
             foreach ($stmt as $row) {                               
@@ -104,33 +109,52 @@ body{
             }
                               
 
-            if(empty($temp)){                                      //体温の空白チェック
+     /*       if(empty($temp)){                                      //体温の空白チェック
                 $error_code = 200;
-            }
+            }*/
 
             echo '<p style="font-size:20px;">';
             echo "<h3 align='center'>";
-            echo '朝　　　　　　　　　　昼　　　　　　　　　　夜<br/>';
+            //echo '朝　　　　　　　　　　昼　　　　　　　　　　夜<br/>';
 
             for($i=1;$i<=3;$i++){
                                       //指定日の体温表示
                 if($i==1) {
-                    if(empty($sun)) echo $error_name;
-                    else echo   $sun . "℃";
+                    /***朝の体温表示＆日合計加算 ***/
+                    echo "朝:";
+                    if(empty($sun)){
+                        echo $error_name;
+                    }else{
+                        echo $sun . "℃";
+                        $daysum+=$sun;
+                        $daycount+=1;
+                    } 
                     echo "　　　";
                 }
                 else if($i==2) {
+                    /***昼の体温表示＆日合計加算 ***/
                     echo "　　　  ";
+                    echo "昼:";
                     if(empty($noon)) echo $error_name;
-                    else echo   $noon . "℃";
+                    else{
+                        echo $noon . "℃";
+                        $daysum+=$noon;
+                        $daycount+=1;
+                    } 
                     echo "　　  ";
                 }
                 else if($i==3) {
+                    /***夜の体温表示＆日合計加算 ***/
                     echo "　　　";
+                    echo "夜:";
                     if(empty($night)) {
                         echo $error_name;
                         echo "<br/>";
-                    } else echo $night . "℃<br/>";
+                    } else{
+                        echo $night . "℃<br/>";
+                        $daysum+=$night;
+                        $daycount+=1;
+                    } 
                     echo "　　　　";
                 }
             }
@@ -139,16 +163,41 @@ body{
                 if($i==3) echo "<br/>";
             }
 */
+
+       /***日平均体温表示 ***/
+       if($daycount==0){
+            echo "<h2>日平均体温を表示できません</h2>";
+        }else{
+            $dayave=round($daysum/$daycount, 1);
+            echo "<br/><br/>";
+            echo "日の平均体温";
+            echo "<br/>";
+            echo $dayave;
+            echo "℃　<br/>";
+            echo '</p>';
+
+        }
+
+
+        /***月平均体温表示 ***/
         if($counter==0){
-            echo "<h2>データがありません 平均体温を計算できません</h2>";
+            echo "<h2>月平均体温を表示できません</h2>";
         }else{
             echo "<br/><br/>";
-            echo "月の平均体温";
+            echo "<h3>月の平均体温";
             echo "<br/>";
             echo $tempave;
             echo "℃　<br/>";
             echo '</h3></p>';
 
+        }
+
+    //    echo $daysum;
+
+ 
+
+        if($dayave==0){
+            $error_code=200;
         }
 
 
@@ -171,15 +220,15 @@ body{
             //echo '<br/>';
 
             /****体温データの判断結果****/
-            if($temp>=42){
+            if($dayave>=42){
                 echo "<div class='flame01'><p align='center'>体温が高すぎます　測り直してください</p></div>";
-            }elseif($temp>=37.5){
+            }elseif($dayave>=37.5){
                 //37.5℃以上
                 echo "<div class='flame01'><p align='center'>規定体温を超えています！病院に行きましょう</p></div>";
-            }elseif($temp>=37){
+            }elseif($dayave>=37){
                 //37℃以上
                 echo "<div class='flame01'><p align='center'>微熱気味です　状況報告を行い判断を仰ぎましょう</p></div>";
-            }elseif($temp>=34){
+            }elseif($dayave>=34){
                 //平熱
                 echo "<div class='flame01'><p align='center'>問題ありません　健康です</p></div>";
             }else{
