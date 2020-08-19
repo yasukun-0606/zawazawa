@@ -114,7 +114,7 @@
         <br>
         <br>
         <div>
-            <button class="margin1" type="submit" onclick="location.href='./update.php'" >登録画面更新　<!--登録更新画面へ遷移-->
+            <button class="margin1" type="submit" onclick="location.href='./update.php'" >登録情報更新　<!--登録更新画面へ遷移-->
             <button class="margin1" type="submit" onclick="location.href='./calendar.php'">カレンダーに戻る<!--カレンダー画面へ戻る-->
         </div>
         <br>

@@ -189,7 +189,6 @@ for ($i = 1; $i < $last_day + 1; $i++) {
 </form>
     <br>
     <br>
-    <button class="margin1" type="submit" onclick="location.href='../login/home.php'" >ホームへ<!--ホーム画面へ遷移-->
 </body>
 
 

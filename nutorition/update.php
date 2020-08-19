@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>登録変更画面</title>                     <!--タイトル-->
+    <title>情報更新画面</title>                     <!--タイトル-->
     <link rel="stylesheet" href = "update.css">     <!--CSS呼び出し-->
 
     <script type="text/javascript">         //JS起動
@@ -38,7 +38,7 @@
 
 <header>
 <a href="../login/home.php"><img class="roll float" src="../login/img/まちおさん3.jpg" alt="サンプル画像" width=100px height=48px></a>
-      <h1 class="head">登録情報変更画面</h1>    <!--ヘッダー設定-->
+      <h1 class="head">情報更新</h1>    <!--ヘッダー設定-->
 </header>
 
 <body background ="back.png">      <!--背景設定-->
@@ -85,7 +85,7 @@
     <p class="text">目標(目標の体重や体型を入力)</p>           <!--目標入力-->
         <textarea  class="text" type = "text" name ="target" cols="40"></textarea>      <!--目標変更入力フォーム-->
         <br>
-    <p><input class="send" type="submit" value="送信" ></p>      <!--ユーザー情報画面に戻る-->
+    <p><input class="send" type="submit" value="更新" ></p>      <!--ユーザー情報画面に戻る-->
     
     </form>
 

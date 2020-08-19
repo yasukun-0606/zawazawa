@@ -50,8 +50,23 @@ session_start();
 		 $checkname=$_POST['OT_name'];//登録名取得
 		 $checkkcal=$_POST['OT_kcal'];//登録カロリー取得
 		 $repeat=false;//重複チェック変数
-		
-			if(!empty($checkname) && !empty($checkkcal)){
+		 $array=$_POST['OT_kcal'];
+		 $len=strlen($array);
+		 $dotnum=0;
+		 $dflag=false;
+		 for($i=0;$i<$len;$i++){
+			 if($array[$i]=='.'){
+				 $dotnum=$dotnum+1;
+				 if($dotnum>1){
+					 $dflag=true;
+				 }
+				 if($array[0]=='.'){
+					 $dflag=true;
+				 	break;
+				 }
+			 }
+		 }
+			if((!empty($checkname) && !empty($checkkcal))&&$dflag==false){
 			//空白データのチェック
 				switch ($checkradio){
 	 			//チェックラジオを用いてテーブル名の選択、変数を用いて後で代入する予定でしたが、うまくいかなかったので許してください
@@ -258,6 +273,23 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {
 	//いずれかの決定ボタンが押された時
 	if(isset($_POST['MA_add'])){//押されたのが食品名のとき
 		if(($_POST['MA_Num']!="")&&($_POST['MA_Name'])!=""){//個数と名前の空白チェック
+			$array=$_POST['MA_Num'];
+			$len=strlen($array);
+			$dotnum=0;
+			$dflag=false;
+			for($i=0;$i<$len;$i++){
+				if($array[$i]=='.'){
+					$dotnum=$dotnum+1;
+					if($dotnum>1){
+						$dflag=true;
+					}
+					if($array[0]=='.'){
+						$dflag=true;
+						break;
+					}
+				}
+			}
+   
 			 $checkradio=1;//id
 			 $time=$_POST['t1'];
 			$checkname=$_POST['MA_Name'];//名前
@@ -268,6 +300,23 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {
 		}
 	else if(isset($_POST['ME_add'])){//押されたのが料理名のとき
 		if(($_POST['ME_Num']!="")&&($_POST['ME_Name'])!=""){//個数と名前の空白チェック
+			$array=$_POST['ME_Num'];
+			$len=strlen($array);
+			$dotnum=0;
+			$dflag=false;
+			for($i=0;$i<$len;$i++){
+				if($array[$i]=='.'){
+					$dotnum=$dotnum+1;
+					if($dotnum>1){
+						$dflag=true;
+					}
+					if($array[0]=='.'){
+						$dflag=true;
+						break;
+					}
+				}
+			}
+
 			$checkradio=2;//id
 			$time=$_POST['t2'];
 	    	$checkname=$_POST['ME_Name'];//名前
@@ -278,6 +327,23 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {
 	}
 	else if(isset($_POST['OT_add'])){//押されたのがその他のとき
 		if(($_POST['OT_Num']!="")&&($_POST['OT_Name'])!=""){//個数と名前の空白チェック
+			$array=$_POST['OT_Num'];
+			$len=strlen($array);
+			$dotnum=0;
+			$dflag=false;
+			for($i=0;$i<$len;$i++){
+				if($array[$i]=='.'){
+					$dotnum=$dotnum+1;
+					if($dotnum>1){
+						$dflag=true;
+					}
+					if($array[0]=='.'){
+						$dflag=true;
+						break;
+					}
+				}
+			}
+
 			$checkradio=3;//id
 			$time=$_POST['t3'];
 	    	$checkname=$_POST['OT_Name'];//名前
@@ -286,7 +352,7 @@ if(isset($_POST['MA_add'])||isset($_POST['ME_add'])||isset($_POST['OT_add'])) {
 			$j=true;
 	 	}
 	}
-	if($j==true){
+	if($j==true&&$dflag==false){
 		$stmt = $pdo -> prepare($sql);
 		$stmt->execute([$checkname]);
 		$hit=$stmt->fetch(PDO::FETCH_ASSOC);
