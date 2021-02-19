@@ -36,21 +36,21 @@ require_once('../config.php');
     $time = $_POST['time'];   //時間帯
     $temp = $_POST['temp_n'];     //体温
 
-    $sqls = "select * from body_temp where date = ?";
-    $stmts = $pdo->prepare($sqls);
-    $stmts->execute([$date]);
+    $sqls = "select * from body_temp where date = ?";           //SQL文を記載
+    $stmts = $pdo->prepare($sqls);                              //SQL文をセットしデータベースに接続
+    $stmts->execute([$date]);                                   //実行結果を格納する    
     $result = $stmts->fetch(PDO::FETCH_ASSOC);
-    if(empty($result['date'])){
-      //Nothing
-    }else{
-      try{
-        $sqld = "delete from body_temp where date = :date and time = :time";
+    if(empty($result['date'])){                                 //DBに指定した体温があるかチェック
+        //fecho 'kjdghaafebj';
+    } else {
+      try {
+        $sqld = "DELETE FROM body_temp WHERE date = :date and time = :time";     //前のデータを削除
         $stmts = $pdo->prepare($sqld);
-        $stmts->bindvalue(':date',$date);
-        $stmts->bindvalue(':time',$time);
+        $stmts->bindValue(':date', $date);
+        $stmts->bindValue(':time', $time);
         $stmts->execute();
-      }catch(Exception $e){
-        echo $e->getMessege();
+      } catch (Exception $e) {
+        echo $e->getMessage();
         die();
       }
     }
